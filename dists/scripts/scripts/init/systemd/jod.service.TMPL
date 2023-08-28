@@ -1,0 +1,15 @@
+[Unit]
+Description=%JOD_INSTALLATION_NAME%
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=%CURRENT_USER%
+WorkingDirectory=%JOD_DIR%
+ExecStart=/bin/bash %JOD_DIR%/start.sh true
+
+[Install]
+WantedBy=multi-user.target

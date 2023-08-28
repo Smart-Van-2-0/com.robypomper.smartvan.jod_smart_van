@@ -1,0 +1,23 @@
+{
+    "model": "JOD Object TMPL_jod-dist",
+    "brand": "John OS",
+    "descr": "Default structure file for TMPL_jod-dist template",
+    "descr_long": "This fail must be customize according to distribution requirements",
+
+    "contains": {
+        "Example RangeAction" : {
+            "type": "RangeAction",
+            "puller" : "shell://cmd=command_read param1 param2';freq=5",
+            "executor" : "shell://cmd=command_write param1 param2'",
+            "min": "0",
+            "max": "100",
+            "step": "5"
+        },
+
+        "Example BooleanAction" : {
+            "type": "BooleanAction",
+            "puller" : "shell://cmd=command_read param1 param2)';freq=5",
+            "executor" : "shell://cmd=command_write param1 param2"
+        }
+    }
+}

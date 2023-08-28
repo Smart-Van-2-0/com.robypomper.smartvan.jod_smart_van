@@ -1,0 +1,148 @@
+#!/bin/bash
+
+################################################################################
+# The John Operating System Project is the collection of software and configurations
+# to generate IoT EcoSystem, like the John Operating System Platform one.
+# Copyright (C) 2021 Roberto Pompermaier
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+################################################################################
+
+# Customize this script editing all '#   #...' comments
+
+###############################################################################
+# Start and HW Daemon main script.
+#
+# This script startup the HW Daemon for current JOD Distribution.
+# The HW Daemon is a background service that runs when the main JOD agent is
+# running and is demanded to pull HW values and store them in files.
+# The HW Daemon add a layer between the JOD's Workers (FileListeners) and the
+# HW firmware, acting as a cache between John and the underling hardware.
+#
+#   # Customize HW Daemon documentation
+#   # ...describe how scan objects/components (if do it)
+#   # ...describe which files are created (values.txt, lastupd_timestamp.txt...) and their paths
+#
+# Moreover, this daemon, during his execution create other txt files that
+# contains the daemon's state (is scanning, slaves founded...). Here the list
+# of generated files and their content:
+# * "status/configs.txt": the list of script's vars used as HW Daemon configs
+# * "status/is_scanning.txt": true if the daemon is currently scanning, false otherwise
+# * "status/last_exec_start_timestamp.txt": the timestamp of the start of the latest daemon scan execution
+# * "status/last_exec_end_timestamp.txt": the timestamp of the end of the latest daemon scan execution
+#   # Add custom daemon's status files
+#   # * ...
+#
+# Because this is script represent a daemon application, to run it please
+# always use the 'nohup' command. Like in te following example from the
+# 'pre-startup.sh' script:
+#
+#     nohup bash "$JOD_DIR/scripts/hw/start_daemon.sh" 0<&- &> "$JOD_DIR/logs/daemon.log" &
+#
+# The start_daemon.sh and stop_daemon.sh scripts detect if the HW Daemon is
+# already running via the $DAEMON_PID_FILE.
+#
+# Artifact: JOD Dist Template
+# Version:  1.0.3
+###############################################################################
+
+#   # Customize daemon name and default refresh time
+DAEMON_NAME="MBus"
+DEFAULT_DAEMON_REFRESH=300
+
+
+## Default init - START
+JOD_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." >/dev/null 2>&1 && pwd -P)"
+source "$JOD_DIR/scripts/libs/include.sh" "$JOD_DIR"
+
+#DEBUG=true
+[[ ! -z "$DEBUG" && "$DEBUG" == true ]] && setupLogsDebug || setupLogs
+setupCallerAndScript "$0" "${BASH_SOURCE[0]}"
+
+execScriptConfigs "$JOD_DIR/scripts/jod/jod-script-configs.sh"
+execScriptConfigs "$JOD_DIR/scripts/jod/errors.sh"
+
+# Load jod_configs.sh, exit if fails
+setupJODScriptConfigs "$JOD_DIR/configs/configs.sh"
+## Default init - END
+
+
+## Daemon init - START
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd -P)"
+
+# Check daemon params
+DAEMON_REFRESH=${DAEMON_REFRESH:-$DEFAULT_DAEMON_REFRESH}
+DAEMON_CACHE_DIR=${DAEMON_CACHE_DIR:-"$JOD_DIR/status"}
+
+# PID vars
+DAEMON_PID_DIR="$SCRIPT_DIR/.pid"
+DAEMON_PID_FILE="$DAEMON_PID_DIR/daemon.pid"
+
+# Set status files names
+CONFIGS_FILE="$DAEMON_CACHE_DIR/configs.txt"
+IS_SCANNING_FILE="$DAEMON_CACHE_DIR/is_scanning.txt"
+TIMESTAMP_EXEC_START_FILE="$DAEMON_CACHE_DIR/last_exec_start_timestamp.txt"
+TIMESTAMP_EXEC_END_FILE="$DAEMON_CACHE_DIR/last_exec_end_timestamp.txt"
+## Daemon init - END
+
+
+#   # Customize with daemon's name and vars initialization
+## {DAEMON's name} init - START
+
+#   # Add custom vars used as configs in HW Daemon
+CONFIGS_LIST="VAR_1                     $VAR_1
+VAR_2                     $VAR_1
+...
+DAEMON_REFRESH            $DAEMON_REFRESH
+DAEMON_CACHE_DIR          $DAEMON_CACHE_DIR
+DAEMON_PID_FILE           $DAEMON_PID_FILE"
+## {DAEMON's name} init - END
+
+
+## Daemon - FUNCTIONS
+#   # Add scan, pull and store function to call in the HW Daemon's infinite loop
+
+
+## Daemon - START
+
+# Create pid dir
+mkdir -p "$PID_DIR"
+
+# Check pid
+[ -f "$PID_FILE" ] && logFat "$DAEMON_NAME Daemon already started with pid ($(cat "$PID_FILE"))"
+echo "$$" >> "$PID_FILE"
+
+# Create cache dir
+mkdir -p "$DAEMON_CACHE_DIR"
+
+# Store script's configs
+echo "$CONFIGS_LIST" > "$CONFIGS_FILE"
+
+# Start infinite loop
+while true
+do
+  logInf "$DAEMON_NAME Daemon - START SCAN @ $(date '+%d%m%Y_%H%M%S')"
+  echo "true" > "$IS_SCANNING_FILE"
+  date '+%d%m%Y_%H%M%S' > "$TIMESTAMP_EXEC_START_FILE"
+
+  #   # Call the function added to the 'Daemon - FUNCTIONS' section
+
+  date '+%d%m%Y_%H%M%S' > "$TIMESTAMP_EXEC_END_FILE"
+
+  echo "false" > "$IS_SCANNING_FILE"
+  logInf "$DAEMON_NAME Daemon - END SCAN @ $(date '+%d%m%Y_%H%M%S')"
+
+  logInf "$DAEMON_NAME Daemon - Wait '$DAEMON_REFRESH' seconds @ $(date '+%d%m%Y_%H%M%S')"
+  sleep "$DAEMON_REFRESH"
+done

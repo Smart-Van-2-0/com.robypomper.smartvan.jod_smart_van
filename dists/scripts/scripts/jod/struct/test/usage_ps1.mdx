@@ -1,0 +1,96 @@
+#!/bin/bash
+
+################################################################################
+# The John Operating System Project is the collection of software and configurations
+# to generate IoT EcoSystem, like the John Operating System Platform one.
+# Copyright (C) 2021 Roberto Pompermaier
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+################################################################################
+
+################################################################################
+# Artifact: JOD Dist Template
+# Version:  1.0.3
+################################################################################
+
+
+# Include main Struct Builder script
+$SCRIPT_DIR=(Get-Item $PSCommandPath ).DirectoryName
+."/$SCRIPT_DIR/../builder.ps1"
+
+
+# ############ #
+# BooleanState Element #
+# ############ #
+
+# Create BooleanState
+$COMP=$(buildComponent "Mute" "BooleanState" "listener|puller", "proto://configs")
+
+
+# ############ #
+# RangeState Element #
+# ############ #
+
+# Create RangeState
+$COMP=$(buildComponent "Volume" "RangeState" "listener|puller", "proto://configs")
+# Create RangeState with range params
+$COMP=$(buildComponent "Volume" "RangeState" "listener|puller", "proto://configs", 0, 200, 15)
+
+
+# ############ #
+# BooleanAction Element #
+# ############ #
+
+# Create BooleanAction
+$COMP=$(buildComponent "MuteA" "BooleanAction" "listener|puller", "proto://configs", "proto://configs_executor")
+
+
+# ############ #
+# RangeAction Element #
+# ############ #
+
+# Create RangeAction
+$COMP=$(buildComponent "VolumeA" "RangeAction" "listener|puller", "proto://configs", "proto://configs_executor")
+# Create RangeAction with range params
+$COMP=$(buildComponent "VolumeA" "RangeAction" "listener|puller", "proto://configs", "proto://configs_executor", 0, 200, 15)
+
+
+# ############ #
+# Container Element #
+# ############ #
+
+# Create Container and add sub component one at time
+$CONT_1=$(buildComponent "Audio System" "Container")
+$CONT_1=$(addSubComponent "$CONT_1" "$SUB_COMP1")
+$CONT_1=$(addSubComponent "$CONT_1" "$SUB_COMP2")
+
+# Create Container and add sub components in one function
+$CONT_2=$(buildComponent "Audio System" "Container")
+$CONT_2=$(addSubComponent "$CONT_2" "$SUB_COMP1" "$SUB_COMP2")
+
+# Create Container and add all sub components
+$CONT_3=$(buildComponent "Audio System" "Container" "$SUB_COMP1" "$SUB_COMP2" "$SUB_COMP3")
+
+
+# ############ #
+# Root Element #
+# ############ #
+
+# Create Root
+$MODEL="PC Object Example"
+$BRAND="Various"
+$DESCR="Example that compose a small version of the JOSP PC Object model"
+$DESCR_LONG="test_descr_long"
+$ROOT=$(buildComponent "Root" "Container" "$MODEL", "$BRAND", "$DESCR", "$DESCR_LONG")
+$ROOT=$(addSubComponent "$ROOT" @($CONT_1, $CONT_2, $CONT_3))

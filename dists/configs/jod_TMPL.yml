@@ -1,0 +1,35 @@
+## JCP Client
+
+jcp.url.apis: '%DIST_JCP_ENV_API%'
+jcp.url.auth: '%DIST_JCP_ENV_AUTH%'
+jcp.client.id: '%DIST_JCP_ID%'
+jcp.client.secret: '%DIST_JCP_SECRET%'
+
+
+## JOD Object
+
+jod.obj.name: '%DIST_JOD_NAME%'
+jod.obj.id_cloud: '%DIST_JOD_ID%'
+jod.obj.id_hw: '%DIST_JOD_ID_HW%'
+
+
+## Executors
+
+jod.executor_mngr.pullers: '%DIST_JOD_WORK_PULLERS%'
+jod.executor_mngr.listeners: '%DIST_JOD_WORK_LISTENERS%'
+jod.executor_mngr.executors: '%DIST_JOD_WORK_EXECUTORS%'
+
+
+## Permissions
+
+jod.permissions.owner: '%DIST_JOD_OWNER%'
+
+
+## Communication local
+
+jod.comm.local.enabled: '%DIST_JOD_COMM_DIRECT_ENABLED%'
+
+
+## Communication cloud
+
+jod.comm.cloud.enabled: '%DIST_JOD_COMM_CLOUD_ENABLED%'

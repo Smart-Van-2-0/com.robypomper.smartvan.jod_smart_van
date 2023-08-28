@@ -1,0 +1,103 @@
+#!/bin/bash
+
+################################################################################
+# The John Operating System Project is the collection of software and configurations
+# to generate IoT EcoSystem, like the John Operating System Platform one.
+# Copyright (C) 2021 Roberto Pompermaier
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+################################################################################
+
+# Customize this script editing all '#   #...' comments
+
+###############################################################################
+# Stop HW Daemon script.
+#
+# This script stop the HW Daemon started via the 'start_daemon.sh' script.
+# According to the HW Daemon purpose, this script can be called via the
+# 'post-shutdown.sh' script.
+#
+# The start_daemon.sh and stop_daemon.sh scripts detect if the HW Daemon is
+# already running via the $DAEMON_PID_FILE.
+#
+# Artifact: JOD Dist Template
+# Version:  1.0.3
+###############################################################################
+
+#   # Customize daemon name and default refresh time
+DAEMON_NAME="MBus"
+
+
+## Default init - START
+JOD_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." >/dev/null 2>&1 && pwd -P)"
+source "$JOD_DIR/scripts/libs/include.sh" "$JOD_DIR"
+
+#DEBUG=true
+[[ ! -z "$DEBUG" && "$DEBUG" == true ]] && setupLogsDebug || setupLogs
+setupCallerAndScript "$0" "${BASH_SOURCE[0]}"
+
+execScriptConfigs "$JOD_DIR/scripts/jod/jod-script-configs.sh"
+execScriptConfigs "$JOD_DIR/scripts/jod/errors.sh"
+
+# Load jod_configs.sh, exit if fails
+setupJODScriptConfigs "$JOD_DIR/configs/configs.sh"
+## Default init - END
+
+
+## Daemon init - START
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd -P)"
+
+# PID vars
+PID_DIR="$SCRIPT_DIR/.pid"
+PID_FILE="$PID_DIR/daemon.pid"
+## Daemon init - END
+
+
+#   # Customize with daemon's name and vars initialization
+## {DAEMON's name} init - START
+
+## {DAEMON's name} init - END
+
+
+## Daemon - STOP
+
+# Check pid
+if [ ! -f "$PID_FILE" ]; then
+  logWar "$DAEMON_NAME Daemon already stopped"
+  exit
+fi
+
+# Check if it's running
+PID_RUNNING=$(cat "$PID_FILE")
+if [[ "$(ps aux | grep "$PID_RUNNING" | grep -v "grep")" == "" ]]
+then
+  logWar "$DAEMON_NAME Daemon not running, removing PID file only"
+  rm "$PID_FILE"
+  exit
+fi
+
+# Stop daemon
+logInf "Stop $DAEMON_NAME Daemon"
+kill "$PID_RUNNING"
+sleep 1
+
+# Check if must force daemon stop
+if [[ "$(ps aux | grep "$PID_RUNNING" | grep -v "grep")" != "" ]]
+then
+  logWar "Stop $DAEMON_NAME Daemon (forced)"
+  kill -9 "$PID_RUNNING"
+fi
+
+# Remove pid file
+rm "$PID_FILE"

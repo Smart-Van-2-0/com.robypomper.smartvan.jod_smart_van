@@ -1,0 +1,87 @@
+#!/usr/bin/env powershell
+
+################################################################################
+# The John Operating System Project is the collection of software and configurations
+# to generate IoT EcoSystem, like the John Operating System Platform one.
+# Copyright (C) 2021 Roberto Pompermaier
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+################################################################################
+
+###############################################################################
+# Customization:
+# $JOD_DIR/scripts/post-install.ps1
+#
+# This script is executed after JOD instance installation (via install.sh script).
+#
+# It can be customized adding more checks or operations depending on
+# JOD Distribution needs.
+#
+#
+# Artifact: JOD Dist Template
+# Version:  1.0.3
+#
+# Artifact: {JOD Dist Name}
+# Version:  {JOD Dist Version}
+###############################################################################
+
+## Default init - START
+$JOD_DIR=(get-item $PSScriptRoot ).Parent.FullName
+.$JOD_DIR/scripts/libs/include.ps1 "$JOD_DIR"
+
+#$DEBUG=$true
+if (($null -ne $DEBUG) -and ($DEBUG)) { INSTALL-LogsDebug } else { INSTALL-Logs }
+setupCallerAndScript $PSCommandPath $MyInvocation.PSCommandPath
+
+."$JOD_DIR/scripts/jod/jod-script-configs.ps1"
+execScriptConfigs "$JOD_DIR/scripts/jod/errors.ps1"
+
+# Load jod_configs.sh, exit if fails
+setupJODScriptConfigs "$JOD_DIR/configs/configs.ps1"
+## Default init - END
+
+logInf "POST Install script"
+
+## Example include another PRE/POST script - START
+#logInf "Execute post-startup.ps1..."
+#if ( Test-Path "$JOD_DIR/scripts/post-startup.ps1" ) {
+#    execScriptCommand "$JOD_DIR/scripts/post-startup.ps1"
+#    if (!$?) {
+#        logWar "Error executing POST startup script, continue $LastExitCode"
+#    } elseif ($LastExitCode -gt 0) {
+#        logWar "Error executing POST startup script, exit $LastExitCode"
+#        $host.SetShouldExit($LastExitCode)
+#        exit $LastExitCode
+#    }
+#} else {
+#    logDeb "POST startup script not found, skipped (missing $JOD_DIR/scripts/post-startup.sh)"
+#}
+## Example include another PRE/POST script - END
+
+
+
+## Example various: check Java installed - START                              # ToDo translate examples in powershell
+## Check java
+#if command -v java &>/dev/null; then
+#  logInf "Java installed"
+#else
+#  echo "Missing Java, please install it"
+#  logFat "Java not installed, exit" $ERR_MISSING_REQUIREMENTS
+#fi
+## Example various: check Java installed - END
+
+## Example various: Make firmware's scripts executable - START                # ToDo translate examples in powershell
+## Set sensors scripts executables
+#find $JOD_DIR/scripts/hw/ -type f -exec chmod +x {} \;
+## Example various: Make firmware's scripts executable - END

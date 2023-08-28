@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>EnvironmentVariables</key>
+    <dict>
+      <key>PATH</key>               <string>/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:</string>
+      <key>JAVA_HOME</key>          <string>%JAVA_DIR%</string>
+    </dict>
+    <key>Label</key>                <string>com.robypomper.josp.jod.%JOD_INSTALLATION_NAME_DOT%</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/bash</string>
+        <string>%JOD_DIR%/start.sh</string>
+        <string>true</string>
+    </array>
+    <key>RunAtLoad</key>            <true/>
+    <key>KeepAlive</key>            <false/>
+    <key>LaunchOnlyOnce</key>       <false/>
+    <key>StandardOutPath</key>      <string>%JOD_DIR%/logs/console.log</string>
+    <key>StandardErrorPath</key>    <string>%JOD_DIR%/logs/console.err</string>
+  </dict>
+</plist>

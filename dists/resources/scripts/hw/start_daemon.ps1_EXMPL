@@ -1,0 +1,158 @@
+#!/usr/bin/env powershell
+
+################################################################################
+# The John Operating System Project is the collection of software and configurations
+# to generate IoT EcoSystem, like the John Operating System Platform one.
+# Copyright (C) 2021 Roberto Pompermaier
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+################################################################################
+
+# Customize this script editing all '#   #...' comments
+
+###############################################################################
+# Start and HW Daemon main script.
+#
+# This script startup the HW Daemon for current JOD Distribution.
+# The HW Daemon is a background service that runs when the main JOD agent is
+# running and is demanded to pull HW values and store them in files.
+# The HW Daemon add a layer between the JOD's Workers (FileListeners) and the
+# HW firmware, acting as a cache between John and the underling hardware.
+#
+#   # Customize HW Daemon documentation
+#   # ...describe how scan objects/components (if do it)
+#   # ...describe which files are created (values.txt, lastupd_timestamp.txt...) and their paths
+#
+# Moreover, this daemon, during his execution create other txt files that
+# contains the daemon's state (is scanning, slaves founded...). Here the list
+# of generated files and their content:
+# * "status/configs.txt": the list of script's vars used as HW Daemon configs
+# * "status/is_scanning.txt": true if the daemon is currently scanning, false otherwise
+# * "status/last_exec_start_timestamp.txt": the timestamp of the start of the latest daemon scan execution
+# * "status/last_exec_end_timestamp.txt": the timestamp of the end of the latest daemon scan execution
+#   # Add custom daemon's status files
+#   # * ...
+#
+# Because this is script represent a daemon application, to run it please
+# always use the 'nohup' command. Like in te following example from the
+# 'pre-startup.ps1' script:
+#
+#     Start-Process "powershell.exe" -ArgumentList "$JOD_DIR/scripts/hw/start_daemon.ps1" -WindowStyle Hidden -RedirectStandardOutput "$JOD_DIR/logs/daemon.log" -RedirectStandardError "$JOD_DIR/logs/daemon.err"
+#
+# The start_daemon.ps1 and stop_daemon.ps1 scripts detect if the HW Daemon is
+# already running via the $DAEMON_PID_FILE.
+#
+# Artifact: JOD Dist Template
+# Version:  1.0.3
+###############################################################################
+
+#   # Customize daemon name and default refresh time
+$DAEMON_NAME="PC Windows"
+$DEFAULT_DAEMON_REFRESH=300
+
+
+## Default init - START
+$JOD_DIR = (get-item $PSScriptRoot).Parent.Parent.FullName
+.$JOD_DIR/scripts/libs/include.ps1 "$JOD_DIR"
+
+#$DEBUG=$true
+if (($null -ne $DEBUG) -and ($DEBUG))
+{
+  INSTALL-LogsDebug
+}
+else
+{
+  INSTALL-Logs
+}
+setupCallerAndScript $PSCommandPath $MyInvocation.PSCommandPath
+
+."$JOD_DIR/scripts/jod/jod-script-configs.ps1"
+execScriptConfigs "$JOD_DIR/scripts/jod/errors.ps1"
+
+# Load jod_configs.sh, exit if fails
+setupJODScriptConfigs "$JOD_DIR/configs/configs.ps1"
+## Default init - END
+
+
+## Daemon init - START
+$SCRIPT_DIR=(Get-Item $PSCommandPath ).DirectoryName
+
+# Check daemon params
+$DAEMON_REFRESH = if ( $DAEMON_REFRESH ) { $DAEMON_REFRESH } else { $DEFAULT_DAEMON_REFRESH }
+$DAEMON_CACHE_DIR = if ( $DAEMON_CACHE_DIR ) { $DAEMON_CACHE_DIR } else { "$JOD_DIR/status" }
+
+# PID vars
+$DAEMON_PID_DIR="$SCRIPT_DIR/.pid"
+$DAEMON_PID_FILE="$DAEMON_PID_DIR/daemon.pid"
+
+# Set status files names
+$CONFIGS_FILE="$JOD_CACHE_DIR/configs.txt"
+$IS_SCANNING_FILE="$JOD_CACHE_DIR/is_scanning.txt"
+$TIMESTAMP_EXEC_START_FILE="$JOD_CACHE_DIR/last_exec_start_timestamp.txt"
+$TIMESTAMP_EXEC_END_FILE="$JOD_CACHE_DIR/last_exec_end_timestamp.txt"
+## Daemon init - END
+
+
+#   # Customize with daemon's name and vars initialization
+## {DAEMON's name} init - START
+
+#   # Add custom vars used as configs in HW Daemon
+$configs_list="VAR_1                     $VAR_1
+VAR_2                     $VAR_1
+...
+DAEMON_REFRESH            $DAEMON_REFRESH
+DAEMON_CACHE_DIR          $DAEMON_CACHE_DIR
+DAEMON_PID_FILE           $DAEMON_PID_FILE"
+## {DAEMON's name} init - END
+
+
+## Daemon - FUNCTIONS
+#   # Add scan, pull and store function to call in the HW Daemon's infinite loop
+
+
+## Daemon - START
+
+# Create pid dir
+New-Item -ItemType "directory" -Force -Path "$PID_DIR" | Out-Null
+
+# Check pid
+if (Test-Path -Path "$PID_FILE" -PathType Leaf) {
+  $pid_running = (Get-Content "$PID_FILE" -Raw).Trim()
+  logFat "$DAEMON_NAME Daemon already started with pid ($pid_running)" $ERR_MISSING_REQUIREMENTS
+}
+$PID | Out-File "$PID_FILE"
+
+# Create cache dir
+New-Item -ItemType "directory" -Force -Path "$JOD_CACHE_DIR" | Out-Null
+
+# Store script's configs
+$configs_list | Out-File "$CONFIGS_FILE"
+
+# Start infinite loop
+while ($true)
+{
+  logInf "$DAEMON_NAME Daemon - START SCAN @ $( Get-Date -Format "dd/MM/yyyy_HH:mm:ss" )"
+  $true | Out-File "$IS_SCANNING_FILE"
+  $( Get-Date -Format "dd/MM/yyyy_HH:mm:ss" ) | Out-File "$TIMESTAMP_EXEC_START_FILE"
+
+  #   # Call the function added to the 'Daemon - FUNCTIONS' section
+
+  $( Get-Date -Format "dd/MM/yyyy_HH:mm:ss" ) > "$TIMESTAMP_EXEC_END_FILE"
+
+  $false | Out-File "$IS_SCANNING_FILE"
+  logInf "$DAEMON_NAME Daemon - END SCAN @ $( Get-Date -Format "dd/MM/yyyy_HH:mm:ss" )"
+
+  logInf "$DAEMON_NAME Daemon - Wait '$DAEMON_REFRESH' seconds @ $( Get-Date -Format "dd/MM/yyyy_HH:mm:ss" )"
+  Start-Sleep $DAEMON_REFRESH
+}

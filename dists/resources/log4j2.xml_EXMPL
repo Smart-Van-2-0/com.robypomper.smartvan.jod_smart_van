@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  ~ The John Object Daemon is the agent software to connect "objects"
+  ~ to an IoT EcoSystem, like the John Operating System Platform one.
+  ~ Copyright (C) 2021 Roberto Pompermaier
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+<Configuration xmlns:xi="http://www.w3.org/2001/XInclude" status="warn">
+    <Properties>
+        <Property name="filename_base">jospJOD</Property>
+    </Properties>
+
+    <Appenders>
+
+        <xi:include href="jar:file:libs/jospCommons-2.2.0.jar!/log4j2/appenders/error.xml"/>
+        <xi:include href="jar:file:libs/jospCommons-2.2.0.jar!/log4j2/appenders/error-dark.xml"/>
+        <xi:include href="jar:file:libs/jospCommons-2.2.0.jar!/log4j2/appenders/error-file.xml"/>
+        <xi:include href="jar:file:libs/jospCommons-2.2.0.jar!/log4j2/appenders/error-libs.xml"/>
+
+        <xi:include href="jar:file:libs/jospCommons-2.2.0.jar!/log4j2/appenders/warning.xml"/>
+        <xi:include href="jar:file:libs/jospCommons-2.2.0.jar!/log4j2/appenders/warning-dark.xml"/>
+        <xi:include href="jar:file:libs/jospCommons-2.2.0.jar!/log4j2/appenders/warning-file.xml"/>
+        <xi:include href="jar:file:libs/jospCommons-2.2.0.jar!/log4j2/appenders/warning-libs.xml"/>
+
+        <xi:include href="jar:file:libs/jospCommons-2.2.0.jar!/log4j2/appenders/info.xml"/>
+        <xi:include href="jar:file:libs/jospCommons-2.2.0.jar!/log4j2/appenders/info-dark.xml"/>
+        <xi:include href="jar:file:libs/jospCommons-2.2.0.jar!/log4j2/appenders/info-file.xml"/>
+        <xi:include href="jar:file:libs/jospCommons-2.2.0.jar!/log4j2/appenders/info-libs.xml"/>
+
+        <xi:include href="jar:file:libs/jospCommons-2.2.0.jar!/log4j2/appenders/debug.xml"/>
+        <xi:include href="jar:file:libs/jospCommons-2.2.0.jar!/log4j2/appenders/debug-dark.xml"/>
+        <xi:include href="jar:file:libs/jospCommons-2.2.0.jar!/log4j2/appenders/debug-file.xml"/>
+        <xi:include href="jar:file:libs/jospCommons-2.2.0.jar!/log4j2/appenders/debug-libs.xml"/>
+
+        <xi:include href="jar:file:libs/jospCommons-2.2.0.jar!/log4j2/appenders/trace.xml"/>
+        <xi:include href="jar:file:libs/jospCommons-2.2.0.jar!/log4j2/appenders/trace-dark.xml"/>
+        <xi:include href="jar:file:libs/jospCommons-2.2.0.jar!/log4j2/appenders/trace-file.xml"/>
+        <xi:include href="jar:file:libs/jospCommons-2.2.0.jar!/log4j2/appenders/trace-libs.xml"/>
+
+    </Appenders>
+
+    <Loggers>
+
+        <Logger name="com.robypomper" additivity="false">
+            <AppenderRef ref="warning-libs"/>
+            <AppenderRef ref="info-file"/>
+        </Logger>
+
+        <Logger name="com.robypomper.josp.jod" additivity="false">
+            <AppenderRef ref="info"/>
+            <AppenderRef ref="info-file"/>
+        </Logger>
+
+        <Root additivity="false" level="ALL">
+            <AppenderRef ref="warning-libs"/>
+            <AppenderRef ref="info-file"/>
+        </Root>
+
+    </Loggers>
+
+</Configuration>

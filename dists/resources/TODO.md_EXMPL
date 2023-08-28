@@ -1,0 +1,26 @@
+# JOD {DIST_NAME} - TODOs
+
+## {Current version (build_version + 1)}
+
+* to improve feat-XXX (hi-request)
+* to fix bug-XXX (h1-request)
+
+
+## {Current version}
+
+* to fix bug-XXX
+
+
+## {Next version}
+
+* to improve feat-XXX (mid-request)
+
+
+## {Future version}
+
+* to improve feat-XXX (low-request)
+
+
+## {Old version}
+
+* to fix bug-XXX
