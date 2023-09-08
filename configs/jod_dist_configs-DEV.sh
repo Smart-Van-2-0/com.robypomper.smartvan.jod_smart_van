@@ -49,16 +49,17 @@ CURRENT_SCRIPT="$(pwd)/${BASH_SOURCE[0]}"
 # JOD Distribution name
 # A string representing current JOD Distribution.
 # Commonly starts with "JOD something else", must be human readable
-DIST_NAME="JOD Dist Name"
+# Commonly starts with "JOD something else", must be human readable
+DIST_NAME="JOD Smart Van"
 
 # JOD Distribution code
 # A string representing current JOD Distribution.
 # This string must be without spaces because it's used for artifact and dir names.
-DIST_ARTIFACT="JOD-Tmpl"
+DIST_ARTIFACT="JOD_Smart_Van"
 
 # JOD Distribution version
 # A custom string representing current JOD Distribution version
-DIST_VER="0.1"
+DIST_VER="0.1.0"
 
 # ################### #
 # John Cloud Platform #

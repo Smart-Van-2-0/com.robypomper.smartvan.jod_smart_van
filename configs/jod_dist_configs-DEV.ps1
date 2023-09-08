@@ -50,16 +50,17 @@ $SCRIPT_DIR=(Get-Item $PSCommandPath ).DirectoryName
 # JOD Distribution name
 # A string representing current JOD Distribution.
 # Commonly starts with "JOD something else", must be human readable
-$global:DIST_NAME="JOD Dist Name"
+# Commonly starts with "JOD something else", must be human readable
+$global:DIST_NAME="JOD Smart Van"
 
 # JOD Distribution code
 # A string representing current JOD Distribution.
 # This string must be without spaces because it's used for artifact and dir names.
-$global:DIST_ARTIFACT="JOD-Tmpl"
+$global:DIST_ARTIFACT="JOD_Smart_Van"
 
 # JOD Distribution version
 # A custom string representing current JOD Distribution version
-$global:DIST_VER="0.1"
+$global:DIST_VER="0.1.0"
 
 
 # ################### #

@@ -39,8 +39,6 @@
 
 # TMPL Customize - START
 CURRENT_SCRIPT="$(pwd)/${BASH_SOURCE[0]}"
-# Customize this file and then delete this line
-echo "WAR: Please customize TMPL before call it" && echo "     Update the '${CURRENT_SCRIPT}' file and delete current line" && exit
 
 # ################ #
 # JOD Distribution #
@@ -49,16 +47,16 @@ echo "WAR: Please customize TMPL before call it" && echo "     Update the '${CUR
 # JOD Distribution name
 # A string representing current JOD Distribution.
 # Commonly starts with "JOD something else", must be human readable
-DIST_NAME="JOD Dist Name"
+DIST_NAME="JOD Smart Van"
 
 # JOD Distribution code
 # A string representing current JOD Distribution.
 # This string must be without spaces because it's used for artifact and dir names.
-DIST_ARTIFACT="JOD-Tmpl"
+DIST_ARTIFACT="JOD_Smart_Van"
 
 # JOD Distribution version
 # A custom string representing current JOD Distribution version
-DIST_VER="0.1"
+DIST_VER="0.1.0"
 
 # ################### #
 # John Cloud Platform #
@@ -67,12 +65,12 @@ DIST_VER="0.1"
 # JCP Environment Object's credentials id
 # A string containing the JCP client id for selected JCP Auth (depends on DIST_JCP_ENV)
 # It's mandatory, if not set you can't build JOD Distribution.
-DIST_JCP_ID=""
+DIST_JCP_ID="a"
 
 # JCP Environment Object's credentials secret
 # A string containing the JCP client secret for selected JCP Auth (depends on DIST_JCP_ENV)
 # It's mandatory, if not set you can't build JOD Distribution.
-DIST_JCP_SECRET=""
+DIST_JCP_SECRET="b"
 
 # JCP Environment
 # A string from (local|stage|prod) set. This property allow to build
