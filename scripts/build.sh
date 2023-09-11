@@ -247,8 +247,11 @@ cp -r "$JOD_DIST_DIR/dists/scripts/"* "$DEST_DIR"
 [ "$?" -ne 0 ] && logFat "Can't include 'scripts' dir to JOD Distribution because can't copy dir '$JOD_DIST_DIR/dists/scripts'" $ERR_GET_JOD_SCRIPTS
 
 logDeb "Copy JOD Distribution resources"
-cp -r "$JOD_DIST_DIR/dists/resources/" "$DEST_DIR"
-[ "$?" -ne 0 ] && logFat "Can't include 'resources' dir to JOD Distribution because can't copy dir '$JOD_DIST_DIR/dists/resources'" $ERR_GET_JOD_RESOURCES
+cd "$JOD_DIST_DIR/dists/resources"
+find . -type f -not \( -name '*_EXMPL' -o -path '*_EXMPL*' \) -exec cp '{}' "$DEST_DIR"/'{}' ';'
+RES="$?"
+cd - > /dev/null
+[ $RES -ne 0 ] && logFat "Can't include 'resources' dir to JOD Distribution because can't copy dir '$JOD_DIST_DIR/dists/resources'" $ERR_GET_JOD_RESOURCES
 
 logDeb "Generate JOD Distribution VERSIONS.md"
 echo "# JOD '$DIST_NAME' Distribution
