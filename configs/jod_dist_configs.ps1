@@ -82,7 +82,7 @@ $global:DIST_JCP_SECRET="b"
 # - local: set urls for a local JCP environment executed via the 'com.robypomper.josp' project
 # - stage: set urls for Public JCP - Stage environment (to use for pre-release tests)
 # - prod: set urls for Public JCP - Production environment  (to use for release build)
-$global:DIST_JCP_ENV = "local"
+$global:DIST_JCP_ENV = "prod"
 
 
 # ########## #

@@ -80,7 +80,7 @@ DIST_JCP_SECRET="b"
 # - local: set urls for a local JCP environment executed via the 'com.robypomper.josp' project
 # - stage: set urls for Public JCP - Stage environment (to use for pre-release tests)
 # - prod: set urls for Public JCP - Production environment  (to use for release build)
-DIST_JCP_ENV="local"
+DIST_JCP_ENV="prod"
 
 # Distribution dependencies list
 # Downloads/copy distribution dependencies from urls or local dirs.
