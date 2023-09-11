@@ -99,20 +99,35 @@ fi
 
 # DIST_JOD_WORK_PULLERS
 [ "$DIST_JOD_VER" == "2.2.0" ] && SHELL_PULLER="PullerUnixShell" || SHELL_PULLER="PullerShell"
-[ -z "$DIST_JOD_WORK_PULLERS" ] && DIST_JOD_WORK_PULLERS="shell://com.robypomper.josp.jod.executor.$SHELL_PULLER http://com.robypomper.josp.jod.executor.impls.http.PullerHTTP"
+[ -z "$DIST_JOD_WORK_PULLERS" ] && DIST_JOD_WORK_PULLERS="\n shell://com.robypomper.josp.jod.executor.$SHELL_PULLER\n http://com.robypomper.josp.jod.executor.impls.http.PullerHTTP"
 
 # DIST_JOD_WORK_LISTENERS
-[ -z "$DIST_JOD_WORK_LISTENERS" ] && DIST_JOD_WORK_LISTENERS="file://com.robypomper.josp.jod.executor.ListenerFiles"
+[ -z "$DIST_JOD_WORK_LISTENERS" ] && DIST_JOD_WORK_LISTENERS="\n file://com.robypomper.josp.jod.executor.ListenerFiles"
+[ $DIST_JOD_VER != "2.2.3" ] && [ $DIST_JOD_VER != "2.2.2" ] && [ $DIST_JOD_VER != "2.2.1" ] && [ $DIST_JOD_VER != "2.2.0" ] && [ $DIST_JOD_VER != "2.2.0-alpha" ] && [ $DIST_JOD_VER != "2.0.1" ] && [ $DIST_JOD_VER != "2.0.0" ] \
+  && DIST_JOD_WORK_LISTENERS+="\n dbus://com.robypomper.josp.jod.executor.impls.dbus.ListenerDBus"
 
 # DIST_JOD_WORK_EXECUTORS
 [ "$DIST_JOD_VER" == "2.2.0" ] && SHELL_EXECUTOR="ExecutorUnixShell" || SHELL_EXECUTOR="ExecutorShell"
-[ -z "$DIST_JOD_WORK_EXECUTORS" ] && DIST_JOD_WORK_EXECUTORS="shell://com.robypomper.josp.jod.executor.$SHELL_EXECUTOR file://com.robypomper.josp.jod.executor.ExecutorFiles http://com.robypomper.josp.jod.executor.impls.http.ExecutorHTTP"
+[ -z "$DIST_JOD_WORK_EXECUTORS" ] && DIST_JOD_WORK_EXECUTORS="\n shell://com.robypomper.josp.jod.executor.$SHELL_EXECUTOR\n file://com.robypomper.josp.jod.executor.ExecutorFiles\n http://com.robypomper.josp.jod.executor.impls.http.ExecutorHTTP"
+[ $DIST_JOD_VER != "2.2.3" ] && [ $DIST_JOD_VER != "2.2.2" ] && [ $DIST_JOD_VER != "2.2.1" ] && [ $DIST_JOD_VER != "2.2.0" ] && [ $DIST_JOD_VER != "2.2.0-alpha" ] && [ $DIST_JOD_VER != "2.0.1" ] && [ $DIST_JOD_VER != "2.0.0" ] \
+  && DIST_JOD_WORK_EXECUTORS+="\n dbus://com.robypomper.josp.jod.executor.impls.dbus.ExecutorDBus"
 
 # DIST_JOD_CONFIG_TMPL
 [ -z "$DIST_JOD_CONFIG_TMPL" ] && DIST_JOD_CONFIG_TMPL="dists/configs/jod_TMPL.yml"
 
-# DIST_JOD_CONFIG_LOGS_TMPL
-[ -z "$DIST_JOD_CONFIG_LOGS_TMPL" ] && DIST_JOD_CONFIG_LOGS_TMPL="dists/configs/log4j2_TMPL.xml"
+if [ $DIST_JOD_VER == "2.2.3" ] \
+  || [ $DIST_JOD_VER == "2.2.2" ] \
+  || [ $DIST_JOD_VER == "2.2.1" ] \
+  || [ $DIST_JOD_VER == "2.2.0" ] \
+  || [ $DIST_JOD_VER == "2.2.0-alpha" ] \
+  || [ $DIST_JOD_VER == "2.0.1" ] \
+  || [ $DIST_JOD_VER == "2.0.0" ]; then
+  # DIST_JOD_CONFIG_LOGS_TMPL - @deprecated since 2.2.4
+  [ -z "$DIST_JOD_CONFIG_LOGS_TMPL" ] && DIST_JOD_CONFIG_LOGS_TMPL="dists/configs/log4j2_TMPL.xml"
+else
+  # DIST_JOD_LOGS_CONFIG - @since 2.2.4
+  [ -z "$DIST_JOD_LOGS_CONFIG" ] && DIST_JOD_LOGS_CONFIG="dists/configs/log4j2"
+fi
 
 # DIST_JOD_STRUCT: jod's structure file, path from $JOD_DIST_DIR      ; default: dists/configs/struct.jod
 [ -z "$DIST_JOD_STRUCT" ] && DIST_JOD_STRUCT="dists/configs/struct.jod"
@@ -133,8 +148,8 @@ logScriptRun
 
 logInf "Build JOD Distribution..."
 
-logDeb "Clean an reacreate JOD Distribution build dirs"
-rm -r "$DEST_DIR" >/dev/null 2>&1
+logDeb "Clean an re-create JOD Distribution build dirs"
+rm -rf "$DEST_DIR" >/dev/null 2>&1
 mkdir -p "$DEST_DIR"
 mkdir -p "$DEST_DIR/configs"
 mkdir -p "$DEST_DIR/libs"
@@ -191,9 +206,24 @@ sed -e 's|%DIST_JCP_ENV_API%|'"$DIST_JCP_ENV_API"'|g' \
   -e 's|%DIST_JOD_COMM_CLOUD_ENABLED%|'"$DIST_JOD_COMM_CLOUD_ENABLED"'|g' \
   "$JOD_DIST_DIR/$DIST_JOD_CONFIG_TMPL" >"$DEST_DIR/configs/jod.yml"
 
-logDeb "Generate JOD logs configs 'log4j2.xml' file"
-sed -e 's|%DIST_JOD_VER%|'"$DIST_JOD_VER"'|g' \
-  "$JOD_DIST_DIR/$DIST_JOD_CONFIG_LOGS_TMPL" >"$DEST_DIR/log4j2.xml"
+if [ $DIST_JOD_VER == "2.2.3" ] \
+  || [ $DIST_JOD_VER == "2.2.2" ] \
+  || [ $DIST_JOD_VER == "2.2.1" ] \
+  || [ $DIST_JOD_VER == "2.2.0" ] \
+  || [ $DIST_JOD_VER == "2.2.0-alpha" ] \
+  || [ $DIST_JOD_VER == "2.0.1" ] \
+  || [ $DIST_JOD_VER == "2.0.0" ]; then
+  # @deprecated since 2.2.4
+  logDeb "Generate JOD logs configs 'log4j2.xml' file"
+  sed -e 's|%DIST_JOD_VER%|'"$DIST_JOD_VER"'|g' \
+    "$JOD_DIST_DIR/$DIST_JOD_CONFIG_LOGS_TMPL" >"$DEST_DIR/log4j2.xml"
+#else
+  # @since 2.2.4
+  #logDeb "Copy JOD logs configs files"
+  #cp -r "$JOD_DIST_DIR/$DIST_JOD_LOGS_CONFIG" "$DEST_DIR/configs/"
+fi
+
+
 
 logDeb "Copy JOD Distribution configs"
 cp -r "$JOD_DIST_DIR/$DIST_JOD_STRUCT" "$DEST_DIR/configs/struct.jod"
@@ -217,8 +247,11 @@ cp -r "$JOD_DIST_DIR/dists/scripts/"* "$DEST_DIR"
 [ "$?" -ne 0 ] && logFat "Can't include 'scripts' dir to JOD Distribution because can't copy dir '$JOD_DIST_DIR/dists/scripts'" $ERR_GET_JOD_SCRIPTS
 
 logDeb "Copy JOD Distribution resources"
-cp -r "$JOD_DIST_DIR/dists/resources/" "$DEST_DIR"
-[ "$?" -ne 0 ] && logFat "Can't include 'resources' dir to JOD Distribution because can't copy dir '$JOD_DIST_DIR/dists/resources'" $ERR_GET_JOD_RESOURCES
+cd "$JOD_DIST_DIR/dists/resources"
+find . -type f -not \( -name '*_EXMPL' -o -path '*_EXMPL*' \) -exec cp '{}' "$DEST_DIR"/'{}' ';'
+RES="$?"
+cd - > /dev/null
+[ $RES -ne 0 ] && logFat "Can't include 'resources' dir to JOD Distribution because can't copy dir '$JOD_DIST_DIR/dists/resources'" $ERR_GET_JOD_RESOURCES
 
 logDeb "Generate JOD Distribution VERSIONS.md"
 echo "# JOD '$DIST_NAME' Distribution
