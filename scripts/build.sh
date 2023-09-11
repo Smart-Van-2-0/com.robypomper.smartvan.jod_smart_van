@@ -99,14 +99,18 @@ fi
 
 # DIST_JOD_WORK_PULLERS
 [ "$DIST_JOD_VER" == "2.2.0" ] && SHELL_PULLER="PullerUnixShell" || SHELL_PULLER="PullerShell"
-[ -z "$DIST_JOD_WORK_PULLERS" ] && DIST_JOD_WORK_PULLERS="shell://com.robypomper.josp.jod.executor.$SHELL_PULLER http://com.robypomper.josp.jod.executor.impls.http.PullerHTTP"
+[ -z "$DIST_JOD_WORK_PULLERS" ] && DIST_JOD_WORK_PULLERS="\n shell://com.robypomper.josp.jod.executor.$SHELL_PULLER\n http://com.robypomper.josp.jod.executor.impls.http.PullerHTTP"
 
 # DIST_JOD_WORK_LISTENERS
-[ -z "$DIST_JOD_WORK_LISTENERS" ] && DIST_JOD_WORK_LISTENERS="file://com.robypomper.josp.jod.executor.ListenerFiles"
+[ -z "$DIST_JOD_WORK_LISTENERS" ] && DIST_JOD_WORK_LISTENERS="\n file://com.robypomper.josp.jod.executor.ListenerFiles"
+[ $DIST_JOD_VER != "2.2.3" ] && [ $DIST_JOD_VER != "2.2.2" ] && [ $DIST_JOD_VER != "2.2.1" ] && [ $DIST_JOD_VER != "2.2.0" ] && [ $DIST_JOD_VER != "2.2.0-alpha" ] && [ $DIST_JOD_VER != "2.0.1" ] && [ $DIST_JOD_VER != "2.0.0" ] \
+  && DIST_JOD_WORK_LISTENERS+="\n dbus://com.robypomper.josp.jod.executor.impls.dbus.ListenerDBus"
 
 # DIST_JOD_WORK_EXECUTORS
 [ "$DIST_JOD_VER" == "2.2.0" ] && SHELL_EXECUTOR="ExecutorUnixShell" || SHELL_EXECUTOR="ExecutorShell"
-[ -z "$DIST_JOD_WORK_EXECUTORS" ] && DIST_JOD_WORK_EXECUTORS="shell://com.robypomper.josp.jod.executor.$SHELL_EXECUTOR file://com.robypomper.josp.jod.executor.ExecutorFiles http://com.robypomper.josp.jod.executor.impls.http.ExecutorHTTP"
+[ -z "$DIST_JOD_WORK_EXECUTORS" ] && DIST_JOD_WORK_EXECUTORS="\n shell://com.robypomper.josp.jod.executor.$SHELL_EXECUTOR\n file://com.robypomper.josp.jod.executor.ExecutorFiles\n http://com.robypomper.josp.jod.executor.impls.http.ExecutorHTTP"
+[ $DIST_JOD_VER != "2.2.3" ] && [ $DIST_JOD_VER != "2.2.2" ] && [ $DIST_JOD_VER != "2.2.1" ] && [ $DIST_JOD_VER != "2.2.0" ] && [ $DIST_JOD_VER != "2.2.0-alpha" ] && [ $DIST_JOD_VER != "2.0.1" ] && [ $DIST_JOD_VER != "2.0.0" ] \
+  && DIST_JOD_WORK_EXECUTORS+="\n dbus://com.robypomper.josp.jod.executor.impls.dbus.ExecutorDBus"
 
 # DIST_JOD_CONFIG_TMPL
 [ -z "$DIST_JOD_CONFIG_TMPL" ] && DIST_JOD_CONFIG_TMPL="dists/configs/jod_TMPL.yml"
@@ -144,8 +148,8 @@ logScriptRun
 
 logInf "Build JOD Distribution..."
 
-logDeb "Clean an reacreate JOD Distribution build dirs"
-rm -r "$DEST_DIR" >/dev/null 2>&1
+logDeb "Clean an re-create JOD Distribution build dirs"
+rm -rf "$DEST_DIR" >/dev/null 2>&1
 mkdir -p "$DEST_DIR"
 mkdir -p "$DEST_DIR/configs"
 mkdir -p "$DEST_DIR/libs"
