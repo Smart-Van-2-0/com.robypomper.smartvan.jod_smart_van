@@ -58,7 +58,9 @@ logInf "POST Shutdown script"
 #bash "$JOD_DIR/scripts/hw/stop_daemon.sh"
 ## Example stop the HW Daemon - END
 
-
+# Kill FW Victron command, if running
+FW_VICTRON_PID=$(ps aux | grep 'com.robypomper.smartvan.fw.victron/run.py' | grep -v "grep" | awk '{ print $2 }')
+[[ ! -z FW_VICTRON_PID ]] && kill $FW_VICTRON_PID
 
 ## Example various: check Java installed - START
 ## Check java

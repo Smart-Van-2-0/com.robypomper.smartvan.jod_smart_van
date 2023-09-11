@@ -54,6 +54,30 @@ setupJODScriptConfigs "$JOD_DIR/configs/configs.sh"
 
 logInf "PRE Startup script"
 
+# Check supported OS
+supportedOS=("Unix" "MacOS" "BSD" "Solaris" )           # Only Unix base OS
+failOnUnsupportedOS "${supportedOS[@]}"
+
+# Get local python command
+PY_COMMAND="python"
+! [ -x "$(command -v "$PY_COMMAND")" ] && PY_COMMAND="python3"
+! [ -x "$(command -v "$PY_COMMAND")" ] && PY_COMMAND="python2"
+! [ -x "$(command -v "$PY_COMMAND")" ] && logFat "Python not found, can't run FW Victron" 1
+
+
+# Kill FW Victron command, if running
+FW_VICTRON_PID=$(ps aux | grep 'com.robypomper.smartvan.fw.victron/run.py' | grep -v "grep" | awk '{ print $2 }')
+[[ ! -z FW_VICTRON_PID ]] && kill $FW_VICTRON_PID
+## FW Victron as background process
+OPT=""
+if true; then
+  OPT="--simulate"
+fi
+nohup bash -c \
+  "source $JOD_DIR/deps/com.robypomper.smartvan.fw.victron/venv/bin/activate \
+  && $PY_COMMAND $JOD_DIR/deps/com.robypomper.smartvan.fw.victron/run.py $OPT --debug" >/dev/null 2>&1 &
+  #&& $PY_COMMAND $JOD_DIR/deps/com.robypomper.smartvan.fw.victron/run.py $OPT --debug" 0<&- &> "$JOD_DIR/logs/fw_victron.log" &
+
 ## Example check Supported OS - START
 ## Check supported OS
 ## De-comment only supported OS
