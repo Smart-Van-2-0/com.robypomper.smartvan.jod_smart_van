@@ -115,6 +115,7 @@ fi
 # DIST_JOD_CONFIG_TMPL
 [ -z "$DIST_JOD_CONFIG_TMPL" ] && DIST_JOD_CONFIG_TMPL="dists/configs/jod_TMPL.yml"
 
+# DIST_JOD_CONFIG_LOGS_TMPL
 if [ $DIST_JOD_VER == "2.2.3" ] \
   || [ $DIST_JOD_VER == "2.2.2" ] \
   || [ $DIST_JOD_VER == "2.2.1" ] \
@@ -122,12 +123,11 @@ if [ $DIST_JOD_VER == "2.2.3" ] \
   || [ $DIST_JOD_VER == "2.2.0-alpha" ] \
   || [ $DIST_JOD_VER == "2.0.1" ] \
   || [ $DIST_JOD_VER == "2.0.0" ]; then
-  # DIST_JOD_CONFIG_LOGS_TMPL - @deprecated since 2.2.4
-  [ -z "$DIST_JOD_CONFIG_LOGS_TMPL" ] && DIST_JOD_CONFIG_LOGS_TMPL="dists/configs/log4j2_TMPL.xml"
+  DEF_DIST_JOD_CONFIG_LOGS_TMPL="dists/configs/log4j2_TMPL.xml"
 else
-  # DIST_JOD_LOGS_CONFIG - @since 2.2.4
-  [ -z "$DIST_JOD_LOGS_CONFIG" ] && DIST_JOD_LOGS_CONFIG="dists/configs/log4j2"
+  DEF_DIST_JOD_CONFIG_LOGS_TMPL="dists/configs/log4j2_TMPL_224-dev.xml"
 fi
+[ -z "$DIST_JOD_CONFIG_LOGS_TMPL" ] && DIST_JOD_CONFIG_LOGS_TMPL=$DEF_DIST_JOD_CONFIG_LOGS_TMPL
 
 # DIST_JOD_STRUCT: jod's structure file, path from $JOD_DIST_DIR      ; default: dists/configs/struct.jod
 [ -z "$DIST_JOD_STRUCT" ] && DIST_JOD_STRUCT="dists/configs/struct.jod"
@@ -286,22 +286,9 @@ sed -e 's|%DIST_JCP_ENV_API%|'"$DIST_JCP_ENV_API"'|g' \
   -e 's|%DIST_JOD_COMM_CLOUD_ENABLED%|'"$DIST_JOD_COMM_CLOUD_ENABLED"'|g' \
   "$JOD_DIST_DIR/$DIST_JOD_CONFIG_TMPL" >"$DEST_DIR/configs/jod.yml"
 
-if [ $DIST_JOD_VER == "2.2.3" ] \
-  || [ $DIST_JOD_VER == "2.2.2" ] \
-  || [ $DIST_JOD_VER == "2.2.1" ] \
-  || [ $DIST_JOD_VER == "2.2.0" ] \
-  || [ $DIST_JOD_VER == "2.2.0-alpha" ] \
-  || [ $DIST_JOD_VER == "2.0.1" ] \
-  || [ $DIST_JOD_VER == "2.0.0" ]; then
-  # @deprecated since 2.2.4
-  logDeb "Generate JOD logs configs 'log4j2.xml' file"
-  sed -e 's|%DIST_JOD_VER%|'"$DIST_JOD_VER"'|g' \
-    "$JOD_DIST_DIR/$DIST_JOD_CONFIG_LOGS_TMPL" >"$DEST_DIR/log4j2.xml"
-#else
-  # @since 2.2.4
-  #logDeb "Copy JOD logs configs files"
-  #cp -r "$JOD_DIST_DIR/$DIST_JOD_LOGS_CONFIG" "$DEST_DIR/configs/"
-fi
+logDeb "Generate JOD logs configs 'log4j2.xml' file"
+sed -e 's|%DIST_JOD_VER%|'"$DIST_JOD_VER"'|g' \
+  "$JOD_DIST_DIR/$DIST_JOD_CONFIG_LOGS_TMPL" >"$DEST_DIR/log4j2.xml"
 
 
 
