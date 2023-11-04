@@ -260,6 +260,11 @@ if [[ ! -z "$JOD_DIST_DEPS" ]]; then
           continue
         fi
         cp -r $dep_src "$dep_dest"
+        dir_dest=$(basename "$dep_src")
+        #rm -rf "$dep_dest/$dir_dest/venv" >/dev/null 2>&1
+        rm -rf "$dep_dest/$dir_dest/logs" >/dev/null 2>&1
+        rm -rf "$dep_dest/$dir_dest/.idea" >/dev/null 2>&1
+        rm -rf "$dep_dest/$dir_dest/.git" >/dev/null 2>&1
       fi
       # import stats
       post_import=$(find "$dep_dest" -type f | wc -l)
