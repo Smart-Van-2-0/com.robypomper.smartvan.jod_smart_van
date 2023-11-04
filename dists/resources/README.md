@@ -1,4 +1,4 @@
-# JOD Smart Van - 0.1.0
+# JOD Smart Van - 1.0.0-DEV
 
 Documentation for JOD Smart Van. This JOD Distribution allow to start up and
 manage a JOD Agent that represent a [Smart Van Box](https://smartvan.johnosproject.org).
@@ -9,7 +9,7 @@ manage a JOD Agent that represent a [Smart Van Box](https://smartvan.johnosproje
 Author info
 
 <table>
-  <tr><th>Current version</th><td>0.1.0</td></tr>
+  <tr><th>Current version</th><td>1.0.0-DEV</td></tr>
   <tr><th>References</th><td><a href="{REFERENCES_URL}">{REFERENCE_NAME} @ JOSP Docs</a></td></tr>
   <tr><th>Repository</th><td><a href="https://github.com/Smart-Van-2-0/com.robypomper.smartvan.jod_smart_van/">{REPO_NAME} @ GitHub</a></td></tr>
   <tr><th>Downloads</th><td><a href="https://github.com/Smart-Van-2-0/com.robypomper.smartvan.jod_smart_van/releases">{REPO_NAME} > Downloads @ Bitbucket</a></td></tr>
