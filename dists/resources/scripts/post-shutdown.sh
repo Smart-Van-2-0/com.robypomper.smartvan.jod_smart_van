@@ -53,26 +53,20 @@ setupJODScriptConfigs "$JOD_DIR/configs/configs.sh"
 
 logInf "POST Shutdown script"
 
-## Example stop the HW Daemon - START
-## Stop HW Daemon as background process
-#bash "$JOD_DIR/scripts/hw/stop_daemon.sh"
-## Example stop the HW Daemon - END
+# Firmware killer function
+stop_fw () {
+  FW_DIR=$1
 
-# Kill FW Victron command, if running
-FW_VICTRON_PID=$(ps aux | grep 'com.robypomper.smartvan.fw.victron/run.py' | grep -v "grep" | awk '{ print $2 }')
-[[ ! -z FW_VICTRON_PID ]] && kill $FW_VICTRON_PID
+  FW_PID=$(ps aux | grep "$FW_DIR/run.py" | grep -v "grep" | awk '{ print $2 }')
+  # ps aux | grep $FW_PID | grep -v "grep"
+  # echo "kill -s 15 $FW_PID"
+  [[ -z "$FW_PID" ]] && echo "Firmware $FW_DIR not running" && return
+  [[ ! -z "$FW_PID" ]] && kill $FW_PID
 
-## Example various: check Java installed - START
-## Check java
-#if command -v java &>/dev/null; then
-#  echo "Java installed"
-#else
-#  echo "Missing Java, please install it"
-#  logFat "Java not installed, exit" $ERR_MISSING_REQUIREMENTS
-#fi
-## Example various: check Java installed - END
+  sleep 0.1
+  FW_PID=$(ps aux | grep "$FW_DIR/run.py" | grep -v "grep" | awk '{ print $2 }')
+  [[ ! -z "$FW_PID" ]] && echo "Firmware $FW_DIR stopped successfully (with pid $FW_PID)" || echo "Error on kill $FW_DIR firmware (with pid $FW_PID)"
+}
 
-## Example various: Make firmware's scripts executable - START
-## Set sensors scripts executables
-#find $JOD_DIR/scripts/hw/ -type f -exec chmod +x {} \;
-## Example various: Make firmware's scripts executable - END
+# Kill firmwares
+stop_fw "com.robypomper.smartvan.fw.victron"

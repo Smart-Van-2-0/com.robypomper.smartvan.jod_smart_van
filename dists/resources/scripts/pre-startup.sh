@@ -58,85 +58,58 @@ logInf "PRE Startup script"
 supportedOS=("Unix" "MacOS" "BSD" "Solaris" )           # Only Unix base OS
 failOnUnsupportedOS "${supportedOS[@]}"
 
-# Get local python command
+# Check java
+if command -v java &>/dev/null; then
+  echo "Java installed"
+else
+  echo "Missing Java, please install it"
+  logFat "Java not installed, exit" $ERR_MISSING_REQUIREMENTS
+fi
+
+# Check python
 PY_COMMAND="python"
 ! [ -x "$(command -v "$PY_COMMAND")" ] && PY_COMMAND="python3"
 ! [ -x "$(command -v "$PY_COMMAND")" ] && PY_COMMAND="python2"
-! [ -x "$(command -v "$PY_COMMAND")" ] && logFat "Python not found, can't run FW Victron" 1
+! [ -x "$(command -v "$PY_COMMAND")" ] && logFat "Python not found, can't run firmwares" 1
 
+# Firmware launcher function
+launch_fw () {
+  FW_DIR=$1
+  OPT=$2
+  SIMULATE=$3
+  VENV=$4
+  INLINE_LOGS=$5
 
-# Kill FW Victron command, if running
-FW_VICTRON_PID=$(ps aux | grep 'com.robypomper.smartvan.fw.victron/run.py' | grep -v "grep" | awk '{ print $2 }')
-[[ ! -z FW_VICTRON_PID ]] && kill $FW_VICTRON_PID
-## FW Victron as background process
-OPT=""
-if true; then
-  OPT="--simulate"
-fi
-nohup bash -c \
-  "source $JOD_DIR/deps/com.robypomper.smartvan.fw.victron/venv/bin/activate \
-  && $PY_COMMAND $JOD_DIR/deps/com.robypomper.smartvan.fw.victron/run.py $OPT --debug" >/dev/null 2>&1 &
-  #&& $PY_COMMAND $JOD_DIR/deps/com.robypomper.smartvan.fw.victron/run.py $OPT --debug" 0<&- &> "$JOD_DIR/logs/fw_victron.log" &
+  FW_PID=$(ps aux | grep "$FW_DIR/run.py" | grep -v "grep" | awk '{ print $2 }')
+  [[ ! -z "$FW_PID" ]] && kill -s 15 $FW_PID
+  [[ "$SIMULATE" = true ]] && OPT+=" --simulate"
 
-## Example check Supported OS - START
-## Check supported OS
-## De-comment only supported OS
-##supportedOS=("Unix" "MacOS" "BSD" "Solaris" "Win32")    # All OSs
-##supportedOS=("Unix" "MacOS" "BSD" "Solaris" )           # Only Unix base OS
-##supportedOS=("Unix" "BSD" "Solaris")                    # Only Linux
-##supportedOS=("MacOS")                                   # Only MacOS
-##supportedOS=("Win32")                                   # Only Windows
-#failOnUnsupportedOS "${supportedOS[@]}"
-## Example check Supported OS - END
+  # echo "$PY_COMMAND $JOD_DIR/deps/$FW_DIR/run.py $OPT --debug"
+  if [[ "$VENV" = true ]]; then
+    if [[ "$INLINE_LOGS" = true ]]; then
+      source "$JOD_DIR/deps/$FW_DIR/venv/bin/activate" \
+      && $PY_COMMAND "$JOD_DIR/deps/$FW_DIR/run.py" $OPT --debug &
+    else
+      source "$JOD_DIR/deps/$FW_DIR/venv/bin/activate" \
+          && $PY_COMMAND "$JOD_DIR/deps/$FW_DIR/run.py" $OPT --debug >/dev/null 2>&1 &
+    fi
+  else
+    if [[ "$INLINE_LOGS" = true ]]; then
+      $PY_COMMAND "$JOD_DIR/deps/$FW_DIR/run.py" $OPT --debug &
+    else
+      $PY_COMMAND "$JOD_DIR/deps/$FW_DIR/run.py" $OPT --debug >/dev/null 2>&1 &
+    fi
+  fi
 
+  sleep 0.1
+  FW_PID=$(ps aux | grep "$FW_DIR/run.py" | grep -v "grep" | awk '{ print $2 }')
+  [[ ! -z "$FW_PID" ]] && echo "Firmware $FW_DIR started successfully (with pid $FW_PID)" || echo "Error on start $FW_DIR firmware"
+}
 
+# Get configs from jod_dist_configs.sh
+simulate="${SIMULATE:-false}"
+venv="${VENV:-false}"
+inline_logs="${INLINE_LOGS:-false}"
 
-## Example generate JOD Object Structure - START
-## Generate a John Object Structure for current {Represented Object}
-#source "$JOD_DIR/scripts/hw/generateObjectStructure.sh"
-## or
-#source "$JOD_DIR/scripts/hw/cached/generate.sh" > "$JOD_STRUCT"
-## Example generate JOD Object Structure - END
-
-
-
-## Example start the HW Daemon - START
-## Start HW Daemon as background process
-##export DEBUG=true
-#nohup bash "$JOD_DIR/scripts/hw/start_daemon.sh" 0<&- &> "$JOD_DIR/logs/daemon.log" &
-## Example start the HW Daemon - END
-
-
-
-## Example various: set sensors' scripts executables - START
-## Set sensors scripts executables
-#find $JOD_DIR/scripts/hw/ -type f -exec chmod +x {} \;
-## Example various: set sensors' scripts executables - END
-
-## Example various: Check server/gateway reachability - START
-## Check gateway reachability
-#GW_NAME="Philips Hue Gateway at '$HUE_GW_ADDR' address"
-#GW_CONN="on the same local network of current machine"
-#GW_PARAMS="HUE_GW_NAME and HUE_GW_ADDR"
-#if ping -c2 "$HUE_GW_ADDR" >/dev/null; then
-#  logWar "ERROR: $GW_NAME NOT reachable"
-#  logFat "Please check that the gateway was connected successfully ($GW_CONN), or update distribution configs with correct $GW_PARAMS values" $ERR_MISSING_REQUIREMENTS
-#else
-#  logInf "$GW_NAME reachable"
-#fi
-## Example various: Check server/gateway reachability - END
-
-## Example various: check Java installed - START
-## Check java
-#if command -v java &>/dev/null; then
-#  echo "Java installed"
-#else
-#  echo "Missing Java, please install it"
-#  logFat "Java not installed, exit" $ERR_MISSING_REQUIREMENTS
-#fi
-## Example various: check Java installed - END
-
-## Example various: Make firmware's scripts executable - START
-## Set sensors scripts executables
-#find $JOD_DIR/scripts/hw/ -type f -exec chmod +x {} \;
-## Example various: Make firmware's scripts executable - END
+# Launch firmwares
+launch_fw "com.robypomper.smartvan.fw.victron" "" $simulate $venv $inline_logs
