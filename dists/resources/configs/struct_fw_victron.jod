@@ -2,7 +2,7 @@
   "model": "JOD Smart Van",
   "brand": "John OS",
   "descr": "IoT agent for the Smart Van Box that provides the Smart Van Specifications from the FW Victron.",
-  "descr_long": "This object's structure actually contains only the Energy specifications group",
+  "descr_long": "This object's structure actually contains only the specifications provided by the FW Victron.",
   "contains": {
     "Energy": {
       "type": "JODContainer",
