@@ -108,6 +108,7 @@ JOD_DIST_DEPS=(
   "../com.robypomper.smartvan.fw.upspack_v3/"
   "../com.robypomper.smartvan.fw.sim7600/"
   "../com.robypomper.smartvan.fw.sensehat/"
+  "../com.robypomper.smartvan.fw.ioexp/"
 )
 
 # ########## #
