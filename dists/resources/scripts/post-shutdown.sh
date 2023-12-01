@@ -70,3 +70,4 @@ stop_fw () {
 
 # Kill firmwares
 stop_fw "com.robypomper.smartvan.fw.victron"
+stop_fw "com.robypomper.smartvan.fw.upspack_v3"

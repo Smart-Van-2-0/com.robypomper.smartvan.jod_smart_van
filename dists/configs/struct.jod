@@ -2,7 +2,7 @@
   "model": "JOD Smart Van",
   "brand": "John OS",
   "descr": "IoT agent for the Smart Van Box that provides the Smart Van Specifications.",
-  "descr_long": "This object's structure actually contains only the Energy specifications group",
+  "descr_long": "This object's structure actually contains only the 'Energy' and the 'IoT Box > Energy' specifications groups",
   "contains": {
     "Energy": {
       "type": "JODContainer",
@@ -131,6 +131,37 @@
               "min": "0",
               "max": "6050",
               "step": "0.1"
+            }
+          }
+        }
+      }
+    },
+    "IoT Box": {
+      "type": "JODContainer",
+      "contains": {
+        "Energy": {
+          "type": "JODContainer",
+          "contains": {
+            "Charging state": {
+              "type": "BooleanState",
+              "desc": "[FW] SolarCharger's firmware version",
+              "listener": "dbus://dbus_name=com.upspack;dbus_obj_path=/ups_smart;dbus_iface=com.upspack_v3;dbus_prop=state_operation;"
+            },
+            "Battery Percentage": {
+              "type": "RangeState",
+              "desc": "[BATCAP] Battery charge percentage",
+              "listener": "dbus://dbus_name=com.upspack;dbus_obj_path=/ups_smart;dbus_iface=com.upspack_v3;dbus_prop=battery_capacity;",
+              "min": "0",
+              "max": "100",
+              "step": "1"
+            },
+            "Output Voltage": {
+              "type": "RangeState",
+              "desc": "[Vout] Load voltage in milliVolts",
+              "listener": "dbus://dbus_name=com.upspack;dbus_obj_path=/ups_smart;dbus_iface=com.upspack_v3;dbus_prop=voltage_out;",
+              "min": "4000",
+              "max": "6000",
+              "step": "1"
             }
           }
         }

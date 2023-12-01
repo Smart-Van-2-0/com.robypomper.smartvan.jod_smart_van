@@ -108,6 +108,7 @@ $global:DIST_JCP_ENV="local"
 # Destination dir must be a path relative to the `$DIST_DIR/`.
 $global:JOD_DIST_DEPS = @(
     "../com.robypomper.smartvan.fw.victron/"
+    "../com.robypomper.smartvan.fw.upspack_v3/"
 )
 
 

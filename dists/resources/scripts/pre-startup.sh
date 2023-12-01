@@ -113,3 +113,4 @@ inline_logs="${INLINE_LOGS:-false}"
 
 # Launch firmwares
 launch_fw "com.robypomper.smartvan.fw.victron" "" $simulate $venv $inline_logs
+launch_fw "com.robypomper.smartvan.fw.upspack_v3" "" $simulate $venv $inline_logs
