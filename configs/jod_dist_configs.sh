@@ -56,7 +56,7 @@ DIST_ARTIFACT="JOD_Smart_Van"
 
 # JOD Distribution version
 # A custom string representing current JOD Distribution version
-DIST_VER="1.0.0-DEV"
+DIST_VER="1.0.0"
 
 # ################### #
 # John Cloud Platform #
@@ -104,8 +104,7 @@ DIST_JCP_ENV="prod"
 # the dependency string, e.g.: `https://myurl.com/assets/docs.tar.gz@docs/`.
 # Destination dir must be a path relative to the `$DIST_DIR/`.
 JOD_DIST_DEPS=(
-  "../com.robypomper.smartvan.fw.victron/"
-  #"https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.victron/archive/refs/tags/1.0.0.tar.gz@deps/com.robypomper.smartvan.fw.victron"
+  "https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.victron/archive/refs/tags/1.0.0.tar.gz@deps/com.robypomper.smartvan.fw.victron"
 )
 
 # ########## #

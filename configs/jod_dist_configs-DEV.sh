@@ -105,7 +105,6 @@ DIST_JCP_ENV="local"
 # Destination dir must be a path relative to the `$DIST_DIR/`.
 JOD_DIST_DEPS=(
   "../com.robypomper.smartvan.fw.victron/"
-  #"https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.victron/archive/refs/tags/1.0.0.tar.gz@deps/com.robypomper.smartvan.fw.victron"
 )
 
 # ########## #
