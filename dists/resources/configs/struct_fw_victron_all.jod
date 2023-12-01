@@ -1,0 +1,236 @@
+{
+  "model": "FW Victron",
+  "brand": "John OS",
+  "descr": "Debug object for the FW Victron from the Smart Van project.",
+  "descr_long": "This object's structure contains all pillars available from the FWVictron.",
+  "contains": {
+    "FWVictron": {
+      "type": "JODContainer",
+      "contains": {
+        "FWVictron": {
+          "type": "JODContainer",
+          "contains": {
+            "Battery Voltage": {
+              "type": "RangeState",
+              "desc": "[V] Battery voltage in milliVolts",
+              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=battery_voltage;init_data=1;",
+              "min": "0",
+              "max": "100000",
+              "step": "1"
+            },
+            "Panels Voltage": {
+              "type": "RangeState",
+              "desc": "[VPV] Panels voltage in milliVolts",
+              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=panel_voltage;init_data=1;",
+              "min": "0",
+              "max": "100000",
+              "step": "1"
+            },
+            "Panels Power": {
+              "type": "RangeState",
+              "desc": "[PPV] Panels power in Watts",
+              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=panel_power;init_data=1;",
+              "min": "0",
+              "max": "50000",
+              "step": "1"
+            },
+            "Battery Current": {
+              "type": "RangeState",
+              "desc": "[I] Battery current in milliAmperes",
+              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=battery_current;init_data=1;",
+              "min": "0",
+              "max": "50000",
+              "step": "1"
+            },
+            "Load Current": {
+              "type": "RangeState",
+              "desc": "[IL] Load current in milliAmperes",
+              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=load_current;init_data=1;",
+              "min": "0",
+              "max": "50000",
+              "step": "1"
+            },
+            "Load Output Status": {
+              "type": "BooleanState",
+              "desc": "[LOAD] Load output status (ON/OFF)",
+              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=error_code;init_data=0;eval=eval=httpResult.toLowerCase()=='ON'?'TRUE':'FALSE'"
+            },
+            "Off Reason": {
+              "type": "RangeState",
+              "desc": "[OR] Off reason (0: 'Not OFF/No Reason', ...256)",
+              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=off_reason;init_data=0;",
+              "min": "0",
+              "max": "256",
+              "step": "1"
+            },
+            "Yield Total": {
+              "type": "RangeState",
+              "desc": "[H19] Yield total in Watts/Hour x10",
+              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=yield_total;init_data=0;",
+              "min": "0",
+              "max": "50000",
+              "step": "1"
+            },
+            "Yield Today": {
+              "type": "RangeState",
+              "desc": "[H20] Yield today in Watts/Hour x10",
+              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=yield_today;init_data=0;",
+              "min": "0",
+              "max": "50000",
+              "step": "1"
+            },
+            "Maximum Power Today": {
+              "type": "RangeState",
+              "desc": "[H21] Maximum power today in Watts",
+              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=max_power_today;init_data=0;",
+              "min": "0",
+              "max": "50000",
+              "step": "1"
+            },
+            "Yield Yesterday": {
+              "type": "RangeState",
+              "desc": "[H22] Yield yesterday in Watts/Hour x10",
+              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=yield_yesterday;init_data=0;",
+              "min": "0",
+              "max": "50000",
+              "step": "1"
+            },
+            "Maximum Power Yesterday": {
+              "type": "RangeState",
+              "desc": "[H23] Maximum power yesterday in Watts",
+              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=max_power_yesterday;init_data=0;",
+              "min": "0",
+              "max": "50000",
+              "step": "1"
+            },
+            "Error Code": {
+              "type": "RangeState",
+              "desc": "[ERR] Error code (0: 'No Error', ...256)",
+              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=error_code;init_data=0;",
+              "min": "0",
+              "max": "256",
+              "step": "1"
+            },
+            "State of operation": {
+              "type": "RangeState",
+              "desc": "[CS] State of operation",
+              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=state_operation;init_data=0;",
+              "min": "0",
+              "max": "256",
+              "step": "1"
+            },
+            "Firmware Version": {
+              "type": "RangeState",
+              "desc": "[FW] SolarCharger's firmware version",
+              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=firmware_version;",
+              "min": "0",
+              "max": "999",
+              "step": "1"
+            },
+            "Product ID": {
+              "type": "RangeState",
+              "desc": "[PID] Victron Product ID",
+              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=product_id;init_data=0;",
+              "min": "0",
+              "max": "16777215",
+              "step": "1"
+            },
+            "Day Sequence Number": {
+              "type": "RangeState",
+              "desc": "[HSDS] Day sequence number (0..364)",
+              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=day_sequence_number;init_data=0;",
+              "min": "0",
+              "max": "50000",
+              "step": "1"
+            },
+            "MPPT": {
+              "type": "RangeState",
+              "desc": "[MPPT] Tracker operation mode (0: 'OFF', 1: 'Voltage or current limited', 2: 'MPP Tracker active')",
+              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=tracker_operation_mode;init_data=0;",
+              "min": "0",
+              "max": "2",
+              "step": "1"
+            }
+          },
+          "calculated": {
+            "type": "JODContainer",
+            "contains": {
+              "Battery Percentage": {
+                "type": "RangeState",
+                "desc": "Battery charge percentage",
+                "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=battery_voltage_percent;init_data=0;",
+                "min": "0",
+                "max": "100000",
+                "step": "1"
+              },
+              "Battery Min Voltage": {
+                "type": "RangeState",
+                "desc": "Battery minimal voltage allowed in milliVolts",
+                "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=battery_voltage_min;init_data=0;",
+                "min": "0",
+                "max": "100000",
+                "step": "1"
+              },
+              "Battery Max Voltage": {
+                "type": "RangeState",
+                "desc": "Battery maximal voltage allowed in milliVolts",
+                "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=battery_voltage_max;init_data=0;",
+                "min": "0",
+                "max": "100000",
+                "step": "1"
+              },
+              "Load Voltage": {
+                "type": "RangeState",
+                "desc": "Load voltage in milliVolts",
+                "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=load_voltage;init_data=0;",
+                "min": "0",
+                "max": "100000",
+                "step": "1"
+              },
+              "Load Power": {
+                "type": "RangeState",
+                "desc": "Load power consumption in milliWatts",
+                "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=load_power;init_data=0;",
+                "min": "0",
+                "max": "100000",
+                "step": "1"
+              },
+              "Load Power Percentage": {
+                "type": "RangeState",
+                "desc": "Load power consumption percentage",
+                "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=load_power_percent;init_data=0;",
+                "min": "0",
+                "max": "100000",
+                "step": "1"
+              },
+              "Load Max Power": {
+                "type": "RangeState",
+                "desc": "Maximum load power consumption in milliWatts",
+                "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=load_power_max;init_data=0;",
+                "min": "0",
+                "max": "100000",
+                "step": "1"
+              },
+              "Panel Power Percentage": {
+                "type": "RangeState",
+                "desc": "Panel power generation percent",
+                "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=panel_power_percent;init_data=0;",
+                "min": "0",
+                "max": "100000",
+                "step": "1"
+              },
+              "Panel Max Power": {
+                "type": "RangeState",
+                "desc": "Maximum power generation by solar panels",
+                "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=panel_power_max;init_data=0;",
+                "min": "0",
+                "max": "100000",
+                "step": "1"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
