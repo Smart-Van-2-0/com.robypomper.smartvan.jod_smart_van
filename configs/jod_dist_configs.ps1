@@ -109,6 +109,7 @@ $global:JOD_DIST_DEPS = @(
     "https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.victron/archive/refs/tags/1.0.2.tar.gz@deps/com.robypomper.smartvan.fw.victron"
     "https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.upspack_v3/archive/refs/tags/1.0.0.tar.gz@deps/com.robypomper.smartvan.fw.upspack_v3"
     "https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.sim7600/archive/refs/tags/1.0.0.tar.gz@deps/com.robypomper.smartvan.fw.sim7600"
+    "https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.sensehat/archive/refs/tags/1.0.0.tar.gz@deps/com.robypomper.smartvan.fw.sensehat"
 )
 
 # ########## #

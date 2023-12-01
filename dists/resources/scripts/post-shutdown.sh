@@ -72,3 +72,4 @@ stop_fw () {
 stop_fw "com.robypomper.smartvan.fw.victron"
 stop_fw "com.robypomper.smartvan.fw.upspack_v3"
 stop_fw "com.robypomper.smartvan.fw.sim7600"
+stop_fw "com.robypomper.smartvan.fw.sensehat"
