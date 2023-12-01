@@ -8,6 +8,9 @@ jcp.client.secret: '%DIST_JCP_SECRET%'
 
 ## JOD Object
 
+jod.structure.path_default: 'configs/struct.jod'
+jod.structure.path_by_fw: 'configs/struct_fw_victron.jod'
+jod.structure.path_by_spec: 'configs/struct_specs_energy.jod'
 jod.obj.name: '%DIST_JOD_NAME%'
 jod.obj.id_cloud: '%DIST_JOD_ID%'
 jod.obj.id_hw: '%DIST_JOD_ID_HW%'
