@@ -7,7 +7,7 @@ so this repo follows his conventions.
 
 **Dist Name:** JOD Smart Van<br />
 **Dist Artifact:** JOD_Smart_Van<br />
-**Dist Version:** 1.0.0-DEV
+**Dist Version:** 1.0.0
 
 [README](README.md) | [CHANGELOG](CHANGELOG.md) | [TODOs](TODOs.md) | [LICENCE](LICENCE.md)
 

@@ -1,4 +1,4 @@
-# JOD Smart Van - 1.0.0-DEV
+# JOD Smart Van - 1.0.0
 
 Documentation for JOD Smart Van. This JOD Distribution allow to start up and
 manage a JOD Agent that represent
@@ -7,7 +7,7 @@ a [Smart Van Box](https://smartvan.johnosproject.org).
 ## JOD Distribution Specs
 
 <table>
-  <tr><th>Current version</th><td>1.0.0-DEV</td></tr>
+  <tr><th>Current version</th><td>1.0.0</td></tr>
   <tr><th>References</th><td><a href="http://smartvan.johnosproject.org/docs/software/jod_smart_van/jod_smart_van">JOD Smart Van @ Smart Van Project</a></td></tr>
   <tr><th>Repository</th><td><a href="https://github.com/Smart-Van-2-0/com.robypomper.smartvan.jod_smart_van/">com.robypomper.smartvan.jod_smart_van @ GitHub</a></td></tr>
   <tr><th>Downloads 1</th><td><a href="http://smartvan.johnosproject.org/docs/software/jod_smart_van/downloads">JOD Smart Van Downloads @ Smart Van Project</a></td></tr>
@@ -66,7 +66,7 @@ page.
     ```shell
     $ cd com.robypomper.smartvan.jod_smart_van
     $ bash build.sh configs/jod_dist_configs-DEV.sh
-    $ cd build/JOD_Smart_Van/0.1.0
+    $ cd build/JOD_Smart_Van/1.0.0
     ``` 
   More details on JOD Smart Van distribution build are available at
   the [Development](/https://github.com/Smart-Van-2-0/com.robypomper.smartvan.jod_smart_vandocs/development.md)
@@ -90,9 +90,9 @@ page.
   then you can download it directly on your remote machine using the `wget`
   command. After that, you can extract the distribution using the `tar` command.
     ```shell
-    $ wget https://github.com/Smart-Van-2-0/com.robypomper.smartvan.jod_smart_van/archive/refs/tags/0.1.0.tar.gz
-    $ tar -xzf 0.1.0.tar.gz -c JOD_Smart_Van
-    $ cd JOD_Smart_Van/0.1.0
+    $ wget https://github.com/Smart-Van-2-0/com.robypomper.smartvan.jod_smart_van/archive/refs/tags/1.0.0.tar.gz
+    $ tar -xzf 1.0.0.tar.gz -c JOD_Smart_Van
+    $ cd JOD_Smart_Van/1.0.0
     ```
 2. **Run the JOD Smart Van in background:**
   You can run the JOD Smart Van using the `start.sh` script.
