@@ -2,8 +2,10 @@
 
 [README](README.md) | [CHANGELOG](CHANGELOG.md) | [TODOs](TODOs.md) | [LICENCE](LICENCE.md)
 
-# Version 0.1.0
+# Version 1.0.0
 
-* Refactor the struct.jod file according to the defined endpoints from Smart Van specs
-* Update FW Victron dependency from local dir to url
-* Update pre-startup.sh to avoid that the FW Victron simulates the device
+* Write the missing sections of the docs/how_it_works.md file
+* Integrate missing firmwares and configure missing SV Specs
+* Write section "Raspberry Pi requirements" into docs/usage.md
+
+fix error on bash scripts/build.sh when download a dependency without the DEBUG enabled
