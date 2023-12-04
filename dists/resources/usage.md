@@ -38,13 +38,13 @@ installations: download, extract, and run.
   page or directly the [Release@GitHub](https://github.com/Smart-Van-2-0/com.robypomper.smartvan.jod_smart_van/releases)
   for download links.
     ```shell
-    $ wget https://github.com/Smart-Van-2-0/com.robypomper.smartvan.jod_smart_van/archive/refs/tags/0.1.0.tar.gz
+    $ wget https://github.com/Smart-Van-2-0/com.robypomper.smartvan.jod_smart_van/archive/refs/tags/1.0.0.tar.gz
     ```
 2. **Extract:**
   Extract the downloaded file and navigate into the created folder.
     ```shell
-    $ tar -xzf 0.1.0.tar.gz -c JOD_Smart_Van
-    $ cd JOD_Smart_Van/0.1.0
+    $ tar -xzf 1.0.0.tar.gz -c JOD_Smart_Van
+    $ cd JOD_Smart_Van/1.0.0
     ```
 3. **Run:**
   Start JOD Smart Van; along with the JOD daemon, the enabled firmwares will
@@ -83,13 +83,13 @@ shutdown, the halt signal is sent, stopping also all enabled firmwares.
   page or directly the [Release@GitHub](https://github.com/Smart-Van-2-0/com.robypomper.smartvan.jod_smart_van/releases)
   for download links.
     ```shell
-    $ wget https://github.com/Smart-Van-2-0/com.robypomper.smartvan.jod_smart_van/archive/refs/tags/0.1.0.tar.gz
+    $ wget https://github.com/Smart-Van-2-0/com.robypomper.smartvan.jod_smart_van/archive/refs/tags/1.0.0.tar.gz
     ```
 2. **Extract:**
   Extract the downloaded file and navigate into the created folder.
     ```shell
-    $ tar -xzf 0.1.0.tar.gz -c JOD_Smart_Van
-    $ cd JOD_Smart_Van/0.1.0
+    $ tar -xzf 1.0.0.tar.gz -c JOD_Smart_Van
+    $ cd JOD_Smart_Van/1.0.0
     ```
 3. **Install:**
   Install the JOD Smart Van as service/daemon
