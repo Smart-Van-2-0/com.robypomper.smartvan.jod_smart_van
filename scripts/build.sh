@@ -125,7 +125,7 @@ if [ $DIST_JOD_VER == "2.2.3" ] \
   || [ $DIST_JOD_VER == "2.0.0" ]; then
   DEF_DIST_JOD_CONFIG_LOGS_TMPL="dists/configs/log4j2_TMPL.xml"
 else
-  DEF_DIST_JOD_CONFIG_LOGS_TMPL="dists/configs/log4j2_TMPL_224-dev.xml"
+  DEF_DIST_JOD_CONFIG_LOGS_TMPL="dists/configs/log4j2_TMPL_224.xml"
 fi
 [ -z "$DIST_JOD_CONFIG_LOGS_TMPL" ] && DIST_JOD_CONFIG_LOGS_TMPL=$DEF_DIST_JOD_CONFIG_LOGS_TMPL
 
