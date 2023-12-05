@@ -1,157 +1,531 @@
 {
-    "model": "JOD Smart Van",
-    "brand": "John OS",
-    "descr": "First Smart Van JOD Object",
-    "descr_long": "First test for the Smart Van as connected JOD Object",
+  "model": "JOD Smart Van",
+  "brand": "John OS",
+  "descr": "IoT agent for the Smart Van Box that provides the Smart Van Specifications.",
+  "descr_long": "This object's structure actually contains the 'Position', 'Sensors', 'Services', 'Energy' and the 'IoT Box > Energy + Internet' specifications groups",
+  "contains": {
 
-    "contains": {
-
-        "FWVictron": {
-            "type": "JODContainer",
-            "contains": {
-                "Firmware Version" : {
-                    "type": "RangeState",
-                    "desc": "[FW] SolarCharger's firmware version",
-                    "listener" : "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=firmware_version;",
-                    "min": "0",
-                    "max": "999",
-                    "step": "1"
-                },
-                "Battery Voltage" : {
-                    "type": "RangeState",
-                    "desc": "[V] Battery voltage in milliVolts",
-                    "listener" : "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=battery_voltage;init_data=1;",
-                    "min": "0",
-                    "max": "100000",
-                    "step": "1"
-                },
-                "Battery Current" : {
-                    "type": "RangeState",
-                    "desc": "[I] Battery current in milliAmperes",
-                    "listener" : "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=battery_current;init_data=1;",
-                    "min": "0",
-                    "max": "50000",
-                    "step": "1"
-                },
-                "Panels Voltage" : {
-                    "type": "RangeState",
-                    "desc": "[VPV] Panels voltage in milliVolts",
-                    "listener" : "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=panel_voltage;init_data=1;",
-                    "min": "0",
-                    "max": "100000",
-                    "step": "1"
-                },
-                "Panels Power" : {
-                    "type": "RangeState",
-                    "desc": "[PPV] Panels power in Watts",
-                    "listener" : "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=panel_power;init_data=1;",
-                    "min": "0",
-                    "max": "50000",
-                    "step": "1"
-                },
-                "State of operation" : {
-                    "type": "RangeState",
-                    "desc": "[CS] State of operation",
-                    "listener" : "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=state_operation;init_data=0;",
-                    "min": "0",
-                    "max": "256",
-                    "step": "1"
-                },
-                "MPPT" : {
-                    "type": "RangeState",
-                    "desc": "[MPPT] Tracker operation mode (0: 'OFF', 1: 'Voltage or current limited', 2: 'MPP Tracker active')",
-                    "listener" : "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=tracker_operation_mode;init_data=0;",
-                    "min": "0",
-                    "max": "2",
-                    "step": "1"
-                },
-                "Off Reason" : {
-                    "type": "RangeState",
-                    "desc": "[OR] Off reason (0: 'Not OFF/No Reason', ...256)",
-                    "listener" : "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=off_reason;init_data=0;",
-                    "min": "0",
-                    "max": "256",
-                    "step": "1"
-                },
-                "Error Code" : {
-                    "type": "RangeState",
-                    "desc": "[ERR] Error code (0: 'No Error', ...256)",
-                    "listener" : "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=error_code;init_data=0;",
-                    "min": "0",
-                    "max": "256",
-                    "step": "1"
-                },
-                "Load Output Status" : {
-                    "type": "BooleanState",
-                    "desc": "[LOAD] Load output status (ON/OFF)",
-                    "listener" : "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=error_code;init_data=0;eval=eval=httpResult.toLowerCase()=='ON'?'TRUE':'FALSE'"
-                },
-                "Load Current" : {
-                    "type": "RangeState",
-                    "desc": "[IL] Load current in milliAmperes",
-                    "listener" : "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=load_current;init_data=1;",
-                    "min": "0",
-                    "max": "50000",
-                    "step": "1"
-                },
-                "Yield Total" : {
-                    "type": "RangeState",
-                    "desc": "[H19] Yield total in Watts/Hour x10",
-                    "listener" : "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=yield_total;init_data=0;",
-                    "min": "0",
-                    "max": "50000",
-                    "step": "1"
-                },
-                "Yield Today" : {
-                    "type": "RangeState",
-                    "desc": "[H20] Yield today in Watts/Hour x10",
-                    "listener" : "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=yield_today;init_data=0;",
-                    "min": "0",
-                    "max": "50000",
-                    "step": "1"
-                },
-                "Maximum Power Today" : {
-                    "type": "RangeState",
-                    "desc": "[H21] Maximum power today in Watts",
-                    "listener" : "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=max_power_today;init_data=0;",
-                    "min": "0",
-                    "max": "50000",
-                    "step": "1"
-                },
-                "Yield Yesterday" : {
-                    "type": "RangeState",
-                    "desc": "[H22] Yield yesterday in Watts/Hour x10",
-                    "listener" : "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=yield_yesterday;init_data=0;",
-                    "min": "0",
-                    "max": "50000",
-                    "step": "1"
-                },
-                "Maximum Power Yesterday" : {
-                    "type": "RangeState",
-                    "desc": "[H23] Maximum power yesterday in Watts",
-                    "listener" : "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=max_power_yesterday;init_data=0;",
-                    "min": "0",
-                    "max": "50000",
-                    "step": "1"
-                },
-                "Day Sequence Number" : {
-                    "type": "RangeState",
-                    "desc": "[HSDS] Day sequence number (0..364)",
-                    "listener" : "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=day_sequence_number;init_data=0;",
-                    "min": "0",
-                    "max": "50000",
-                    "step": "1"
-                },
-                "Product ID" : {
-                    "type": "RangeState",
-                    "desc": "[PID] Victron Product ID",
-                    "listener" : "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=product_id;init_data=0;",
-                    "min": "0",
-                    "max": "16777215",
-                    "step": "1"
-                }
+    "Position": {
+      "type": "JODContainer",
+      "contains": {
+        "GNSS": {
+          "type": "JODContainer",
+          "contains": {
+            "Latitude": {
+              "type": "BooleanState",
+              "desc": "GPS latitude (true is North, false is South)",
+              "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=pos_gps_lat;"
+            },
+            "Latitude Degrees": {
+              "type": "RangeState",
+              "desc": "GPS latitude degrees",
+              "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=pos_gps_lat_degrees;",
+              "min": "-90",
+              "max": "90",
+              "step": "1"
+            },
+            "Longitude": {
+              "type": "BooleanState",
+              "desc": "GPS longitude (true is West, false is East)",
+              "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=pos_gps_lon;"
+            },
+            "Longitude Degrees": {
+              "type": "RangeState",
+              "desc": "GPS longitude degrees",
+              "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=pos_gps_log_degrees;",
+              "min": "-180",
+              "max": "180",
+              "step": "1"
+            },
+            "Altitude": {
+              "type": "RangeState",
+              "desc": "GPS position MSL Altitude. Unit is meters.",
+              "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=pos_gps_alt;",
+              "min": "-100",
+              "max": "8000",
+              "step": "1"
+            },
+            "Speed": {
+              "type": "RangeState",
+              "desc": "GPS position Speed Over Ground. Unit is knots.",
+              "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=pos_gps_speed;",
+              "min": "0",
+              "max": "150",
+              "step": "1"
+            },
+            "Course": {
+              "type": "RangeState",
+              "desc": "GPS position course in degrees.",
+              "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=pos_gps_course;",
+              "min": "0",
+              "max": "360",
+              "step": "1"
+            },
+            "Available Satellites": {
+              "type": "RangeState",
+              "desc": "GPS satellite number (0-12).",
+              "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=pos_gnss_sat_gps_count;",
+              "min": "0",
+              "max": "12",
+              "step": "1"
+            },
+            "Power Module": {
+              "type": "BooleanAction",
+              "desc": "Power on/off the SIM module (true is on, false if off)",
+              "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=power_module_state;",
+              "executor": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_method=power_module;dbus_method_params=%A_VAL%:Boolean;"
             }
+          }
+        },
+        "Inertial": {
+          "type": "JODContainer",
+          "contains": {
+            "Roll": {
+              "type": "RangeState",
+              "desc": "Gyroscope Roll axis, rotation about its longitudinal axis (drawn through the body of the vehicle from tail to nose) in degrees",
+              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=roll;",
+              "min": "-180",
+              "max": "180",
+              "step": "1"
+            },
+            "Pitch": {
+              "type": "RangeState",
+              "desc": "Gyroscope Pitch axis, rotation about its lateral axis in degrees",
+              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=pitch;",
+              "min": "-90",
+              "max": "90",
+              "step": "1"
+            },
+            "Yaw": {
+              "type": "RangeState",
+              "desc": "Gyroscope Yaw axis, rotation about its vertical axis in degrees",
+              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=yaw;",
+              "min": "-180",
+              "max": "180",
+              "step": "1"
+            },
+            "Acceleration X": {
+              "type": "RangeState",
+              "desc": "Acceleration Y axis in Gs",
+              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=acceleration_x;",
+              "min": "-16",
+              "max": "16",
+              "step": "1"
+            },
+            "Acceleration Y": {
+              "type": "RangeState",
+              "desc": "Acceleration X axis in Gs",
+              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=acceleration_y;",
+              "min": "-16",
+              "max": "16",
+              "step": "1"
+            },
+            "Acceleration Z": {
+              "type": "RangeState",
+              "desc": "Acceleration Z axis in Gs",
+              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=acceleration_z;",
+              "min": "-16",
+              "max": "16",
+              "step": "1"
+            },
+            "Gyroscope X": {
+              "type": "RangeState",
+              "desc": "Gyroscope X axis in degrees per second",
+              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=gyroscope_x;",
+              "min": "-2048",
+              "max": "2048",
+              "step": "1"
+            },
+            "Gyroscope Y": {
+              "type": "RangeState",
+              "desc": "Gyroscope Y axis in degrees per second",
+              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=gyroscope_y;",
+              "min": "-2048",
+              "max": "2048",
+              "step": "1"
+            },
+            "Gyroscope Z": {
+              "type": "RangeState",
+              "desc": "Gyroscope Z axis in degrees per second",
+              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=gyroscope_z;",
+              "min": "-2048",
+              "max": "2048",
+              "step": "1"
+            }
+          }
         }
+      }
+    },
 
+    "Sensors": {
+      "type": "JODContainer",
+      "contains": {
+        "Living": {
+          "type": "JODContainer",
+          "contains": {
+            "Pressure": {
+              "type": "RangeState",
+              "desc": "Environmental pressure in Pascal",
+              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=pressure;",
+              "min": "200",
+              "max": "1260",
+              "step": "1"
+            },
+            "Temperature": {
+              "type": "RangeState",
+              "desc": "Environmental temperature in degrees celsius",
+              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=temperature;",
+              "min": "-30",
+              "max": "100",
+              "step": "1"
+            },
+            "Humidity": {
+              "type": "RangeState",
+              "desc": "Environmental humidity percentage",
+              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=humidity;",
+              "min": "0",
+              "max": "100",
+              "step": "1"
+            },
+            "Lux": {
+              "type": "RangeState",
+              "desc": "Environmental lux in lumen",
+              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=lux;"
+            },
+            "Analog 0": {
+              "type": "RangeState",
+              "desc": "Customizable analog sensors (0-100%)",
+              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=analog_0;",
+              "min": "0",
+              "max": "100",
+              "step": "1"
+            },
+            "Analog 1": {
+              "type": "RangeState",
+              "desc": "Customizable analog sensors (0-100%)",
+              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=analog_1;",
+              "min": "0",
+              "max": "100",
+              "step": "1"
+            },
+            "Analog 2": {
+              "type": "RangeState",
+              "desc": "Customizable analog sensors (0-100%)",
+              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=analog_2;",
+              "min": "0",
+              "max": "100",
+              "step": "1"
+            },
+            "Analog 3": {
+              "type": "RangeState",
+              "desc": "Customizable analog sensors (0-100%)",
+              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=analog_3;",
+              "min": "0",
+              "max": "100",
+              "step": "1"
+            }
+          }
+        }
+      }
+    },
+
+    "Services": {
+      "type": "JODContainer",
+      "contains": {
+        "Controllers": {
+          "type": "JODContainer",
+          "contains": {
+            "Binary 1": {
+              "type": "BooleanState",
+              "desc": "Binary controller like buttons (true is pressed, false is NOT pressed).",
+              "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=in_0;"
+            },
+            "Binary 2": {
+              "type": "BooleanState",
+              "desc": "Binary controller like buttons (true is pressed, false is NOT pressed).",
+              "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=in_1;"
+            },
+            "Binary 3": {
+              "type": "BooleanState",
+              "desc": "Binary controller like buttons (true is pressed, false is NOT pressed).",
+              "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=in_2;"
+            },
+            "Binary 4": {
+              "type": "BooleanState",
+              "desc": "Binary controller like buttons (true is pressed, false is NOT pressed).",
+              "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=in_3;"
+            },
+            "Binary 5": {
+              "type": "BooleanState",
+              "desc": "Binary controller like buttons (true is pressed, false is NOT pressed).",
+              "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=in_4;"
+            },
+            "Binary 6": {
+              "type": "BooleanState",
+              "desc": "Binary controller like buttons (true is pressed, false is NOT pressed).",
+              "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=in_5;"
+            },
+            "Binary 7": {
+              "type": "BooleanState",
+              "desc": "Binary controller like buttons (true is pressed, false is NOT pressed).",
+              "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=in_6;"
+            },
+            "Binary 8": {
+              "type": "BooleanState",
+              "desc": "Binary controller like buttons (true is pressed, false is NOT pressed).",
+              "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=in_7;"
+            }
+          }
+        },
+        "Actuators": {
+          "type": "JODContainer",
+          "contains": {
+            "Switch Low 1": {
+              "type": "BooleanAction",
+              "desc": "Binary actuator for low consumption services like relays (true is on, false is off).",
+              "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=out_0;",
+              "executor": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_method=set_out_0;dbus_method_params=%A_VAL%:Boolean;"
+            },
+            "Switch Low 2": {
+              "type": "BooleanAction",
+              "desc": "Binary actuator for low consumption services like relays (true is on, false is off).",
+              "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=out_1;",
+              "executor": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_method=set_out_1;dbus_method_params=%A_VAL%:Boolean;"
+            },
+            "Switch Low 3": {
+              "type": "BooleanAction",
+              "desc": "Binary actuator for low consumption services like relays (true is on, false is off).",
+              "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=out_2;",
+              "executor": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_method=set_out_2;dbus_method_params=%A_VAL%:Boolean;"
+            },
+            "Switch Low 4": {
+              "type": "BooleanAction",
+              "desc": "Binary actuator for low consumption services like relays (true is on, false is off).",
+              "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=out_3;",
+              "executor": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_method=set_out_3;dbus_method_params=%A_VAL%:Boolean;"
+            },
+            "Switch High 1": {
+              "type": "BooleanAction",
+              "desc": "Binary actuator for high consumption services like relays (true is on, false is off).",
+              "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=out_4;",
+              "executor": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_method=set_out_4;dbus_method_params=%A_VAL%:Boolean;"
+            },
+            "Switch High 2": {
+              "type": "BooleanAction",
+              "desc": "Binary actuator for high consumption services like relays (true is on, false is off).",
+              "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=out_5;",
+              "executor": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_method=set_out_5;dbus_method_params=%A_VAL%:Boolean;"
+            },
+            "Switch High 3": {
+              "type": "BooleanAction",
+              "desc": "Binary actuator for high consumption services like relays (true is on, false is off).",
+              "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=out_6;",
+              "executor": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_method=set_out_6;dbus_method_params=%A_VAL%:Boolean;"
+            },
+            "Switch High 4": {
+              "type": "BooleanAction",
+              "desc": "Binary actuator for high consumption services like relays (true is on, false is off).",
+              "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=out_7;",
+              "executor": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_method=set_out_7;dbus_method_params=%A_VAL%:Boolean;"
+            }
+          }
+        }
+      }
+    },
+
+    "Energy": {
+      "type": "JODContainer",
+      "contains": {
+        "Storage": {
+          "type": "JODContainer",
+          "contains": {
+            "Voltage": {
+              "type": "RangeState",
+              "desc": "Battery actual voltage in Volts",
+              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=battery_voltage;init_data=0;",
+              "min": "0",
+              "max": "55",
+              "step": "0.1"
+            },
+            "Percentage": {
+              "type": "RangeState",
+              "desc": "Battery actual charge in Percent",
+              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=battery_voltage_percent;init_data=0;",
+              "min": "0",
+              "max": "100",
+              "step": "0.1"
+            },
+            "Min Voltage": {
+              "type": "RangeState",
+              "desc": "Battery minimal voltage allowed in Volts",
+              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=battery_voltage_min;init_data=0;",
+              "min": "0",
+              "max": "55",
+              "step": "1"
+            },
+            "Max Voltage": {
+              "type": "RangeState",
+              "desc": "Battery minimal voltage allowed in Volts",
+              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=battery_voltage_max;init_data=0;",
+              "min": "0",
+              "max": "55",
+              "step": "0.1"
+            }
+          }
+        },
+        "Generation": {
+          "type": "JODContainer",
+          "contains": {
+            "Current": {
+              "type": "RangeState",
+              "desc": "Current generated by all solar panels in Ampere",
+              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=battery_current;init_data=0;",
+              "min": "0",
+              "max": "110",
+              "step": "0.1"
+            },
+            "Voltage": {
+              "type": "RangeState",
+              "desc": "Voltage provided from solar panels in Volts",
+              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=panel_voltage;init_data=0;",
+              "min": "0",
+              "max": "55",
+              "step": "0.1"
+            },
+            "Power": {
+              "type": "RangeState",
+              "desc": "Power generated from solar panels in Watt",
+              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=panel_power;init_data=0;",
+              "min": "0",
+              "max": "6050",
+              "step": "0.1"
+            },
+            "Power Percentage": {
+              "type": "RangeState",
+              "desc": "Power generated from solar panels in Percent",
+              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=panel_power_percent;init_data=0;",
+              "min": "0",
+              "max": "100",
+              "step": "1"
+            },
+            "Max Power": {
+              "type": "RangeState",
+              "desc": "Maximum power generated from solar panels in Watt",
+              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=panel_power_max;init_data=0;",
+              "min": "0",
+              "max": "6050",
+              "step": "0.1"
+            }
+          }
+        },
+        "Consumption": {
+          "type": "JODContainer",
+          "contains": {
+            "Current": {
+              "type": "RangeState",
+              "desc": "Current absorbed by all services in Ampere",
+              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=load_current;init_data=0;",
+              "min": "0",
+              "max": "110",
+              "step": "0.1"
+            },
+            "Voltage": {
+              "type": "RangeState",
+              "desc": "Voltage provided to all services in Volts",
+              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=load_voltage;init_data=0;",
+              "min": "0",
+              "max": "55",
+              "step": "0.1"
+            },
+            "Power": {
+              "type": "RangeState",
+              "desc": "Power absorbed by all services in Watt",
+              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=load_power;init_data=0;",
+              "min": "0",
+              "max": "6050",
+              "step": "0.1"
+            },
+            "Power Percentage": {
+              "type": "RangeState",
+              "desc": "Power absorbed by all services in Percent",
+              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=load_power_percent;init_data=0;",
+              "min": "0",
+              "max": "100",
+              "step": "1"
+            },
+            "Max Power": {
+              "type": "RangeState",
+              "desc": "Maximum power absorbed by all services in Watt",
+              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=load_power_max;init_data=0;",
+              "min": "0",
+              "max": "6050",
+              "step": "0.1"
+            }
+          }
+        }
+      }
+    },
+
+    "IoT Box": {
+      "type": "JODContainer",
+      "contains": {
+        "Energy": {
+          "type": "JODContainer",
+          "contains": {
+            "Charging state": {
+              "type": "BooleanState",
+              "desc": "[FW] SolarCharger's firmware version",
+              "listener": "dbus://dbus_name=com.upspack;dbus_obj_path=/ups_smart;dbus_iface=com.upspack_v3;dbus_prop=state_operation;"
+            },
+            "Battery Percentage": {
+              "type": "RangeState",
+              "desc": "[BATCAP] Battery charge percentage",
+              "listener": "dbus://dbus_name=com.upspack;dbus_obj_path=/ups_smart;dbus_iface=com.upspack_v3;dbus_prop=battery_capacity;",
+              "min": "0",
+              "max": "100",
+              "step": "1"
+            },
+            "Output Voltage": {
+              "type": "RangeState",
+              "desc": "[Vout] Load voltage in milliVolts",
+              "listener": "dbus://dbus_name=com.upspack;dbus_obj_path=/ups_smart;dbus_iface=com.upspack_v3;dbus_prop=voltage_out;",
+              "min": "4000",
+              "max": "6000",
+              "step": "1"
+            }
+          }
+        },
+        "Internet": {
+          "type": "JODContainer",
+          "contains": {
+            "Status": {
+              "type": "BooleanState",
+              "desc": "Sim's status (true is Working, false is NOT Working).",
+              "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=network_status;"
+            },
+            "SIM Status": {
+              "type": "BooleanState",
+              "desc": "Sim's status (true is Working, false is NOT Working).",
+              "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=network_sim_status;"
+            },
+            "Percentage": {
+              "type": "RangeState",
+              "desc": "Internet signal quality in Percent.",
+              "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=network_signal_percentage;",
+              "min": "0",
+              "max": "100",
+              "step": "1"
+            },
+            "Power Module": {
+              "type": "BooleanAction",
+              "desc": "Power on/off the SIM module to save energy",
+              "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=power_module_state;",
+              "executor": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_method=power_module;dbus_method_params=%A_VAL%:Boolean;"
+            }
+          }
+        }
+      }
     }
+
+  }
 }

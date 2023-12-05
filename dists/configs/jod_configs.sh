@@ -29,44 +29,22 @@
 #
 # Artifact: JOD Dist Template
 # Version:  1.0.3
-#
-# Artifact: {JOD Dist Name}
-# Version:  {JOD Dist Version}
 ###############################################################################
 
+####################### Smart Van - Distribution build configs
+# Enable the firmware simulation option for all firmwares that supports it
+#export SIMULATE=true       # default false
+# If true, execute all python firmware in their own virtual environment
+#export VENV=true           # default false
+# If true, then it print all logging messages from firmwares
+#export INLINE_LOGS=true    # default false
+#######################
+
 # JOD_YML
-# Absolute or $JOD_DIR relative file path for JOD config file, default $JOD_DIR/jod.yml
+# Absolute or $JOD_DIR relative file path for JOD config file,
+# default $JOD_DIR/configs/jod.yml
 #export JOD_YML="jod_2.yml"
 
 # JAVA_HOME
 # Full path of JAVA's JVM (ex: $JAVA_HOME/bin/java)
 #JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_251.jdk/Contents/Home"
-
-
-# ########################## #      # Delete if Struct' Builder function are not used in the distribution
-# JOD Struct Builder configs #
-# ########################## #
-# Configs from scripts/jod/struct/builder.sh
-
-# LOG_BUILDER_ENABLED
-# Enable debug messages on jod/struct/builder.sh script (if used in the
-# distribution). Set to true to enable builder's log messages.
-#export LOG_BUILDER_ENABLED=true
-
-
-# ################# #       # Delete if HW Daemon is not used in the distribution
-# HW Daemon configs #
-# ################# #
-# Configs from scripts/hw/start_daemon.sh
-# Configs from scripts/hw/stop_daemon.sh
-
-# HW Daemon, refresh time in seconds
-# The number of seconds between each HW daemon's internal function execution.
-# The HW Daemon, refresh time in seconds. By default it's '300'
-#export DAEMON_REFRESH="300"
-
-# Directory where are store all status files.
-# The path of the directory where are store the cache files like the command's
-# output. It used by "store values" and "structure generator" functions, it
-# can be relative to the working dir. By default it's '$JOD_DIR/status'.
-#export DAEMON_CACHE_DIR="$JOD_DIR/status"

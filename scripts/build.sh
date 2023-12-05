@@ -115,6 +115,7 @@ fi
 # DIST_JOD_CONFIG_TMPL
 [ -z "$DIST_JOD_CONFIG_TMPL" ] && DIST_JOD_CONFIG_TMPL="dists/configs/jod_TMPL.yml"
 
+# DIST_JOD_CONFIG_LOGS_TMPL
 if [ $DIST_JOD_VER == "2.2.3" ] \
   || [ $DIST_JOD_VER == "2.2.2" ] \
   || [ $DIST_JOD_VER == "2.2.1" ] \
@@ -122,15 +123,17 @@ if [ $DIST_JOD_VER == "2.2.3" ] \
   || [ $DIST_JOD_VER == "2.2.0-alpha" ] \
   || [ $DIST_JOD_VER == "2.0.1" ] \
   || [ $DIST_JOD_VER == "2.0.0" ]; then
-  # DIST_JOD_CONFIG_LOGS_TMPL - @deprecated since 2.2.4
-  [ -z "$DIST_JOD_CONFIG_LOGS_TMPL" ] && DIST_JOD_CONFIG_LOGS_TMPL="dists/configs/log4j2_TMPL.xml"
+  DEF_DIST_JOD_CONFIG_LOGS_TMPL="dists/configs/log4j2_TMPL.xml"
 else
-  # DIST_JOD_LOGS_CONFIG - @since 2.2.4
-  [ -z "$DIST_JOD_LOGS_CONFIG" ] && DIST_JOD_LOGS_CONFIG="dists/configs/log4j2"
+  DEF_DIST_JOD_CONFIG_LOGS_TMPL="dists/configs/log4j2_TMPL_224.xml"
 fi
+[ -z "$DIST_JOD_CONFIG_LOGS_TMPL" ] && DIST_JOD_CONFIG_LOGS_TMPL=$DEF_DIST_JOD_CONFIG_LOGS_TMPL
 
 # DIST_JOD_STRUCT: jod's structure file, path from $JOD_DIST_DIR      ; default: dists/configs/struct.jod
 [ -z "$DIST_JOD_STRUCT" ] && DIST_JOD_STRUCT="dists/configs/struct.jod"
+
+# DIST_JOD_STRUCT: jod's structure file, path from $JOD_DIST_DIR      ; default: dists/configs/jod_configs
+[ -z "$DIST_JOD_SHELL_CONFIGS" ] && DIST_JOD_SHELL_CONFIGS="dists/configs/jod_configs"
 
 # $DIST_JOD_OWNER: josp user's id            ; default: "00000-00000-00000" as Anonymous user
 [ -z "$DIST_JOD_OWNER" ] && DIST_JOD_OWNER="00000-00000-00000"
@@ -210,9 +213,10 @@ if [[ ! -z "$JOD_DIST_DEPS" ]]; then
     mkdir -p "$DEST_DIR_DEPS"
     # dependencies loop
     COUNT=0
+    COUNT_SUCCESS=0
     for dep_prop in "${JOD_DIST_DEPS[@]}"
     do
-      let "COUNT+=1"
+      ((COUNT+=1))
       # import stats
       pre_import=$(find "$DEST_DIR_DEPS" -type f | wc -l)
       # extract src and dest
@@ -235,21 +239,27 @@ if [[ ! -z "$JOD_DIST_DEPS" ]]; then
         # get url dependency
         logInf "Get dependency. . . . . ($COUNT/$TOTAL) - $dep_src"
         dep_dir="$CACHE_DIR/$(echo "$dep_src" | tr '://.' _)"
-        [ -d "$dep_dir" ] && logDeb "Dependency already cached."
-        [ ! -d "$dep_dir" ] && logDeb "Download dependency to local cache." && WGET_OUT=$(wget -P "$dep_dir" $dep_src 2>&1)
-        [ ! -d "$dep_dir" ] && logWar "An error occurred during dependencies download, skip it." \
-          && echo "#### #### #### #### #### #### #### #### #### #### #### ####" \
-          && echo "WGET Error Log:" \
+        [ -d "$dep_dir" ] && logDeb "Dependency already cached, skip download"
+        [ ! -d "$dep_dir" ] && logInf "Download dependency to local cache..." && WGET_OUT="$(wget -P "$dep_dir" "$dep_src" 2>&1)"
+        [ ! -d "$dep_dir" ] && logWar "An error occurred during dependency download, skip it." \
+          && logWar "#### #### #### #### #### #### #### #### #### #### #### ####" \
+          && logWar "WGET Error Log:" \
           && echo "$WGET_OUT" \
-          && echo "#### #### #### #### #### #### #### #### #### #### #### ####" && continue
-        # extract, if downloaded a compressed file
+          && logWar "#### #### #### #### #### #### #### #### #### #### #### ####" && continue
+        # extract downloaded file, if it's a compressed file
         dwn_files=$(find "$dep_dir" -type f | wc -l)
         if [[ $dwn_files -eq 1 ]]; then
           file_name=$(ls "$dep_dir")
-          echo "One file: $file_name"
           if [[ "$file_name" =~ .*gz ]]; then
-            echo "---------------ok"
-            TAR_OUT=$(tar -xf "$dep_dir/$file_name" -C "$dep_dest")
+            tar -xf "$dep_dir/$file_name" -C "$dep_dest"
+          fi
+          # check if extracted file is a single dir and move his content one level up
+          dwn_dirs=$(find "$dep_dest" -mindepth 1 -maxdepth 1 -type d | wc -l)
+          if [[ $dwn_dirs -eq 1 ]]; then
+            dir_name=$(ls "$dep_dest")
+            logDeb "Move '$dep_dest/$dir_name/*' into '$dep_dest'"
+            mv "$dep_dest/$dir_name"/* "$dep_dest" 2>&1
+            rm -rf "$dep_dest"/"${dir_name:?}" 2>&1
           fi
         fi
       else
@@ -259,14 +269,20 @@ if [[ ! -z "$JOD_DIST_DEPS" ]]; then
           logWar "Missing local dir or file for '$dep_src' dependency, skip it."
           continue
         fi
-        cp -r $dep_src "$dep_dest"
+        cp -r "$dep_src" "$dep_dest"        # TODO: add a build's config to define what must be excluded from copy
+        dir_dest=$(basename "$dep_src")
+        #rm -rf "$dep_dest/$dir_dest/venv" >/dev/null 2>&1
+        rm -rf "$dep_dest/$dir_dest/logs" >/dev/null 2>&1
+        rm -rf "$dep_dest/$dir_dest/.idea" >/dev/null 2>&1
+        rm -rf "$dep_dest/$dir_dest/.git" >/dev/null 2>&1
       fi
       # import stats
-      post_import=$(find "$dep_dest" -type f | wc -l)
-      let "imported_files=$post_import-$pre_import"
-      logInf "Added $imported_files files."
+      post_import=$(find "$DEST_DIR_DEPS" -type f | wc -l)
+      imported_files=$((post_import-pre_import))
+      logInf "Imported $imported_files files from dependency"
+      ((COUNT_SUCCESS+=1))
     done
-    logInf "Distribution dependencies ($TOTAL) imported successfully"
+    logInf "Distribution dependencies ($COUNT_SUCCESS/$TOTAL) imported successfully"
   fi
 fi
 
@@ -286,32 +302,19 @@ sed -e 's|%DIST_JCP_ENV_API%|'"$DIST_JCP_ENV_API"'|g' \
   -e 's|%DIST_JOD_COMM_CLOUD_ENABLED%|'"$DIST_JOD_COMM_CLOUD_ENABLED"'|g' \
   "$JOD_DIST_DIR/$DIST_JOD_CONFIG_TMPL" >"$DEST_DIR/configs/jod.yml"
 
-if [ $DIST_JOD_VER == "2.2.3" ] \
-  || [ $DIST_JOD_VER == "2.2.2" ] \
-  || [ $DIST_JOD_VER == "2.2.1" ] \
-  || [ $DIST_JOD_VER == "2.2.0" ] \
-  || [ $DIST_JOD_VER == "2.2.0-alpha" ] \
-  || [ $DIST_JOD_VER == "2.0.1" ] \
-  || [ $DIST_JOD_VER == "2.0.0" ]; then
-  # @deprecated since 2.2.4
-  logDeb "Generate JOD logs configs 'log4j2.xml' file"
-  sed -e 's|%DIST_JOD_VER%|'"$DIST_JOD_VER"'|g' \
-    "$JOD_DIST_DIR/$DIST_JOD_CONFIG_LOGS_TMPL" >"$DEST_DIR/log4j2.xml"
-#else
-  # @since 2.2.4
-  #logDeb "Copy JOD logs configs files"
-  #cp -r "$JOD_DIST_DIR/$DIST_JOD_LOGS_CONFIG" "$DEST_DIR/configs/"
-fi
+logDeb "Generate JOD logs configs 'log4j2.xml' file"
+sed -e 's|%DIST_JOD_VER%|'"$DIST_JOD_VER"'|g' \
+  "$JOD_DIST_DIR/$DIST_JOD_CONFIG_LOGS_TMPL" >"$DEST_DIR/log4j2.xml"
 
 
 
 logDeb "Copy JOD Distribution configs"
 cp -r "$JOD_DIST_DIR/$DIST_JOD_STRUCT" "$DEST_DIR/configs/struct.jod"
 [ "$?" -ne 0 ] && logFat "Can't include 'struct.jod' to JOD Distribution because can't copy file '$JOD_DIST_DIR/$DIST_JOD_STRUCT'" $ERR_GET_DIST_JOD_STRUCT
-cp -r "$JOD_DIST_DIR/dists/configs/jod_configs.sh" "$DEST_DIR/configs/configs.sh"
-[ "$?" -ne 0 ] && logFat "Can't include 'jod_configs.sh' to JOD Distribution because can't copy file '$JOD_DIST_DIR/dists/configs/jod_configs.sh'" $ERR_GET_JOD_CONFIGS
-cp -r "$JOD_DIST_DIR/dists/configs/jod_configs.ps1" "$DEST_DIR/configs/configs.ps1"
-[ "$?" -ne 0 ] && logFat "Can't include 'jod_configs.ps1' to JOD Distribution because can't copy file '$JOD_DIST_DIR/dists/configs/jod_configs.ps1'" $ERR_GET_JOD_CONFIGS
+cp -r "$JOD_DIST_DIR/$DIST_JOD_SHELL_CONFIGS.sh" "$DEST_DIR/configs/configs.sh"
+[ "$?" -ne 0 ] && logFat "Can't include 'jod_configs.sh' to JOD Distribution because can't copy file '$JOD_DIST_DIR/$DIST_JOD_SHELL_CONFIGS.sh'" $ERR_GET_JOD_CONFIGS
+cp -r "$JOD_DIST_DIR/$DIST_JOD_SHELL_CONFIGS.ps1" "$DEST_DIR/configs/configs.ps1"
+[ "$?" -ne 0 ] && logFat "Can't include 'jod_configs.ps1' to JOD Distribution because can't copy file '$JOD_DIST_DIR/$DIST_JOD_SHELL_CONFIGS.ps1'" $ERR_GET_JOD_CONFIGS
 
 logDeb "Generate JOD Distribution dist_configs.sh and dist_configs.ps1"
 echo "#!/bin/bash

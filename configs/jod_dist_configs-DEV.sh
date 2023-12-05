@@ -56,7 +56,7 @@ DIST_ARTIFACT="JOD_Smart_Van"
 
 # JOD Distribution version
 # A custom string representing current JOD Distribution version
-DIST_VER="0.1.0"
+DIST_VER="1.0.0-DEV"
 
 # ################### #
 # John Cloud Platform #
@@ -105,7 +105,10 @@ DIST_JCP_ENV="local"
 # Destination dir must be a path relative to the `$DIST_DIR/`.
 JOD_DIST_DEPS=(
   "../com.robypomper.smartvan.fw.victron/"
-  #"https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.victron/archive/refs/tags/1.0.0.tar.gz@deps/com.robypomper.smartvan.fw.victron"
+  "../com.robypomper.smartvan.fw.upspack_v3/"
+  "../com.robypomper.smartvan.fw.sim7600/"
+  "../com.robypomper.smartvan.fw.sensehat/"
+  "../com.robypomper.smartvan.fw.ioexp/"
 )
 
 # ########## #
@@ -151,12 +154,12 @@ DIST_JOD_VER="2.2.4-DEV"
 # JOD Object's logs config template
 # A file path for an alternative '$JOD_DIST_DIR/dists/configs/log4j2_TMPL.xml'
 # file.
-# By default, (value = "") use preconfigured '$JOD_DIST_DIR/dists/configs/log4j2_TMPL.xml'
+# By default, (value = "") use preconfigured '$JOD_DIST_DIR/dists/configs/log4j2_TMPL[_224].xml'
 # file.
 # The 'log4j2_TMPL.xml' is a Log4j2 config file used to print logs on console,
 # on files, on network listeners...
 # The file path must be relative to the $JOD_DIST_DIR.
-#DIST_JOD_CONFIG_LOGS_TMPL="dists/configs/log4j2_TMPL.xml"
+DIST_JOD_CONFIG_LOGS_TMPL="dists/configs/log4j2_TMPL_224-dev.xml"
 
 # JOD Object's structure files
 # A file path for a valid 'struct.jod' file to include in the built
@@ -165,6 +168,24 @@ DIST_JOD_VER="2.2.4-DEV"
 # file.
 # The file path must be relative to the $JOD_DIST_DIR.
 #DIST_JOD_STRUCT="dists/configs/struct.jod"
+
+# JOD Object's shell configs files
+# A file path for a valid 'jod_configs' file to include in the built
+# JOD Distribution. The path must not include the file extension, because
+# the build script will add the '.sh' and `.ps1` extensions and copy both files.
+# By default, (value = "") use preconfigured '$JOD_DIST_DIR/dists/configs/jod_configs'
+# file.
+# The file path must be relative to the $JOD_DIST_DIR.
+#DIST_JOD_SHELL_CONFIGS="dists/configs/jod_configs"
+
+# JOD Object's shell configs files
+# A file path for a valid 'jod_configs' file to include in the built
+# JOD Distribution. The path must not include the file extension, because
+# the build script will add the '.sh' and `.ps1` extensions and copy both files.
+# By default, (value = "") use preconfigured '$JOD_DIST_DIR/dists/configs/jod_configs'
+# file.
+# The file path must be relative to the $JOD_DIST_DIR.
+DIST_JOD_SHELL_CONFIGS="dists/configs/jod_configs-DEV"
 
 # Enable/Disable JOD Local Communication, default true
 #DIST_JOD_COMM_DIRECT_ENABLED="True"

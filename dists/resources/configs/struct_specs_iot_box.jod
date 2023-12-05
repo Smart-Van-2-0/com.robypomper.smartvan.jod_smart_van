@@ -1,0 +1,70 @@
+{
+  "model": "JOD Smart Van",
+  "brand": "John OS",
+  "descr": "IoT agent for the Smart Van Box that provides the Smart Van Specifications.",
+  "descr_long": "This object's structure actually contains only the 'Position > GNSS', 'Sensors', 'Services', 'Energy' and the 'IoT Box > Energy + Internet' specifications groups",
+  "contains": {
+
+    "IoT Box": {
+      "type": "JODContainer",
+      "contains": {
+        "Energy": {
+          "type": "JODContainer",
+          "contains": {
+            "Charging state": {
+              "type": "BooleanState",
+              "desc": "[FW] SolarCharger's firmware version",
+              "listener": "dbus://dbus_name=com.upspack;dbus_obj_path=/ups_smart;dbus_iface=com.upspack_v3;dbus_prop=state_operation;"
+            },
+            "Battery Percentage": {
+              "type": "RangeState",
+              "desc": "[BATCAP] Battery charge percentage",
+              "listener": "dbus://dbus_name=com.upspack;dbus_obj_path=/ups_smart;dbus_iface=com.upspack_v3;dbus_prop=battery_capacity;",
+              "min": "0",
+              "max": "100",
+              "step": "1"
+            },
+            "Output Voltage": {
+              "type": "RangeState",
+              "desc": "[Vout] Load voltage in milliVolts",
+              "listener": "dbus://dbus_name=com.upspack;dbus_obj_path=/ups_smart;dbus_iface=com.upspack_v3;dbus_prop=voltage_out;",
+              "min": "4000",
+              "max": "6000",
+              "step": "1"
+            }
+          }
+        },
+        "Internet": {
+          "type": "JODContainer",
+          "contains": {
+            "Status": {
+              "type": "BooleanState",
+              "desc": "Sim's status (true is Working, false is NOT Working).",
+              "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=network_status;"
+            },
+            "SIM Status": {
+              "type": "BooleanState",
+              "desc": "Sim's status (true is Working, false is NOT Working).",
+              "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=network_sim_status;"
+            },
+            "Percentage": {
+              "type": "RangeState",
+              "desc": "Internet signal quality in Percent.",
+              "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=network_signal_percentage;",
+              "min": "0",
+              "max": "100",
+              "step": "1"
+            },
+            "Power Module": {
+              "type": "BooleanAction",
+              "desc": "Power on/off the SIM module to save energy",
+              "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=power_module_state;",
+              "executor": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_method=power_module;dbus_method_params=%A_VAL%:Boolean;"
+            }
+          }
+        }
+      }
+    }
+
+  }
+}

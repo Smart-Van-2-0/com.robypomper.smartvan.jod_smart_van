@@ -1,0 +1,164 @@
+{
+  "model": "JOD Smart Van",
+  "brand": "John OS",
+  "descr": "IoT agent for the Smart Van Box that provides the Smart Van Specifications from the FW Sense Hat.",
+  "descr_long": "This object's structure actually contains only the specifications provided by the FW Sense Hat.",
+  "contains": {
+
+    "Position": {
+      "type": "JODContainer",
+      "contains": {
+        "Inertial": {
+          "type": "JODContainer",
+          "contains": {
+            "Roll": {
+              "type": "RangeState",
+              "desc": "Gyroscope Roll axis, rotation about its longitudinal axis (drawn through the body of the vehicle from tail to nose) in degrees",
+              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=roll;",
+              "min": "-180",
+              "max": "180",
+              "step": "1"
+            },
+            "Pitch": {
+              "type": "RangeState",
+              "desc": "Gyroscope Pitch axis, rotation about its lateral axis in degrees",
+              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=pitch;",
+              "min": "-90",
+              "max": "90",
+              "step": "1"
+            },
+            "Yaw": {
+              "type": "RangeState",
+              "desc": "Gyroscope Yaw axis, rotation about its vertical axis in degrees",
+              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=yaw;",
+              "min": "-180",
+              "max": "180",
+              "step": "1"
+            },
+            "Acceleration X": {
+              "type": "RangeState",
+              "desc": "Acceleration Y axis in Gs",
+              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=acceleration_x;",
+              "min": "-16",
+              "max": "16",
+              "step": "1"
+            },
+            "Acceleration Y": {
+              "type": "RangeState",
+              "desc": "Acceleration X axis in Gs",
+              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=acceleration_y;",
+              "min": "-16",
+              "max": "16",
+              "step": "1"
+            },
+            "Acceleration Z": {
+              "type": "RangeState",
+              "desc": "Acceleration Z axis in Gs",
+              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=acceleration_z;",
+              "min": "-16",
+              "max": "16",
+              "step": "1"
+            },
+            "Gyroscope X": {
+              "type": "RangeState",
+              "desc": "Gyroscope X axis in degrees per second",
+              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=gyroscope_x;",
+              "min": "-2048",
+              "max": "2048",
+              "step": "1"
+            },
+            "Gyroscope Y": {
+              "type": "RangeState",
+              "desc": "Gyroscope Y axis in degrees per second",
+              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=gyroscope_y;",
+              "min": "-2048",
+              "max": "2048",
+              "step": "1"
+            },
+            "Gyroscope Z": {
+              "type": "RangeState",
+              "desc": "Gyroscope Z axis in degrees per second",
+              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=gyroscope_z;",
+              "min": "-2048",
+              "max": "2048",
+              "step": "1"
+            }
+          }
+        }
+      }
+    },
+
+    "Sensors": {
+      "type": "JODContainer",
+      "contains": {
+        "Living": {
+          "type": "JODContainer",
+          "contains": {
+            "Pressure": {
+              "type": "RangeState",
+              "desc": "Environmental pressure in Pascal",
+              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=pressure;",
+              "min": "200",
+              "max": "1260",
+              "step": "1"
+            },
+            "Temperature": {
+              "type": "RangeState",
+              "desc": "Environmental temperature in degrees celsius",
+              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=temperature;",
+              "min": "-30",
+              "max": "100",
+              "step": "1"
+            },
+            "Humidity": {
+              "type": "RangeState",
+              "desc": "Environmental humidity percentage",
+              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=humidity;",
+              "min": "0",
+              "max": "100",
+              "step": "1"
+            },
+            "Lux": {
+              "type": "RangeState",
+              "desc": "Environmental lux in lumen",
+              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=lux;"
+            },
+            "Analog 0": {
+              "type": "RangeState",
+              "desc": "Customizable analog sensors (0-100%)",
+              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=analog_0;",
+              "min": "0",
+              "max": "100",
+              "step": "1"
+            },
+            "Analog 1": {
+              "type": "RangeState",
+              "desc": "Customizable analog sensors (0-100%)",
+              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=analog_1;",
+              "min": "0",
+              "max": "100",
+              "step": "1"
+            },
+            "Analog 2": {
+              "type": "RangeState",
+              "desc": "Customizable analog sensors (0-100%)",
+              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=analog_2;",
+              "min": "0",
+              "max": "100",
+              "step": "1"
+            },
+            "Analog 3": {
+              "type": "RangeState",
+              "desc": "Customizable analog sensors (0-100%)",
+              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=analog_3;",
+              "min": "0",
+              "max": "100",
+              "step": "1"
+            }
+          }
+        }
+      }
+    }
+
+  }
+}
