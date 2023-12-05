@@ -132,6 +132,9 @@ fi
 # DIST_JOD_STRUCT: jod's structure file, path from $JOD_DIST_DIR      ; default: dists/configs/struct.jod
 [ -z "$DIST_JOD_STRUCT" ] && DIST_JOD_STRUCT="dists/configs/struct.jod"
 
+# DIST_JOD_STRUCT: jod's structure file, path from $JOD_DIST_DIR      ; default: dists/configs/jod_configs
+[ -z "$DIST_JOD_SHELL_CONFIGS" ] && DIST_JOD_SHELL_CONFIGS="dists/configs/jod_configs"
+
 # $DIST_JOD_OWNER: josp user's id            ; default: "00000-00000-00000" as Anonymous user
 [ -z "$DIST_JOD_OWNER" ] && DIST_JOD_OWNER="00000-00000-00000"
 
@@ -300,10 +303,10 @@ sed -e 's|%DIST_JOD_VER%|'"$DIST_JOD_VER"'|g' \
 logDeb "Copy JOD Distribution configs"
 cp -r "$JOD_DIST_DIR/$DIST_JOD_STRUCT" "$DEST_DIR/configs/struct.jod"
 [ "$?" -ne 0 ] && logFat "Can't include 'struct.jod' to JOD Distribution because can't copy file '$JOD_DIST_DIR/$DIST_JOD_STRUCT'" $ERR_GET_DIST_JOD_STRUCT
-cp -r "$JOD_DIST_DIR/dists/configs/jod_configs.sh" "$DEST_DIR/configs/configs.sh"
-[ "$?" -ne 0 ] && logFat "Can't include 'jod_configs.sh' to JOD Distribution because can't copy file '$JOD_DIST_DIR/dists/configs/jod_configs.sh'" $ERR_GET_JOD_CONFIGS
-cp -r "$JOD_DIST_DIR/dists/configs/jod_configs.ps1" "$DEST_DIR/configs/configs.ps1"
-[ "$?" -ne 0 ] && logFat "Can't include 'jod_configs.ps1' to JOD Distribution because can't copy file '$JOD_DIST_DIR/dists/configs/jod_configs.ps1'" $ERR_GET_JOD_CONFIGS
+cp -r "$JOD_DIST_DIR/$DIST_JOD_SHELL_CONFIGS.sh" "$DEST_DIR/configs/configs.sh"
+[ "$?" -ne 0 ] && logFat "Can't include 'jod_configs.sh' to JOD Distribution because can't copy file '$JOD_DIST_DIR/$DIST_JOD_SHELL_CONFIGS.sh'" $ERR_GET_JOD_CONFIGS
+cp -r "$JOD_DIST_DIR/$DIST_JOD_SHELL_CONFIGS.ps1" "$DEST_DIR/configs/configs.ps1"
+[ "$?" -ne 0 ] && logFat "Can't include 'jod_configs.ps1' to JOD Distribution because can't copy file '$JOD_DIST_DIR/$DIST_JOD_SHELL_CONFIGS.ps1'" $ERR_GET_JOD_CONFIGS
 
 logDeb "Generate JOD Distribution dist_configs.sh and dist_configs.ps1"
 echo "#!/bin/bash
