@@ -213,9 +213,10 @@ if [[ ! -z "$JOD_DIST_DEPS" ]]; then
     mkdir -p "$DEST_DIR_DEPS"
     # dependencies loop
     COUNT=0
+    COUNT_SUCCESS=0
     for dep_prop in "${JOD_DIST_DEPS[@]}"
     do
-      let "COUNT+=1"
+      ((COUNT+=1))
       # import stats
       pre_import=$(find "$DEST_DIR_DEPS" -type f | wc -l)
       # extract src and dest
@@ -238,21 +239,27 @@ if [[ ! -z "$JOD_DIST_DEPS" ]]; then
         # get url dependency
         logInf "Get dependency. . . . . ($COUNT/$TOTAL) - $dep_src"
         dep_dir="$CACHE_DIR/$(echo "$dep_src" | tr '://.' _)"
-        [ -d "$dep_dir" ] && logDeb "Dependency already cached."
-        [ ! -d "$dep_dir" ] && logDeb "Download dependency to local cache." && WGET_OUT=$(wget -P "$dep_dir" $dep_src 2>&1)
-        [ ! -d "$dep_dir" ] && logWar "An error occurred during dependencies download, skip it." \
-          && echo "#### #### #### #### #### #### #### #### #### #### #### ####" \
-          && echo "WGET Error Log:" \
+        [ -d "$dep_dir" ] && logDeb "Dependency already cached, skip download"
+        [ ! -d "$dep_dir" ] && logInf "Download dependency to local cache..." && WGET_OUT="$(wget -P "$dep_dir" "$dep_src" 2>&1)"
+        [ ! -d "$dep_dir" ] && logWar "An error occurred during dependency download, skip it." \
+          && logWar "#### #### #### #### #### #### #### #### #### #### #### ####" \
+          && logWar "WGET Error Log:" \
           && echo "$WGET_OUT" \
-          && echo "#### #### #### #### #### #### #### #### #### #### #### ####" && continue
-        # extract, if downloaded a compressed file
+          && logWar "#### #### #### #### #### #### #### #### #### #### #### ####" && continue
+        # extract downloaded file, if it's a compressed file
         dwn_files=$(find "$dep_dir" -type f | wc -l)
         if [[ $dwn_files -eq 1 ]]; then
           file_name=$(ls "$dep_dir")
-          echo "One file: $file_name"
           if [[ "$file_name" =~ .*gz ]]; then
-            echo "---------------ok"
-            TAR_OUT=$(tar -xf "$dep_dir/$file_name" -C "$dep_dest")
+            tar -xf "$dep_dir/$file_name" -C "$dep_dest"
+          fi
+          # check if extracted file is a single dir and move his content one level up
+          dwn_dirs=$(find "$dep_dest" -mindepth 1 -maxdepth 1 -type d | wc -l)
+          if [[ $dwn_dirs -eq 1 ]]; then
+            dir_name=$(ls "$dep_dest")
+            logDeb "Move '$dep_dest/$dir_name/*' into '$dep_dest'"
+            mv "$dep_dest/$dir_name"/* "$dep_dest" 2>&1
+            rm -rf "$dep_dest"/"${dir_name:?}" 2>&1
           fi
         fi
       else
@@ -262,7 +269,7 @@ if [[ ! -z "$JOD_DIST_DEPS" ]]; then
           logWar "Missing local dir or file for '$dep_src' dependency, skip it."
           continue
         fi
-        cp -r $dep_src "$dep_dest"
+        cp -r "$dep_src" "$dep_dest"        # TODO: add a build's config to define what must be excluded from copy
         dir_dest=$(basename "$dep_src")
         #rm -rf "$dep_dest/$dir_dest/venv" >/dev/null 2>&1
         rm -rf "$dep_dest/$dir_dest/logs" >/dev/null 2>&1
@@ -270,11 +277,12 @@ if [[ ! -z "$JOD_DIST_DEPS" ]]; then
         rm -rf "$dep_dest/$dir_dest/.git" >/dev/null 2>&1
       fi
       # import stats
-      post_import=$(find "$dep_dest" -type f | wc -l)
-      let "imported_files=$post_import-$pre_import"
-      logInf "Added $imported_files files."
+      post_import=$(find "$DEST_DIR_DEPS" -type f | wc -l)
+      imported_files=$((post_import-pre_import))
+      logInf "Imported $imported_files files from dependency"
+      ((COUNT_SUCCESS+=1))
     done
-    logInf "Distribution dependencies ($TOTAL) imported successfully"
+    logInf "Distribution dependencies ($COUNT_SUCCESS/$TOTAL) imported successfully"
   fi
 fi
 
