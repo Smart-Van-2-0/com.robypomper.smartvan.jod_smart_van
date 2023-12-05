@@ -154,12 +154,12 @@ DIST_JOD_VER="2.2.4-DEV"
 # JOD Object's logs config template
 # A file path for an alternative '$JOD_DIST_DIR/dists/configs/log4j2_TMPL.xml'
 # file.
-# By default, (value = "") use preconfigured '$JOD_DIST_DIR/dists/configs/log4j2_TMPL.xml'
+# By default, (value = "") use preconfigured '$JOD_DIST_DIR/dists/configs/log4j2_TMPL[_224].xml'
 # file.
 # The 'log4j2_TMPL.xml' is a Log4j2 config file used to print logs on console,
 # on files, on network listeners...
 # The file path must be relative to the $JOD_DIST_DIR.
-#DIST_JOD_CONFIG_LOGS_TMPL="dists/configs/log4j2_TMPL.xml"
+DIST_JOD_CONFIG_LOGS_TMPL="dists/configs/log4j2_TMPL_224-dev.xml"
 
 # JOD Object's structure files
 # A file path for a valid 'struct.jod' file to include in the built
@@ -175,7 +175,7 @@ DIST_JOD_VER="2.2.4-DEV"
 # the build script will add the '.sh' and `.ps1` extensions and copy both files.
 # By default, (value = "") use preconfigured '$JOD_DIST_DIR/dists/configs/jod_configs'
 # file.
-# The file path must be relative to the $JOD_DIST_DIR./
+# The file path must be relative to the $JOD_DIST_DIR.
 #DIST_JOD_SHELL_CONFIGS="dists/configs/jod_configs"
 
 # JOD Object's shell configs files
@@ -184,7 +184,7 @@ DIST_JOD_VER="2.2.4-DEV"
 # the build script will add the '.sh' and `.ps1` extensions and copy both files.
 # By default, (value = "") use preconfigured '$JOD_DIST_DIR/dists/configs/jod_configs'
 # file.
-# The file path must be relative to the $JOD_DIST_DIR./
+# The file path must be relative to the $JOD_DIST_DIR.
 DIST_JOD_SHELL_CONFIGS="dists/configs/jod_configs-DEV"
 
 # Enable/Disable JOD Local Communication, default true
