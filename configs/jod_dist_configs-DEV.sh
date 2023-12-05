@@ -169,6 +169,15 @@ DIST_JOD_VER="2.2.4-DEV"
 # The file path must be relative to the $JOD_DIST_DIR.
 #DIST_JOD_STRUCT="dists/configs/struct.jod"
 
+# JOD Object's shell configs files
+# A file path for a valid 'jod_configs' file to include in the built
+# JOD Distribution. The path must not include the file extension, because
+# the build script will add the '.sh' and `.ps1` extensions and copy both files.
+# By default, (value = "") use preconfigured '$JOD_DIST_DIR/dists/configs/jod_configs'
+# file.
+# The file path must be relative to the $JOD_DIST_DIR./
+#DIST_JOD_SHELL_CONFIGS="dists/configs/jod_configs"
+
 # Enable/Disable JOD Local Communication, default true
 #DIST_JOD_COMM_DIRECT_ENABLED="True"
 
