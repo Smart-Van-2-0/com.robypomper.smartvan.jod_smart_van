@@ -83,6 +83,7 @@ launch_fw () {
   FW_PID=$(ps aux | grep "$FW_DIR/run.py" | grep -v "grep" | awk '{ print $2 }')
   [[ ! -z "$FW_PID" ]] && kill -s 15 $FW_PID
   [[ "$SIMULATE" = true ]] && OPT+=" --simulate"
+  LOG_STARTUP="$JOD_DIR/logs/startup_$FW_DIR-$(date +'%Y%m%d_%H%M%S').log"
 
   # echo "$PY_COMMAND $JOD_DIR/deps/$FW_DIR/run.py $OPT --debug"
   if [[ "$VENV" = true ]]; then
@@ -90,14 +91,24 @@ launch_fw () {
       source "$JOD_DIR/deps/$FW_DIR/venv/bin/activate" \
       && $PY_COMMAND "$JOD_DIR/deps/$FW_DIR/run.py" $OPT --debug &
     else
-      source "$JOD_DIR/deps/$FW_DIR/venv/bin/activate" \
-          && $PY_COMMAND "$JOD_DIR/deps/$FW_DIR/run.py" $OPT --debug >/dev/null 2>&1 &
+      {
+        echo "#### #### #### ####"; \
+        echo "$(date +'%Y-%m-%d %H:%M:%S') Starting $FW_DIR firmware"; \
+        echo "$(date +'%Y-%m-%d %H:%M:%S') Exec: $PY_COMMAND \"$JOD_DIR/deps/$FW_DIR/run.py\" $OPT --debug >> \"$LOG_STARTUP\" 2>&1 &"; \
+      } >> "$LOG_STARTUP"
+      source "$JOD_DIR/deps/$FW_DIR/venv/bin/activate" >> "$LOG_STARTUP" 2>&1 \
+          && $PY_COMMAND "$JOD_DIR/deps/$FW_DIR/run.py" $OPT --debug >> "$LOG_STARTUP" 2>&1 &
     fi
   else
     if [[ "$INLINE_LOGS" = true ]]; then
       $PY_COMMAND "$JOD_DIR/deps/$FW_DIR/run.py" $OPT --debug &
     else
-      $PY_COMMAND "$JOD_DIR/deps/$FW_DIR/run.py" $OPT --debug >/dev/null 2>&1 &
+      {
+        echo "#### #### #### ####"; \
+        echo "$(date +'%Y-%m-%d %H:%M:%S') Starting $FW_DIR firmware"; \
+        echo "$(date +'%Y-%m-%d %H:%M:%S') Exec: $PY_COMMAND \"$JOD_DIR/deps/$FW_DIR/run.py\" $OPT --debug >> \"$LOG_STARTUP\" 2>&1 &"; \
+      } >> "$LOG_STARTUP"
+      $PY_COMMAND "$JOD_DIR/deps/$FW_DIR/run.py" $OPT --debug >> "$LOG_STARTUP" 2>&1 &
     fi
   fi
 
