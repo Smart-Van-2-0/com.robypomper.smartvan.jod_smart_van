@@ -31,8 +31,22 @@ jod.permissions.owner: '%DIST_JOD_OWNER%'
 ## Communication local
 
 jod.comm.local.enabled: '%DIST_JOD_COMM_DIRECT_ENABLED%'
+jod.comm.local.enableSSL: 'true'
 
 
 ## Communication cloud
 
 jod.comm.cloud.enabled: '%DIST_JOD_COMM_CLOUD_ENABLED%'
+
+
+# History and Events
+# 400 items => ~10 minutes * 720 = 5 days
+
+jod.history.buffer_size: 72000
+jod.history.buffer_release_size: 14400
+jod.history.file_size: 216000
+jod.history.file_release_size: 72000
+jod.events.buffer_size: 72000
+jod.events.buffer_release_size: 14400
+jod.events.file_size: 216000
+jod.events.file_release_size: 72000

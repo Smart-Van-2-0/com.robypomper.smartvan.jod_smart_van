@@ -154,7 +154,7 @@ $global:DIST_JOD_VER = "2.2.4"
 # JOD Distribution's scripts configs values. For VARs complete list,
 # see the '$JOD_DIST_DIR/scripts/build.sh' script.
 # The file path must be relative to the $JOD_DIST_DIR.
-#$global:DIST_JOD_CONFIG_TMPL="dists/configs/jod_TMPL.yml"
+$global:DIST_JOD_CONFIG_TMPL="dists/configs/jod_DEV.yml"
 
 # JOD Object's logs config template
 # A file path for an alternative '$JOD_DIST_DIR/dists/configs/log4j2_TMPL.xml'
