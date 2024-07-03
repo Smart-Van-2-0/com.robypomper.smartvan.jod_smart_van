@@ -2,6 +2,20 @@
 
 [README](README.md) | [CHANGELOG](CHANGELOG.md) | [TODOs](TODOs.md) | [LICENCE](LICENCE.md)
 
+## 1.0.0
+
+* Updated [JOD](https://docs.johnosproject.org/references/josp/jod/) agent to v 2.2.4
+* Setup production and development build configs
+* Updated the firmware mngm into `pre-startup.sh` and `post-startup.sh` scripts
+* Updated the [FW Victron](https://www.smartvanbox.org/docs/software/firmware/fw_victron) to v 1.0.2 [Sources](https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.victron/)
+* Included the [FW SIM 7600](https://www.smartvanbox.org/docs/software/firmware/fw_sim7600) v 1.0.0 [Sources](https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.sim7600/)
+* Included the [FW UPS Pack_V3](https://www.smartvanbox.org/docs/software/firmware/fw_upspack_v3) v 1.0.0 [Sources](https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.upspack_v3/)
+* Included the [FW Sense Hat](https://www.smartvanbox.org/docs/software/firmware/fw_sensehat) v 1.0.0 [Sources](https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.sensehat/)
+* Included the [FW IO Exp](https://www.smartvanbox.org/docs/software/firmware/fw_ioexp) v 1.0.0 [Sources](https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.ioexp/)
+* Updated the `struct.jod` file to the SV Specs
+* Added structure files for any SV specs sub-group
+* Added structure files for any firmware included
+
 ## 0.1.0
 
 * Initialized from JODDistTMPL `1.0.3`, then updated to `1.0.4-DEV`
