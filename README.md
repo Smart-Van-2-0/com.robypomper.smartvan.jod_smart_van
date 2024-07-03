@@ -1,7 +1,7 @@
 # JOD Smart Van Distribution
 
 This is the main repository for the **JOD Smart Van distribution** as part of
-the [Smart Van Project](https://smartvan.johnosproject.org/).<br />
+the [Smart Van Project](https://www.smartvanbox.org/).<br />
 It's based on the [JODDistTMPL](/dists/resources/how_it_works.md#jod-dist-tmpl),
 so this repo follows his conventions.
 
@@ -12,16 +12,16 @@ so this repo follows his conventions.
 [README](README.md) | [CHANGELOG](CHANGELOG.md) | [TODOs](TODOs.md) | [LICENCE](LICENCE.md)
 
 This distribution represent a Smart Van object as defined from
-the [Smart Van Project](https://smartvan.johnosproject.org) website.
+the [Smart Van Project](https://www.smartvanbox.org) website.
 
 As a first version, this distribution contains only the support to some of the
 Smart Van Specifications because it's still missing some firmware.<br/>
 Actually, the JOD Smart Van includes following firmwares:
-* [FW Victron](https://smartvan.johnosproject.org/docs/software/firmware/fw_victron): v 1.0.2 [Sources](https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.victron/)
-* [FW SIM 7600](https://smartvan.johnosproject.org/docs/software/firmware/fw_sim7600): v 1.0.0 [Sources](https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.sim7600/)
-* [FW UPS Pack_V3](https://smartvan.johnosproject.org/docs/software/firmware/fw_upspack_v3): v 1.0.0 [Sources](https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.upspack_v3/)
-* [FW Sense Hat](https://smartvan.johnosproject.org/docs/software/firmware/fw_sensehat): v 1.0.0 [Sources](https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.sensehat/)
-* [FW IO Exp](https://smartvan.johnosproject.org/docs/software/firmware/fw_ioexp): v 1.0.0 [Sources](https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.ioexp/)
+* [FW Victron](https://www.smartvanbox.org/docs/software/firmware/fw_victron): v 1.0.2 [Sources](https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.victron/)
+* [FW SIM 7600](https://www.smartvanbox.org/docs/software/firmware/fw_sim7600): v 1.0.0 [Sources](https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.sim7600/)
+* [FW UPS Pack_V3](https://www.smartvanbox.org/docs/software/firmware/fw_upspack_v3): v 1.0.0 [Sources](https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.upspack_v3/)
+* [FW Sense Hat](https://www.smartvanbox.org/docs/software/firmware/fw_sensehat): v 1.0.0 [Sources](https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.sensehat/)
+* [FW IO Exp](https://www.smartvanbox.org/docs/software/firmware/fw_ioexp): v 1.0.0 [Sources](https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.ioexp/)
 
 More details on JOD Smart Van distribution, the JOD Dist TMPL and the firmwares
 are available at the [How it works](dists/resources/how_it_works.md) page or directly on
@@ -120,18 +120,18 @@ section.
 
 Now you are free to customize your JOD Smart Van distribution. However, remember
 that for it to work seamlessly with
-the [SV Mobile App](https://smartvan.johnosproject.org/docs/software#sv-mobile-app),
+the [SV Mobile App](https://www.smartvanbox.org/docs/software#sv-mobile-app),
 your customizations must adhere to
-the [Smart Van specifications](https://smartvan.johnosproject.org/docs/specs).
+the [Smart Van specifications](https://www.smartvanbox.org/docs/specs).
 
 ## Collaborate
 
-This project is part of the [Smart Van Project](https://smartvan.johnosproject.org),
+This project is part of the [Smart Van Project](https://www.smartvanbox.org),
 and it's published under an Open Source licence to allow the community to
 contribute to the project.
 
 If you want to contribute to the project, you can start by reading the
-[Contribution Guidelines](https://smartvan.johnosproject.org/collaborate) page.
+[Contribution Guidelines](https://www.smartvanbox.org/collaborate) page.
 Otherwise, you can clone current repository and start to customize your own
 JOD Smart Van distribution. Check out the project's structure and 'how to work
 on it', on the [Development](/dists/resources/development.md) page.

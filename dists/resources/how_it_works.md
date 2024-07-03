@@ -62,7 +62,7 @@ you must ensure that the JOD Smart Van agent exposes the same endpoints defined
 by the Smart Van Specs. Other Pillars will be ignored by the Mobile App
 
 For the full list of the Smart Van specification see 
-the [official documentation](https://smartvan.johnosproject.org/docs/specs).
+the [official documentation](https://www.smartvanbox.org/docs/specs).
 
 ## Smart Van Box communication to SV Mobile App
 ...DIRECT/CLOUD see https://docs.johnosproject.org/references/josp/jod/comm

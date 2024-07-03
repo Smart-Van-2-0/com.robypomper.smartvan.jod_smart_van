@@ -82,7 +82,7 @@ development build, the firmwares are searched locally, in the same folder as
 the JOD Smart Van project.
 
 It is recommended to use the production distribution when deploying it on a
-[Smart Van Box](https://smartvan.johnosproject.org/docs/hardware) (aka
+[Smart Van Box](https://www.smartvanbox.org/docs/hardware) (aka
 Raspberry Pi). If you want to test the distribution or simulate a Smart Van Box,
 then the development build is recommended.
 

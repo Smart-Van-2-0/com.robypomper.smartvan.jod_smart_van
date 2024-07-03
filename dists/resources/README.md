@@ -4,20 +4,20 @@
 
 Documentation for JOD Smart Van. This JOD Distribution allow to start up and
 manage a JOD Agent that represent
-a [Smart Van Box](https://smartvan.johnosproject.org).
+a [Smart Van Box](https://www.smartvanbox.org).
 
 ## JOD Distribution Specs
 
 <table>
   <tr><th>Current version</th><td>1.0.0</td></tr>
-  <tr><th>References</th><td><a href="http://smartvan.johnosproject.org/docs/software/jod_smart_van/jod_smart_van">JOD Smart Van @ Smart Van Project</a></td></tr>
+  <tr><th>References</th><td><a href="http://www.smartvanbox.org/docs/software/jod_smart_van/jod_smart_van">JOD Smart Van @ Smart Van Project</a></td></tr>
   <tr><th>Repository</th><td><a href="https://github.com/Smart-Van-2-0/com.robypomper.smartvan.jod_smart_van/">com.robypomper.smartvan.jod_smart_van @ GitHub</a></td></tr>
-  <tr><th>Downloads 1</th><td><a href="http://smartvan.johnosproject.org/docs/software/jod_smart_van/downloads">JOD Smart Van Downloads @ Smart Van Project</a></td></tr>
+  <tr><th>Downloads 1</th><td><a href="http://www.smartvanbox.org/docs/software/jod_smart_van/downloads">JOD Smart Van Downloads @ Smart Van Project</a></td></tr>
   <tr><th>Downloads 2</th><td><a href="https://github.com/Smart-Van-2-0/com.robypomper.smartvan.jod_smart_van/releases">com.robypomper.smartvan.jod_smart_van/releases > Releases @ GitHub</a></td></tr>
 </table>
 
 This is the JOD Distribution for
-the [Smart van project](https://smartvan.johnosproject.org).
+the [Smart van project](https://www.smartvanbox.org).
 It abstracts all devices and resources that can be found in a camper/caravan or
 van like lights, fan, fridges but also power energy, waters and many more.
 
@@ -31,11 +31,11 @@ include the 2.2.4-DEV JOD version from your local repository.
 As a first version, this distribution contains only the support to some of the
 Smart Van Specifications because it's still missing some firmware.<br/>
 Actually, the JOD Smart Van includes following firmwares:
-* [FW Victron](https://smartvan.johnosproject.org/docs/software/firmware/fw_victron): v 1.0.2 [Sources](https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.victron/)
-* [FW SIM 7600](https://smartvan.johnosproject.org/docs/software/firmware/fw_sim7600): v 1.0.0 [Sources](https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.sim7600/)
-* [FW UPS Pack_V3](https://smartvan.johnosproject.org/docs/software/firmware/fw_upspack_v3): v 1.0.0 [Sources](https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.upspack_v3/)
-* [FW Sense Hat](https://smartvan.johnosproject.org/docs/software/firmware/fw_sensehat): v 1.0.0 [Sources](https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.sensehat/)
-* [FW IO Exp](https://smartvan.johnosproject.org/docs/software/firmware/fw_ioexp): v 1.0.0 [Sources](https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.ioexp/)
+* [FW Victron](https://www.smartvanbox.org/docs/software/firmware/fw_victron): v 1.0.2 [Sources](https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.victron/)
+* [FW SIM 7600](https://www.smartvanbox.org/docs/software/firmware/fw_sim7600): v 1.0.0 [Sources](https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.sim7600/)
+* [FW UPS Pack_V3](https://www.smartvanbox.org/docs/software/firmware/fw_upspack_v3): v 1.0.0 [Sources](https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.upspack_v3/)
+* [FW Sense Hat](https://www.smartvanbox.org/docs/software/firmware/fw_sensehat): v 1.0.0 [Sources](https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.sensehat/)
+* [FW IO Exp](https://www.smartvanbox.org/docs/software/firmware/fw_ioexp): v 1.0.0 [Sources](https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.ioexp/)
 
 ## JOD Distribution Usage
 
@@ -151,12 +151,12 @@ Otherwise, you can find a log file for each firmware into the `logs` folder.
 
 ## Collaborate
 
-This project is part of the [Smart Van Project](https://smartvan.johnosproject.org),
+This project is part of the [Smart Van Project](https://www.smartvanbox.org),
 and it's published under an Open Source licence to allow the community to
 contribute to the project.
 
 If you want to contribute to the project, you can start by reading the
-[Contribution Guidelines](https://smartvan.johnosproject.org/collaborate) page.
+[Contribution Guidelines](https://www.smartvanbox.org/collaborate) page.
 Otherwise, you can clone current repository and start to customize your own
 JOD Smart Van distribution. Check out the project's structure and 'how to work on
 it', on

@@ -13,11 +13,11 @@ Additionally, depending on the enabled firmwares, it may be necessary to fulfill
 their requirements. Here is the list of firmwares included in the JOD Smart Van
 distribution:
 
-* [FW Victron](https://smartvan.johnosproject.org/docs/software/firmware/fw_victron): v 1.0.2 [Sources](https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.victron/)
-* [FW SIM 7600](https://smartvan.johnosproject.org/docs/software/firmware/fw_sim7600): v 1.0.0 [Sources](https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.sim7600/)
-* [FW UPS Pack_V3](https://smartvan.johnosproject.org/docs/software/firmware/fw_upspack_v3): v 1.0.0 [Sources](https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.upspack_v3/)
-* [FW Sense Hat](https://smartvan.johnosproject.org/docs/software/firmware/fw_sensehat): v 1.0.0 [Sources](https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.sensehat/)
-* [FW IO Exp](https://smartvan.johnosproject.org/docs/software/firmware/fw_ioexp): v 1.0.0 [Sources](https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.ioexp/)
+* [FW Victron](https://www.smartvanbox.org/docs/software/firmware/fw_victron): v 1.0.2 [Sources](https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.victron/)
+* [FW SIM 7600](https://www.smartvanbox.org/docs/software/firmware/fw_sim7600): v 1.0.0 [Sources](https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.sim7600/)
+* [FW UPS Pack_V3](https://www.smartvanbox.org/docs/software/firmware/fw_upspack_v3): v 1.0.0 [Sources](https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.upspack_v3/)
+* [FW Sense Hat](https://www.smartvanbox.org/docs/software/firmware/fw_sensehat): v 1.0.0 [Sources](https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.sensehat/)
+* [FW IO Exp](https://www.smartvanbox.org/docs/software/firmware/fw_ioexp): v 1.0.0 [Sources](https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.ioexp/)
 
 :::warning
 Both the JOD Smart Van distribution and the firmwares are developed and tested
@@ -34,7 +34,7 @@ installations: download, extract, and run.
 1. **Download:**
   Download the latest available version of JOD Smart Van in compressed format.
   For a list of versions and respective links, visit
-  the [Downloads](https://smartvan.johnosproject.org/docs/software/jod_smart_van/downloads)
+  the [Downloads](https://www.smartvanbox.org/docs/software/jod_smart_van/downloads)
   page or directly the [Release@GitHub](https://github.com/Smart-Van-2-0/com.robypomper.smartvan.jod_smart_van/releases)
   for download links.
     ```shell
@@ -79,7 +79,7 @@ shutdown, the halt signal is sent, stopping also all enabled firmwares.
 1. **Download:**
   Download the latest available version of JOD Smart Van in compressed format.
   For a list of versions and respective links, visit
-  the [Downloads](https://smartvan.johnosproject.org/docs/software/jod_smart_van/downloads)
+  the [Downloads](https://www.smartvanbox.org/docs/software/jod_smart_van/downloads)
   page or directly the [Release@GitHub](https://github.com/Smart-Van-2-0/com.robypomper.smartvan.jod_smart_van/releases)
   for download links.
     ```shell
