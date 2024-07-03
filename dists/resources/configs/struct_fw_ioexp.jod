@@ -1,0 +1,113 @@
+{
+  "model": "JOD Smart Van",
+  "brand": "John OS",
+  "descr": "IoT agent for the Smart Van Box that provides the Smart Van Specifications from the FW IO Exp.",
+  "descr_long": "This object's structure actually contains only the specifications provided by the FW IO Exp.",
+  "contains": {
+
+    "Services": {
+      "type": "JODContainer",
+      "contains": {
+        "Controllers": {
+          "type": "JODContainer",
+          "contains": {
+            "Binary 1": {
+              "type": "BooleanState",
+              "desc": "Binary controller like buttons (true is pressed, false is NOT pressed).",
+              "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=in_0;"
+            },
+            "Binary 2": {
+              "type": "BooleanState",
+              "desc": "Binary controller like buttons (true is pressed, false is NOT pressed).",
+              "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=in_1;"
+            },
+            "Binary 3": {
+              "type": "BooleanState",
+              "desc": "Binary controller like buttons (true is pressed, false is NOT pressed).",
+              "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=in_2;"
+            },
+            "Binary 4": {
+              "type": "BooleanState",
+              "desc": "Binary controller like buttons (true is pressed, false is NOT pressed).",
+              "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=in_3;"
+            },
+            "Binary 5": {
+              "type": "BooleanState",
+              "desc": "Binary controller like buttons (true is pressed, false is NOT pressed).",
+              "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=in_4;"
+            },
+            "Binary 6": {
+              "type": "BooleanState",
+              "desc": "Binary controller like buttons (true is pressed, false is NOT pressed).",
+              "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=in_5;"
+            },
+            "Binary 7": {
+              "type": "BooleanState",
+              "desc": "Binary controller like buttons (true is pressed, false is NOT pressed).",
+              "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=in_6;"
+            },
+            "Binary 8": {
+              "type": "BooleanState",
+              "desc": "Binary controller like buttons (true is pressed, false is NOT pressed).",
+              "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=in_7;"
+            }
+          }
+        },
+        "Actuators": {
+          "type": "JODContainer",
+          "contains": {
+            "Switch Low 1": {
+              "type": "BooleanAction",
+              "desc": "Binary actuator for low consumption services like relays (true is on, false is off).",
+              "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=out_0;",
+              "executor": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_method=set_out_0;dbus_method_params=%A_VAL%:Boolean;"
+            },
+            "Switch Low 2": {
+              "type": "BooleanAction",
+              "desc": "Binary actuator for low consumption services like relays (true is on, false is off).",
+              "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=out_1;",
+              "executor": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_method=set_out_1;dbus_method_params=%A_VAL%:Boolean;"
+            },
+            "Switch Low 3": {
+              "type": "BooleanAction",
+              "desc": "Binary actuator for low consumption services like relays (true is on, false is off).",
+              "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=out_2;",
+              "executor": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_method=set_out_2;dbus_method_params=%A_VAL%:Boolean;"
+            },
+            "Switch Low 4": {
+              "type": "BooleanAction",
+              "desc": "Binary actuator for low consumption services like relays (true is on, false is off).",
+              "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=out_3;",
+              "executor": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_method=set_out_3;dbus_method_params=%A_VAL%:Boolean;"
+            },
+            "Switch High 1": {
+              "type": "BooleanAction",
+              "desc": "Binary actuator for high consumption services like relays (true is on, false is off).",
+              "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=out_4;",
+              "executor": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_method=set_out_4;dbus_method_params=%A_VAL%:Boolean;"
+            },
+            "Switch High 2": {
+              "type": "BooleanAction",
+              "desc": "Binary actuator for high consumption services like relays (true is on, false is off).",
+              "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=out_5;",
+              "executor": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_method=set_out_5;dbus_method_params=%A_VAL%:Boolean;"
+            },
+            "Switch High 3": {
+              "type": "BooleanAction",
+              "desc": "Binary actuator for high consumption services like relays (true is on, false is off).",
+              "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=out_6;",
+              "executor": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_method=set_out_6;dbus_method_params=%A_VAL%:Boolean;"
+            },
+            "Switch High 4": {
+              "type": "BooleanAction",
+              "desc": "Binary actuator for high consumption services like relays (true is on, false is off).",
+              "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=out_7;",
+              "executor": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_method=set_out_7;dbus_method_params=%A_VAL%:Boolean;"
+            }
+          }
+        }
+      }
+    }
+
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "model": "JOD Smart Van",
+  "brand": "John OS",
+  "descr": "Debug object for the FW SIM7600 from the Smart Van project.",
+  "descr_long": "This object's structure contains all pillars available from the FW SIM7600.",
+  "contains": {
+
+    "FW SIM7600": {
+      "type": "JODContainer",
+      "contains": {
+        "Latitude": {
+          "type": "BooleanState",
+          "desc": "GPS latitude (true is North, false is South)",
+          "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=pos_gps_lat;"
+        },
+        "Latitude Degrees": {
+          "type": "RangeState",
+          "desc": "GPS latitude degrees",
+          "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=pos_gps_lat_degrees;",
+          "min": "-90",
+          "max": "90",
+          "step": "1"
+        },
+        "Longitude": {
+          "type": "BooleanState",
+          "desc": "GPS longitude (true is West, false is East)",
+          "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=pos_gps_lon;"
+        },
+        "Longitude Degrees": {
+          "type": "RangeState",
+          "desc": "GPS longitude degrees",
+          "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=pos_gps_log_degrees;",
+          "min": "-180",
+          "max": "180",
+          "step": "1"
+        },
+        "Altitude": {
+          "type": "RangeState",
+          "desc": "GPS position MSL Altitude. Unit is meters.",
+          "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=pos_gps_alt;",
+          "min": "-100",
+          "max": "8000",
+          "step": "1"
+        },
+        "Speed": {
+          "type": "RangeState",
+          "desc": "GPS position Speed Over Ground. Unit is knots.",
+          "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=pos_gps_speed;",
+          "min": "0",
+          "max": "150",
+          "step": "1"
+        },
+        "Course": {
+          "type": "RangeState",
+          "desc": "GPS position course in degrees.",
+          "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=pos_gps_course;",
+          "min": "0",
+          "max": "360",
+          "step": "1"
+        },
+        "Available Satellites": {
+          "type": "RangeState",
+          "desc": "GPS satellite number (0-12).",
+          "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=pos_gnss_sat_gps_count;",
+          "min": "0",
+          "max": "12",
+          "step": "1"
+        },
+        "Status": {
+          "type": "BooleanState",
+          "desc": "Sim's status (true is Working, false is NOT Working).",
+          "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=network_status;"
+        },
+        "SIM Status": {
+          "type": "BooleanState",
+          "desc": "Sim's status (true is Working, false is NOT Working).",
+          "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=network_sim_status;"
+        },
+        "Percentage": {
+          "type": "RangeState",
+          "desc": "Internet signal quality in Percent.",
+          "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=network_signal_percentage;",
+          "min": "0",
+          "max": "100",
+          "step": "1"
+        },
+        "Power Module": {
+          "type": "BooleanAction",
+          "desc": "Power on/off the SIM module to save energy",
+          "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=power_module_state;",
+          "executor": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_method=power_module;dbus_method_params=%A_VAL%:Boolean;"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,51 @@
+## JCP Client
+
+jcp.url.apis: '%DIST_JCP_ENV_API%'
+jcp.url.auth: '%DIST_JCP_ENV_AUTH%'
+jcp.client.id: '%DIST_JCP_ID%'
+jcp.client.secret: '%DIST_JCP_SECRET%'
+
+
+## JOD Object
+
+jod.structure.path_default: 'configs/struct.jod'
+jod.structure.path_by_fw: 'configs/struct_fw_victron.jod'
+jod.structure.path_by_spec: 'configs/struct_specs_energy.jod'
+jod.obj.name: '%DIST_JOD_NAME%'
+jod.obj.id_cloud: '%DIST_JOD_ID%'
+jod.obj.id_hw: '%DIST_JOD_ID_HW%'
+
+
+## Executors
+
+jod.executor_mngr.pullers: '%DIST_JOD_WORK_PULLERS%'
+jod.executor_mngr.listeners: '%DIST_JOD_WORK_LISTENERS%'
+jod.executor_mngr.executors: '%DIST_JOD_WORK_EXECUTORS%'
+
+
+## Permissions
+
+jod.permissions.owner: '%DIST_JOD_OWNER%'
+
+
+## Communication local
+
+jod.comm.local.enabled: '%DIST_JOD_COMM_DIRECT_ENABLED%'
+
+
+## Communication cloud
+
+jod.comm.cloud.enabled: '%DIST_JOD_COMM_CLOUD_ENABLED%'
+
+
+# History and Events
+# 400 items => ~10 minutes
+
+jod.history.buffer_size: 100
+jod.history.buffer_release_size: 20
+jod.history.file_size: 300
+jod.history.file_release_size: 100
+jod.events.buffer_size: 100
+jod.events.buffer_release_size: 20
+jod.events.file_size: 300
+jod.events.file_release_size: 100

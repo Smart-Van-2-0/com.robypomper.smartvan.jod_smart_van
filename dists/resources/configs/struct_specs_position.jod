@@ -1,0 +1,161 @@
+{
+  "model": "JOD Smart Van",
+  "brand": "John OS",
+  "descr": "IoT agent for the Smart Van Box that provides the Smart Van Specifications.",
+  "descr_long": "This object's structure actually contains only the 'Position > GNSS', 'Sensors', 'Services', 'Energy' and the 'IoT Box > Energy + Internet' specifications groups",
+  "contains": {
+
+    "Position": {
+      "type": "JODContainer",
+      "contains": {
+        "GNSS": {
+          "type": "JODContainer",
+          "contains": {
+            "Latitude": {
+              "type": "BooleanState",
+              "desc": "GPS latitude (true is North, false is South)",
+              "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=pos_gps_lat;"
+            },
+            "Latitude Degrees": {
+              "type": "RangeState",
+              "desc": "GPS latitude degrees",
+              "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=pos_gps_lat_degrees;",
+              "min": "-90",
+              "max": "90",
+              "step": "1"
+            },
+            "Longitude": {
+              "type": "BooleanState",
+              "desc": "GPS longitude (true is West, false is East)",
+              "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=pos_gps_lon;"
+            },
+            "Longitude Degrees": {
+              "type": "RangeState",
+              "desc": "GPS longitude degrees",
+              "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=pos_gps_log_degrees;",
+              "min": "-180",
+              "max": "180",
+              "step": "1"
+            },
+            "Altitude": {
+              "type": "RangeState",
+              "desc": "GPS position MSL Altitude. Unit is meters.",
+              "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=pos_gps_alt;",
+              "min": "-100",
+              "max": "8000",
+              "step": "1"
+            },
+            "Speed": {
+              "type": "RangeState",
+              "desc": "GPS position Speed Over Ground. Unit is knots.",
+              "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=pos_gps_speed;",
+              "min": "0",
+              "max": "150",
+              "step": "1"
+            },
+            "Course": {
+              "type": "RangeState",
+              "desc": "GPS position course in degrees.",
+              "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=pos_gps_course;",
+              "min": "0",
+              "max": "360",
+              "step": "1"
+            },
+            "Available Satellites": {
+              "type": "RangeState",
+              "desc": "GPS satellite number (0-12).",
+              "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=pos_gnss_sat_gps_count;",
+              "min": "0",
+              "max": "12",
+              "step": "1"
+            },
+            "Power Module": {
+              "type": "BooleanAction",
+              "desc": "Power on/off the SIM module (true is on, false if off)",
+              "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=power_module_state;",
+              "executor": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_method=power_module;dbus_method_params=%A_VAL%:Boolean;"
+            }
+          }
+        },
+        "Inertial": {
+          "type": "JODContainer",
+          "contains": {
+            "Roll": {
+              "type": "RangeState",
+              "desc": "Gyroscope Roll axis, rotation about its longitudinal axis (drawn through the body of the vehicle from tail to nose) in degrees",
+              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=roll;",
+              "min": "-180",
+              "max": "180",
+              "step": "1"
+            },
+            "Pitch": {
+              "type": "RangeState",
+              "desc": "Gyroscope Pitch axis, rotation about its lateral axis in degrees",
+              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=pitch;",
+              "min": "-90",
+              "max": "90",
+              "step": "1"
+            },
+            "Yaw": {
+              "type": "RangeState",
+              "desc": "Gyroscope Yaw axis, rotation about its vertical axis in degrees",
+              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=yaw;",
+              "min": "-180",
+              "max": "180",
+              "step": "1"
+            },
+            "Acceleration X": {
+              "type": "RangeState",
+              "desc": "Acceleration Y axis in Gs",
+              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=acceleration_x;",
+              "min": "-16",
+              "max": "16",
+              "step": "1"
+            },
+            "Acceleration Y": {
+              "type": "RangeState",
+              "desc": "Acceleration X axis in Gs",
+              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=acceleration_y;",
+              "min": "-16",
+              "max": "16",
+              "step": "1"
+            },
+            "Acceleration Z": {
+              "type": "RangeState",
+              "desc": "Acceleration Z axis in Gs",
+              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=acceleration_z;",
+              "min": "-16",
+              "max": "16",
+              "step": "1"
+            },
+            "Gyroscope X": {
+              "type": "RangeState",
+              "desc": "Gyroscope X axis in degrees per second",
+              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=gyroscope_x;",
+              "min": "-2048",
+              "max": "2048",
+              "step": "1"
+            },
+            "Gyroscope Y": {
+              "type": "RangeState",
+              "desc": "Gyroscope Y axis in degrees per second",
+              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=gyroscope_y;",
+              "min": "-2048",
+              "max": "2048",
+              "step": "1"
+            },
+            "Gyroscope Z": {
+              "type": "RangeState",
+              "desc": "Gyroscope Z axis in degrees per second",
+              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=gyroscope_z;",
+              "min": "-2048",
+              "max": "2048",
+              "step": "1"
+            }
+          }
+        }
+      }
+    }
+
+  }
+}

@@ -29,16 +29,22 @@
 #
 # Artifact: JOD Dist Template
 # Version:  1.0.3
-#
-# Artifact: {JOD Dist Name}
-# Version:  {JOD Dist Version}
 ###############################################################################
+
+####################### Smart Van - Distribution build configs
+# Enable the firmware simulation option for all firmwares that supports it
+export SIMULATE=true        # default false
+# If true, execute all python firmware in their own virtual environment
+export VENV=true            # default false
+# If true, then it print all logging messages from firmwares
+#export INLINE_LOGS=true    # default false
+#######################
 
 # JOD_YML
 # Absolute or $JOD_DIR relative file path for JOD config file,
 # default $JOD_DIR/configs/jod.yml
-#$global:JOD_YML="jod_2.yml"
+#export JOD_YML="jod_2.yml"
 
 # JAVA_HOME
 # Full path of JAVA's JVM (ex: $JAVA_HOME/bin/java)
-#$global:JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_251.jdk/Contents/Home"
+#JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_251.jdk/Contents/Home"

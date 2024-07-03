@@ -1,0 +1,81 @@
+{
+  "model": "JOD Smart Van",
+  "brand": "John OS",
+  "descr": "IoT agent for the Smart Van Box that provides the Smart Van Specifications.",
+  "descr_long": "This object's structure actually contains only the 'Position > GNSS', 'Sensors', 'Services', 'Energy' and the 'IoT Box > Energy + Internet' specifications groups",
+  "contains": {
+
+    "Sensors": {
+      "type": "JODContainer",
+      "contains": {
+        "Living": {
+          "type": "JODContainer",
+          "contains": {
+            "Pressure": {
+              "type": "RangeState",
+              "desc": "Environmental pressure in Pascal",
+              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=pressure;",
+              "min": "200",
+              "max": "1260",
+              "step": "1"
+            },
+            "Temperature": {
+              "type": "RangeState",
+              "desc": "Environmental temperature in degrees celsius",
+              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=temperature;",
+              "min": "-30",
+              "max": "100",
+              "step": "1"
+            },
+            "Humidity": {
+              "type": "RangeState",
+              "desc": "Environmental humidity percentage",
+              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=humidity;",
+              "min": "0",
+              "max": "100",
+              "step": "1"
+            },
+            "Lux": {
+              "type": "RangeState",
+              "desc": "Environmental lux in lumen",
+              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=lux;"
+            },
+            "Analog 0": {
+              "type": "RangeState",
+              "desc": "Customizable analog sensors (0-100%)",
+              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=analog_0;",
+              "min": "0",
+              "max": "100",
+              "step": "1"
+            },
+            "Analog 1": {
+              "type": "RangeState",
+              "desc": "Customizable analog sensors (0-100%)",
+              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=analog_1;",
+              "min": "0",
+              "max": "100",
+              "step": "1"
+            },
+            "Analog 2": {
+              "type": "RangeState",
+              "desc": "Customizable analog sensors (0-100%)",
+              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=analog_2;",
+              "min": "0",
+              "max": "100",
+              "step": "1"
+            },
+            "Analog 3": {
+              "type": "RangeState",
+              "desc": "Customizable analog sensors (0-100%)",
+              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=analog_3;",
+              "min": "0",
+              "max": "100",
+              "step": "1"
+            }
+          }
+        }
+      }
+    }
+
+  }
+}

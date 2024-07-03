@@ -1,0 +1,34 @@
+{
+  "model": "JOD Smart Van",
+  "brand": "John OS",
+  "descr": "Debug object for the FW UPS Pack V3 from the Smart Van project.",
+  "descr_long": "This object's structure contains all pillars available from the FW UPS Pack V3.",
+  "contains": {
+    "FW UPS Pack V3": {
+      "type": "JODContainer",
+      "contains": {
+        "Charging state": {
+          "type": "BooleanState",
+          "desc": "[FW] SolarCharger's firmware version",
+          "listener": "dbus://dbus_name=com.upspack;dbus_obj_path=/ups_smart;dbus_iface=com.upspack_v3;dbus_prop=state_operation;"
+        },
+        "Battery Percentage": {
+          "type": "RangeState",
+          "desc": "[BATCAP] Battery charge percentage",
+          "listener": "dbus://dbus_name=com.upspack;dbus_obj_path=/ups_smart;dbus_iface=com.upspack_v3;dbus_prop=battery_capacity;",
+          "min": "0",
+          "max": "100",
+          "step": "1"
+        },
+        "Output Voltage": {
+          "type": "RangeState",
+          "desc": "[Vout] Load voltage in milliVolts",
+          "listener": "dbus://dbus_name=com.upspack;dbus_obj_path=/ups_smart;dbus_iface=com.upspack_v3;dbus_prop=voltage_out;",
+          "min": "4000",
+          "max": "6000",
+          "step": "1"
+        }
+      }
+    }
+  }
+}

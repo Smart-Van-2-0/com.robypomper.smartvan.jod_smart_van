@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  ~ The John Service Library is the software library to connect "software"
+  ~ to an IoT EcoSystem, like the John Operating System Platform one.
+  ~ Copyright (C) 2021 Roberto Pompermaier
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+<Configuration xmlns:xi="http://www.w3.org/2001/XInclude" status="warn">
+    <Properties>
+        <Property name="filename_base">jospJSL</Property>
+        <Property name="artifact_package">com.robypomper.josp.jsl</Property>
+        <Property name="josp_libs_package">com.robypomper.josp</Property>
+
+        <Property name="level_artifact_console" >INFO</Property>
+        <Property name="level_artifact_file"    >DEBUG</Property>
+        <Property name="level_josp_libs_console">FATAL</Property>
+        <Property name="level_josp_libs_file"   >INFO</Property>
+        <Property name="level_all_console"      >FATAL</Property>
+        <Property name="level_all_file"         >WARN</Property>
+
+        <Property name="prefix_artifact"    >-</Property>
+        <Property name="prefix_josp_libs"   >L</Property>
+        <Property name="prefix_all"         >A</Property>
+
+        <Property name="def_pattern_console"            >%d{ABSOLUTE} # %highlight{[ %-5level | %-15.-15threadName | %-30.30logger{1.} ] %msg}%n</Property>
+        <Property name="def_pattern_console_exception"  >%d{ABSOLUTE} # %highlight{[ %-5level | %-15.-15threadName | %-30.30logger{1.} ] %msg}%n%notEmpty{%ex{full}}</Property>
+        <Property name="def_pattern_file"               >%d{DEFAULT};%level;%threadName;%logger;%msg%n</Property>
+        <Property name="def_pattern_file_exception"     >%d{DEFAULT};%level;%threadName;%logger;%msg%n%notEmpty{%ex{full}}</Property>
+
+        <Property name="pattern_artifact_console"   >${prefix_artifact} ${def_pattern_console}</Property>
+        <Property name="pattern_artifact_file"      >${prefix_artifact} ${def_pattern_file_exception}</Property>
+        <Property name="pattern_josp_libs_console"  >${prefix_josp_libs} ${def_pattern_console}</Property>
+        <Property name="pattern_josp_libs_file"     >${prefix_josp_libs} ${def_pattern_file_exception}</Property>
+        <Property name="pattern_all_console"        >${prefix_all} ${def_pattern_console}</Property>
+        <Property name="pattern_all_file"           >${prefix_all} ${def_pattern_file_exception}</Property>
+
+    </Properties>
+
+    <Loggers>
+
+        <Logger name="${josp_libs_package}" additivity="false">
+            <AppenderRef ref="josp_libs_console"/>
+            <AppenderRef ref="josp_libs_file"/>
+        </Logger>
+
+        <Logger name="${artifact_package}" additivity="false">
+            <AppenderRef ref="artifact_console"/>
+            <AppenderRef ref="artifact_file"/>
+        </Logger>
+
+        <Root additivity="false" level="ALL">
+            <AppenderRef ref="all_console"/>
+            <AppenderRef ref="all_file"/>
+        </Root>
+
+    </Loggers>
+
+    <Appenders>
+        <Console name="artifact_console" target="SYSTEM_OUT">
+            <Filters>
+                <ThresholdFilter level="${level_artifact_console}" />
+            </Filters>
+            <PatternLayout
+                    alwaysWriteExceptions="false"
+                    pattern="${pattern_artifact_console}" />
+        </Console>
+        <RollingFile name="artifact_file" fileName="logs/${filename_base}.log"
+                     filePattern="logs/${filename_base}-%d{yyyyMMdd_HHmmss}-%i.log.gz"
+                     append="true">
+            <Filters>
+                <ThresholdFilter level="${level_artifact_file}" />
+            </Filters>
+            <PatternLayout
+                    alwaysWriteExceptions="false"
+                    pattern="${pattern_artifact_file}" />
+            <Policies>
+                <SizeBasedTriggeringPolicy size="5 MB"/>
+                <OnStartupTriggeringPolicy/>
+            </Policies>
+        </RollingFile>
+
+        <Console name="josp_libs_console" target="SYSTEM_OUT">
+            <Filters>
+                <ThresholdFilter level="${level_josp_libs_console}" />
+            </Filters>
+            <PatternLayout
+                    alwaysWriteExceptions="false"
+                    pattern="${pattern_josp_libs_console}" />
+        </Console>
+        <RollingFile name="josp_libs_file" fileName="logs/${filename_base}.log"
+                     filePattern="logs/${filename_base}-%d{yyyyMMdd_HHmmss}-%i.log.gz"
+                     append="true">
+            <Filters>
+                <ThresholdFilter level="${level_josp_libs_file}" />
+            </Filters>
+            <PatternLayout
+                    alwaysWriteExceptions="false"
+                    pattern="${pattern_josp_libs_file}"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="5 MB"/>
+                <OnStartupTriggeringPolicy/>
+            </Policies>
+        </RollingFile>
+
+        <Console name="all_console" target="SYSTEM_OUT">
+            <Filters>
+                <ThresholdFilter level="${level_all_console}" />
+            </Filters>
+            <PatternLayout
+                    alwaysWriteExceptions="false"
+                    pattern="${pattern_all_console}" />
+        </Console>
+        <RollingFile name="all_file" fileName="logs/${filename_base}.log"
+                     filePattern="logs/${filename_base}-%d{yyyyMMdd_HHmmss}-%i.log.gz"
+                     append="true">
+            <Filters>
+                <ThresholdFilter level="${level_all_file}" />
+            </Filters>
+            <PatternLayout
+                    alwaysWriteExceptions="false"
+                    pattern="${pattern_all_file}"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="5 MB"/>
+                <OnStartupTriggeringPolicy/>
+            </Policies>
+        </RollingFile>
+
+    </Appenders>
+
+</Configuration>

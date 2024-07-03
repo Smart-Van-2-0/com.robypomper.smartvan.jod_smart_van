@@ -58,7 +58,7 @@ $global:DIST_ARTIFACT="JOD_Smart_Van"
 
 # JOD Distribution version
 # A custom string representing current JOD Distribution version
-$global:DIST_VER="0.1.0"
+$global:DIST_VER="1.0.0-DEV"
 
 
 # ################### #
@@ -85,6 +85,36 @@ $global:DIST_JCP_SECRET="b"
 # - prod: set urls for Public JCP - Production environment  (to use for release build)
 $global:DIST_JCP_ENV="local"
 
+# Distribution dependencies list
+# Downloads/copy distribution dependencies from urls or local dirs.
+# Dependencies from url are cached into the `build/cache` dir. So, to refresh
+# them, you'll need to remove the cache copy manually.<br/>
+# On the other side, the local dir dependencies are reset every time this script
+# is executed. That is useful for firmware development.
+# Dependencies are intended as url if, and only if, his string contains the
+# `://' substring.
+# Here some examples:
+# ```
+# "README.md"                                 // single file from dist project's dir
+# "extra/media_assets"                        // a directory containing extra files and assets
+# "../com.robypomper.smartvan.fw.victron/"    // a directory from another project
+# "https://github.com/.../tags/1.0.0.tar.gz"  // a single compressed file downloaded from an url
+# ```
+# Whe it downloads a compressed file from an url dependency, it will be extracted
+# into the destination directory.
+# By default, the destination dir is set as `$DIST_DIR/deps`. But it can
+# customized by dependency just adding the `@dep/dest/dir` string at the end of
+# the dependency string, e.g.: `https://myurl.com/assets/docs.tar.gz@docs/`.
+# Destination dir must be a path relative to the `$DIST_DIR/`.
+$global:JOD_DIST_DEPS = @(
+    "../com.robypomper.smartvan.fw.victron/"
+    "../com.robypomper.smartvan.fw.upspack_v3/"
+    "../com.robypomper.smartvan.fw.sim7600/"
+    "../com.robypomper.smartvan.fw.sensehat/"
+    "../com.robypomper.smartvan.fw.ioexp/"
+)
+
+
 
 # ########## #
 # JOD Object #
@@ -93,7 +123,7 @@ $global:DIST_JCP_ENV="local"
 # JOD Agent version to include in the generated distribution
 # JOD agent's and his dependencies will be first downloaded from central maven
 # repository, if not available, then will be copied from local maven repository.
-$global:DIST_JOD_VER = "2.2.4-DEV"
+$global:DIST_JOD_VER = "2.2.4"
 
 # JOD Object's name
 # A string used as JOD object's name. All instances of current JOD Distribution
@@ -124,7 +154,7 @@ $global:DIST_JOD_VER = "2.2.4-DEV"
 # JOD Distribution's scripts configs values. For VARs complete list,
 # see the '$JOD_DIST_DIR/scripts/build.sh' script.
 # The file path must be relative to the $JOD_DIST_DIR.
-#$global:DIST_JOD_CONFIG_TMPL="dists/configs/jod_TMPL.yml"
+$global:DIST_JOD_CONFIG_TMPL="dists/configs/jod_DEV.yml"
 
 # JOD Object's logs config template
 # A file path for an alternative '$JOD_DIST_DIR/dists/configs/log4j2_TMPL.xml'
