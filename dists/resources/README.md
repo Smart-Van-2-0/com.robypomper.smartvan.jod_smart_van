@@ -1,4 +1,4 @@
-# JOD Smart Van - 1.0.0
+# JOD Smart Van - 1.0.1-DEV
 
 [README](README.md) | [CHANGELOG](CHANGELOG.md) | [TODOs](TODOs.md) | [LICENCE](LICENCE.md)
 
@@ -9,7 +9,7 @@ a [Smart Van Box](https://www.smartvanbox.org).
 ## JOD Distribution Specs
 
 <table>
-  <tr><th>Current version</th><td>1.0.0</td></tr>
+  <tr><th>Current version</th><td>1.0.1-DEV</td></tr>
   <tr><th>References</th><td><a href="http://www.smartvanbox.org/docs/software/jod_smart_van/jod_smart_van">JOD Smart Van @ Smart Van Project</a></td></tr>
   <tr><th>Repository</th><td><a href="https://github.com/Smart-Van-2-0/com.robypomper.smartvan.jod_smart_van/">com.robypomper.smartvan.jod_smart_van @ GitHub</a></td></tr>
   <tr><th>Downloads 1</th><td><a href="http://www.smartvanbox.org/docs/software/jod_smart_van/downloads">JOD Smart Van Downloads @ Smart Van Project</a></td></tr>
