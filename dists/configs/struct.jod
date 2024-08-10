@@ -14,12 +14,12 @@
             "Latitude": {
               "type": "BooleanState",
               "desc": "Latitude (true is North, false is South)",
-              "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=pos_gnss_lat_dir;"
+              "listener": "dbus://dbus_name=com.waveshare.sim7600;dbus_obj_path=/sim7600;dbus_iface=com.waveshare.sim7600;dbus_prop=pos_gnss_lat_dir;"
             },
             "Latitude Degrees": {
               "type": "RangeState",
               "desc": "Latitude in decimal Degrees",
-              "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=pos_gnss_lat_degrees;",
+              "listener": "dbus://dbus_name=com.waveshare.sim7600;dbus_obj_path=/sim7600;dbus_iface=com.waveshare.sim7600;dbus_prop=pos_gnss_lat_degrees;",
               "min": "-90",
               "max": "90",
               "step": "1"
@@ -27,12 +27,12 @@
             "Longitude": {
               "type": "BooleanState",
               "desc": "Longitude (true is West, false is East)",
-              "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=pos_gnss_log_dir;"
+              "listener": "dbus://dbus_name=com.waveshare.sim7600;dbus_obj_path=/sim7600;dbus_iface=com.waveshare.sim7600;dbus_prop=pos_gnss_log_dir;"
             },
             "Longitude Degrees": {
               "type": "RangeState",
               "desc": "Longitude in decimal Degrees ",
-              "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=pos_gnss_log_degrees;",
+              "listener": "dbus://dbus_name=com.waveshare.sim7600;dbus_obj_path=/sim7600;dbus_iface=com.waveshare.sim7600;dbus_prop=pos_gnss_log_degrees;",
               "min": "-180",
               "max": "180",
               "step": "1"
@@ -40,7 +40,7 @@
             "Altitude": {
               "type": "RangeState",
               "desc": "Position MSL Altitude. Unit is meters.",
-              "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=pos_gnss_alt;",
+              "listener": "dbus://dbus_name=com.waveshare.sim7600;dbus_obj_path=/sim7600;dbus_iface=com.waveshare.sim7600;dbus_prop=pos_gnss_alt;",
               "min": "-100",
               "max": "8000",
               "step": "1"
@@ -48,7 +48,7 @@
             "Speed": {
               "type": "RangeState",
               "desc": "Position Speed Over Ground. Unit is knots.",
-              "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=pos_gnss_speed;",
+              "listener": "dbus://dbus_name=com.waveshare.sim7600;dbus_obj_path=/sim7600;dbus_iface=com.waveshare.sim7600;dbus_prop=pos_gnss_speed;",
               "min": "0",
               "max": "150",
               "step": "1"
@@ -56,7 +56,7 @@
             "Course": {
               "type": "RangeState",
               "desc": "Position course in degrees.",
-              "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=pos_gnss_course;",
+              "listener": "dbus://dbus_name=com.waveshare.sim7600;dbus_obj_path=/sim7600;dbus_iface=com.waveshare.sim7600;dbus_prop=pos_gnss_course;",
               "min": "0",
               "max": "360",
               "step": "1"
@@ -64,7 +64,7 @@
             "Satellites": {
               "type": "RangeState",
               "desc": "Visible satellite count (0-12).",
-              "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=pos_gnss_sat_count;",
+              "listener": "dbus://dbus_name=com.waveshare.sim7600;dbus_obj_path=/sim7600;dbus_iface=com.waveshare.sim7600;dbus_prop=pos_gnss_sat_count;",
               "min": "0",
               "max": "12",
               "step": "1"
@@ -72,8 +72,8 @@
             "Power Module": {
               "type": "BooleanAction",
               "desc": "Power on/off the SIM module (true is on, false if off)",
-              "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=power_module_state;",
-              "executor": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_method=power_module;dbus_method_params=%A_VAL%:Boolean;"
+              "listener": "dbus://dbus_name=com.waveshare.sim7600;dbus_obj_path=/sim7600;dbus_iface=com.waveshare.sim7600;dbus_prop=power_module_state;",
+              "executor": "dbus://dbus_name=com.waveshare.sim7600;dbus_obj_path=/sim7600;dbus_iface=com.waveshare.sim7600;dbus_method=power_module;dbus_method_params=%A_VAL%:Boolean;"
             }
           }
         },
@@ -109,24 +109,24 @@
               "type": "RangeState",
               "desc": "Acceleration Y axis in Gs",
               "listener": "dbus://dbus_name=com.waveshare.sensehat_c;dbus_obj_path=/sense_hat_c;dbus_iface=com.waveshare.sensehat;dbus_prop=acceleration_x;",
-              "min": "-16",
-              "max": "16",
+              "min": "0",
+              "max": "20000",
               "step": "1"
             },
             "Acceleration Y": {
               "type": "RangeState",
               "desc": "Acceleration X axis in Gs",
               "listener": "dbus://dbus_name=com.waveshare.sensehat_c;dbus_obj_path=/sense_hat_c;dbus_iface=com.waveshare.sensehat;dbus_prop=acceleration_y;",
-              "min": "-16",
-              "max": "16",
+              "min": "0",
+              "max": "20000",
               "step": "1"
             },
             "Acceleration Z": {
               "type": "RangeState",
               "desc": "Acceleration Z axis in Gs",
               "listener": "dbus://dbus_name=com.waveshare.sensehat_c;dbus_obj_path=/sense_hat_c;dbus_iface=com.waveshare.sensehat;dbus_prop=acceleration_z;",
-              "min": "-16",
-              "max": "16",
+              "min": "0",
+              "max": "20000",
               "step": "1"
             },
             "Gyroscope X": {
@@ -191,12 +191,15 @@
             "Lux": {
               "type": "RangeState",
               "desc": "Environmental lux in lumen",
-              "listener": "dbus://dbus_name=com.waveshare.sensehat_c;dbus_obj_path=/sense_hat_c;dbus_iface=com.waveshare.sensehat;dbus_prop=lux;"
+              "listener": "dbus://dbus_name=com.waveshare.sensehat_c;dbus_obj_path=/sense_hat_c;dbus_iface=com.waveshare.sensehat;dbus_prop=lux;",
+              "min": "0",
+              "max": "20000",
+              "step": "1"
             },
             "Analog 0": {
               "type": "RangeState",
               "desc": "Customizable analog sensors (0-100%)",
-              "listener": "dbus://dbus_name=com.waveshare.sensehat_c;dbus_obj_path=/sense_hat_c;dbus_iface=com.waveshare.sensehat;dbus_prop=analog_0;",
+              "listener": "dbus://dbus_name=com.waveshare.sensehat_c;dbus_obj_path=/sense_hat_c;dbus_iface=com.waveshare.sensehat;dbus_prop=analog_0_perc;",
               "min": "0",
               "max": "100",
               "step": "1"
@@ -204,7 +207,7 @@
             "Analog 1": {
               "type": "RangeState",
               "desc": "Customizable analog sensors (0-100%)",
-              "listener": "dbus://dbus_name=com.waveshare.sensehat_c;dbus_obj_path=/sense_hat_c;dbus_iface=com.waveshare.sensehat;dbus_prop=analog_1;",
+              "listener": "dbus://dbus_name=com.waveshare.sensehat_c;dbus_obj_path=/sense_hat_c;dbus_iface=com.waveshare.sensehat;dbus_prop=analog_1_perc;",
               "min": "0",
               "max": "100",
               "step": "1"
@@ -212,7 +215,7 @@
             "Analog 2": {
               "type": "RangeState",
               "desc": "Customizable analog sensors (0-100%)",
-              "listener": "dbus://dbus_name=com.waveshare.sensehat_c;dbus_obj_path=/sense_hat_c;dbus_iface=com.waveshare.sensehat;dbus_prop=analog_2;",
+              "listener": "dbus://dbus_name=com.waveshare.sensehat_c;dbus_obj_path=/sense_hat_c;dbus_iface=com.waveshare.sensehat;dbus_prop=analog_2_perc;",
               "min": "0",
               "max": "100",
               "step": "1"
@@ -220,7 +223,7 @@
             "Analog 3": {
               "type": "RangeState",
               "desc": "Customizable analog sensors (0-100%)",
-              "listener": "dbus://dbus_name=com.waveshare.sensehat_c;dbus_obj_path=/sense_hat_c;dbus_iface=com.waveshare.sensehat;dbus_prop=analog_3;",
+              "listener": "dbus://dbus_name=com.waveshare.sensehat_c;dbus_obj_path=/sense_hat_c;dbus_iface=com.waveshare.sensehat;dbus_prop=analog_3_perc;",
               "min": "0",
               "max": "100",
               "step": "1"
@@ -329,7 +332,7 @@
             "Voltage": {
               "type": "RangeState",
               "desc": "Battery actual voltage in Volts",
-              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=battery_voltage;init_data=0;",
+              "listener": "dbus://dbus_name=com.victron.SmartSolarMPPT;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=battery_voltage;init_data=0;",
               "min": "0",
               "max": "55",
               "step": "0.1"
@@ -337,7 +340,7 @@
             "Percentage": {
               "type": "RangeState",
               "desc": "Battery actual charge in Percent",
-              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=battery_voltage_percent;init_data=0;",
+              "listener": "dbus://dbus_name=com.victron.SmartSolarMPPT;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=battery_voltage_percent;init_data=0;",
               "min": "0",
               "max": "100",
               "step": "0.1"
@@ -345,7 +348,7 @@
             "Min Voltage": {
               "type": "RangeState",
               "desc": "Battery minimal voltage allowed in Volts",
-              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=battery_voltage_min;init_data=0;",
+              "listener": "dbus://dbus_name=com.victron.SmartSolarMPPT;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=battery_voltage_min;init_data=0;",
               "min": "0",
               "max": "55",
               "step": "1"
@@ -353,7 +356,7 @@
             "Max Voltage": {
               "type": "RangeState",
               "desc": "Battery minimal voltage allowed in Volts",
-              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=battery_voltage_max;init_data=0;",
+              "listener": "dbus://dbus_name=com.victron.SmartSolarMPPT;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=battery_voltage_max;init_data=0;",
               "min": "0",
               "max": "55",
               "step": "0.1"
@@ -366,7 +369,7 @@
             "Current": {
               "type": "RangeState",
               "desc": "Current generated by all solar panels in Ampere",
-              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=battery_current;init_data=0;",
+              "listener": "dbus://dbus_name=com.victron.SmartSolarMPPT;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=battery_current;init_data=0;",
               "min": "0",
               "max": "110",
               "step": "0.1"
@@ -374,7 +377,7 @@
             "Voltage": {
               "type": "RangeState",
               "desc": "Voltage provided from solar panels in Volts",
-              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=panel_voltage;init_data=0;",
+              "listener": "dbus://dbus_name=com.victron.SmartSolarMPPT;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=panel_voltage;init_data=0;",
               "min": "0",
               "max": "55",
               "step": "0.1"
@@ -382,7 +385,7 @@
             "Power": {
               "type": "RangeState",
               "desc": "Power generated from solar panels in Watt",
-              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=panel_power;init_data=0;",
+              "listener": "dbus://dbus_name=com.victron.SmartSolarMPPT;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=panel_power;init_data=0;",
               "min": "0",
               "max": "6050",
               "step": "0.1"
@@ -390,7 +393,7 @@
             "Power Percentage": {
               "type": "RangeState",
               "desc": "Power generated from solar panels in Percent",
-              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=panel_power_percent;init_data=0;",
+              "listener": "dbus://dbus_name=com.victron.SmartSolarMPPT;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=panel_power_percent;init_data=0;",
               "min": "0",
               "max": "100",
               "step": "1"
@@ -398,7 +401,7 @@
             "Max Power": {
               "type": "RangeState",
               "desc": "Maximum power generated from solar panels in Watt",
-              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=panel_power_max;init_data=0;",
+              "listener": "dbus://dbus_name=com.victron.SmartSolarMPPT;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=panel_power_max;init_data=0;",
               "min": "0",
               "max": "6050",
               "step": "0.1"
@@ -411,7 +414,7 @@
             "Current": {
               "type": "RangeState",
               "desc": "Current absorbed by all services in Ampere",
-              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=load_current;init_data=0;",
+              "listener": "dbus://dbus_name=com.victron.SmartSolarMPPT;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=load_current;init_data=0;",
               "min": "0",
               "max": "110",
               "step": "0.1"
@@ -419,7 +422,7 @@
             "Voltage": {
               "type": "RangeState",
               "desc": "Voltage provided to all services in Volts",
-              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=load_voltage;init_data=0;",
+              "listener": "dbus://dbus_name=com.victron.SmartSolarMPPT;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=load_voltage;init_data=0;",
               "min": "0",
               "max": "55",
               "step": "0.1"
@@ -427,7 +430,7 @@
             "Power": {
               "type": "RangeState",
               "desc": "Power absorbed by all services in Watt",
-              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=load_power;init_data=0;",
+              "listener": "dbus://dbus_name=com.victron.SmartSolarMPPT;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=load_power;init_data=0;",
               "min": "0",
               "max": "6050",
               "step": "0.1"
@@ -435,7 +438,7 @@
             "Power Percentage": {
               "type": "RangeState",
               "desc": "Power absorbed by all services in Percent",
-              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=load_power_percent;init_data=0;",
+              "listener": "dbus://dbus_name=com.victron.SmartSolarMPPT;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=load_power_percent;init_data=0;",
               "min": "0",
               "max": "100",
               "step": "1"
@@ -443,7 +446,7 @@
             "Max Power": {
               "type": "RangeState",
               "desc": "Maximum power absorbed by all services in Watt",
-              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=load_power_max;init_data=0;",
+              "listener": "dbus://dbus_name=com.victron.SmartSolarMPPT;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=load_power_max;init_data=0;",
               "min": "0",
               "max": "6050",
               "step": "0.1"
@@ -462,12 +465,12 @@
             "Charging state": {
               "type": "BooleanState",
               "desc": "UPS Charging State (true is Charging, false is NotCharging)",
-              "listener": "dbus://dbus_name=com.upspack;dbus_obj_path=/ups_smart;dbus_iface=com.upspack_v3;dbus_prop=state_operation;"
+              "listener": "dbus://dbus_name=com.upspack_v3;dbus_obj_path=/ups_smart_v3_2p;dbus_iface=com.upspack;dbus_prop=state_operation;"
             },
             "Battery Percentage": {
               "type": "RangeState",
               "desc": "UPS Battery charge percentage",
-              "listener": "dbus://dbus_name=com.upspack;dbus_obj_path=/ups_smart;dbus_iface=com.upspack_v3;dbus_prop=battery_capacity;",
+              "listener": "dbus://dbus_name=com.upspack_v3;dbus_obj_path=/ups_smart_v3_2p;dbus_iface=com.upspack;dbus_prop=battery_capacity;",
               "min": "0",
               "max": "100",
               "step": "1"
@@ -475,7 +478,7 @@
             "Output Voltage": {
               "type": "RangeState",
               "desc": "UPS output voltage in Volts",
-              "listener": "dbus://dbus_name=com.upspack;dbus_obj_path=/ups_smart;dbus_iface=com.upspack_v3;dbus_prop=voltage_out;",
+              "listener": "dbus://dbus_name=com.upspack_v3;dbus_obj_path=/ups_smart_v3_2p;dbus_iface=com.upspack;dbus_prop=voltage_out;",
               "min": "4000",
               "max": "6000",
               "step": "1"
@@ -488,27 +491,27 @@
             "Network Registration": {
               "type": "BooleanState",
               "desc": "Network registration (true is Registered, false is NOT Registered).",
-              "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=network_registration;"
+              "listener": "dbus://dbus_name=com.waveshare.sim7600;dbus_obj_path=/sim7600;dbus_iface=com.waveshare.sim7600;dbus_prop=network_registration;"
             },
             "Network Searching": {
               "type": "BooleanState",
               "desc": "Network searching (true is Searching, false is NOT Searching).",
-              "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=network_searching;"
+              "listener": "dbus://dbus_name=com.waveshare.sim7600;dbus_obj_path=/sim7600;dbus_iface=com.waveshare.sim7600;dbus_prop=network_searching;"
             },
             "Network Roaming": {
               "type": "BooleanState",
               "desc": "Network roaming status (true is IN Roaming, false is NOT IN Roaming).",
-              "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=network_roaming;"
+              "listener": "dbus://dbus_name=com.waveshare.sim7600;dbus_obj_path=/sim7600;dbus_iface=com.waveshare.sim7600;dbus_prop=network_roaming;"
             },
             "SIM Status": {
               "type": "BooleanState",
               "desc": "Sim's status (true is Ready, false is NOT Ready (missing, requires PIN/PUK/..., errors).",
-              "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=network_sim_status;"
+              "listener": "dbus://dbus_name=com.waveshare.sim7600;dbus_obj_path=/sim7600;dbus_iface=com.waveshare.sim7600;dbus_prop=network_sim_status;"
             },
             "Quality": {
               "type": "RangeState",
               "desc": "Network signal quality in Percent.",
-              "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=network_signal_quality;",
+              "listener": "dbus://dbus_name=com.waveshare.sim7600;dbus_obj_path=/sim7600;dbus_iface=com.waveshare.sim7600;dbus_prop=network_signal_quality;",
               "min": "0",
               "max": "100",
               "step": "1"
@@ -516,8 +519,8 @@
             "Power Module": {
               "type": "BooleanAction",
               "desc": "Power on/off the SIM module to save energy",
-              "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=power_module_state;",
-              "executor": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_method=power_module;dbus_method_params=%A_VAL%:Boolean;"
+              "listener": "dbus://dbus_name=com.waveshare.sim7600;dbus_obj_path=/sim7600;dbus_iface=com.waveshare.sim7600;dbus_prop=power_module_state;",
+              "executor": "dbus://dbus_name=com.waveshare.sim7600;dbus_obj_path=/sim7600;dbus_iface=com.waveshare.sim7600;dbus_method=power_module;dbus_method_params=%A_VAL%:Boolean;"
             }
           }
         }
