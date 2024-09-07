@@ -19,8 +19,8 @@
 
 <Configuration xmlns:xi="http://www.w3.org/2001/XInclude" status="warn">
     <Properties>
-        <Property name="filename_base">jospJSL</Property>
-        <Property name="artifact_package">com.robypomper.josp.jsl</Property>
+        <Property name="filename_base">jospJOD</Property>
+        <Property name="artifact_package">com.robypomper.josp.jod</Property>
         <Property name="josp_libs_package">com.robypomper.josp</Property>
 
         <Property name="level_artifact_console" >INFO</Property>
