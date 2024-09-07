@@ -123,8 +123,16 @@ venv="${VENV:-false}"
 inline_logs="${INLINE_LOGS:-false}"
 
 # Launch firmwares
+# if Raspberry OS >= Bookworm
 launch_fw "com.robypomper.smartvan.fw.victron" "" $simulate $venv $inline_logs
-launch_fw "com.robypomper.smartvan.fw.upspack_v3" "--port /dev/ttyAMA3" $simulate $venv $inline_logs
-launch_fw "com.robypomper.smartvan.fw.sim7600" "" $simulate $venv $inline_logs
+launch_fw "com.robypomper.smartvan.fw.upspack_v3" "--port /dev/ttyAMA4" $simulate $venv $inline_logs
+launch_fw "com.robypomper.smartvan.fw.sim7600" "--port /dev/ttyS0" $simulate $venv $inline_logs
 launch_fw "com.robypomper.smartvan.fw.sensehat" "" $simulate $venv $inline_logs
 launch_fw "com.robypomper.smartvan.fw.ioexp" "" $simulate $venv $inline_logs
+
+# if Raspberry OS <= Bullseye
+#launch_fw "com.robypomper.smartvan.fw.victron" "" $simulate $venv $inline_logs
+#launch_fw "com.robypomper.smartvan.fw.upspack_v3" "--port /dev/ttyAMA3" $simulate $venv $inline_logs
+#launch_fw "com.robypomper.smartvan.fw.sim7600" "" $simulate $venv $inline_logs
+#launch_fw "com.robypomper.smartvan.fw.sensehat" "" $simulate $venv $inline_logs
+#launch_fw "com.robypomper.smartvan.fw.ioexp" "" $simulate $venv $inline_logs
