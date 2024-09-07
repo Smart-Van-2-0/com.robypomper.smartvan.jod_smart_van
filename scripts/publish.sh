@@ -72,15 +72,21 @@ logInf "Run build.sh script -> $JOD_DIST_CONFIG_FILE"
 execScriptCommand "$JOD_DIST_DIR/scripts/build.sh" $JOD_DIST_CONFIG_FILE
 
 logInf "Compress JOD Distribution to publication dir"
-rm -r "$DEST_DIR" >/dev/null 2>&1
+rm -r "$DEST_DIR/$DEST_FILE_TGZ" >/dev/null 2>&1
+rm -r "$DEST_DIR/$DEST_FILE_ZIP" >/dev/null 2>&1
+
 mkdir -p "$DEST_DIR"
-cd "$SRC_DIR" >/dev/null 2>&1
-tar -czf "$DEST_FILE_TGZ" .
+cd "$SRC_DIR/.." >/dev/null 2>&1
+mv "$DIST_VER" "$DIST_ARTIFACT"
+tar -czf "$DEST_FILE_TGZ" $(find "$DIST_ARTIFACT" -type f -not -path "*env*")
+mv "$DIST_ARTIFACT" "$DIST_VER"
 cd - >/dev/null 2>&1
 
-cd "$SRC_DIR" >/dev/null 2>&1
+cd "$SRC_DIR/.." >/dev/null 2>&1
 if command -v zip &>/dev/null; then
-  zip -qr "$DEST_FILE_ZIP" .
+  mv "$DIST_VER" "JOD_Smart_Van"
+  zip -qr "$DEST_FILE_ZIP" "JOD_Smart_Van"
+  mv "JOD_Smart_Van" "$DIST_VER"
 else
   logWar "'zip' command not installed, skip 'zip' compression"
 fi
