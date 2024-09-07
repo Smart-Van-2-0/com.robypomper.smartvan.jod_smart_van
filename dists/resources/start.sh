@@ -136,7 +136,12 @@ if [ "$FOREGROUND" = "true" ]; then
 else
 
   logInf "Start JOD distribution in background..."
-  cd $JOD_DIR && $JAVA_EXEC -Dlog4j.configurationFile=log4j2.xml -cp $JAR_RUN $MAIN_CLASS --configs=$JOD_YML $JOD_INSTALLATION_NAME_DOT >logs/console.log 2>&1 &
+  cd $JOD_DIR && $JAVA_EXEC \
+         -Dpolyglot.log.file=/dev/null \
+         -Dpolyglot.engine.WarnInterpreterOnly=false \
+         -Dlog4j.configurationFile=log4j2.xml \
+         -cp $JAR_RUN $MAIN_CLASS \
+         --configs=$JOD_YML $JOD_INSTALLATION_NAME_DOT >logs/console.log 2>&1 &
   PID=$!
   if ! ps -p $PID >/dev/null; then
     echo "Error on startup JOD Daemon"
