@@ -74,41 +74,41 @@ PY_COMMAND="python"
 
 # Firmware launcher function
 launch_fw () {
-  FW_DIR=$1
-  OPT=$2
-  SIMULATE=$3
-  VENV=$4
-  INLINE_LOGS=$5
+  FW_DIR=$1       # ./abc   /root/abc
+  OPT=$2          # --debug
+  SIMULATE=$3     # true/false
+  VENV=$4         # true/false
+  INLINE_LOGS=$5  # true/false
 
   FW_PID=$(ps aux | grep "$FW_DIR/run.py" | grep -v "grep" | awk '{ print $2 }')
   [[ ! -z "$FW_PID" ]] && kill -s 15 $FW_PID
   [[ "$SIMULATE" = true ]] && OPT+=" --simulate"
   LOG_STARTUP="$JOD_DIR/logs/startup_$FW_DIR-$(date +'%Y%m%d_%H%M%S').log"
 
-  # echo "$PY_COMMAND $JOD_DIR/deps/$FW_DIR/run.py $OPT --debug"
+  # echo "$PY_COMMAND $JOD_DIR/deps/$FW_DIR/run.py $OPT"
   if [[ "$VENV" = true ]]; then
     if [[ "$INLINE_LOGS" = true ]]; then
       source "$JOD_DIR/deps/$FW_DIR/venv/bin/activate" \
-      && $PY_COMMAND "$JOD_DIR/deps/$FW_DIR/run.py" $OPT --debug &
+      && $PY_COMMAND "$JOD_DIR/deps/$FW_DIR/run.py" $OPT &
     else
       {
         echo "#### #### #### ####"; \
         echo "$(date +'%Y-%m-%d %H:%M:%S') Starting $FW_DIR firmware"; \
-        echo "$(date +'%Y-%m-%d %H:%M:%S') Exec: $PY_COMMAND \"$JOD_DIR/deps/$FW_DIR/run.py\" $OPT --debug >> \"$LOG_STARTUP\" 2>&1 &"; \
+        echo "$(date +'%Y-%m-%d %H:%M:%S') Exec: $PY_COMMAND \"$JOD_DIR/deps/$FW_DIR/run.py\" $OPT >> \"$LOG_STARTUP\" 2>&1 &"; \
       } >> "$LOG_STARTUP"
       source "$JOD_DIR/deps/$FW_DIR/venv/bin/activate" >> "$LOG_STARTUP" 2>&1 \
-          && $PY_COMMAND "$JOD_DIR/deps/$FW_DIR/run.py" $OPT --debug >> "$LOG_STARTUP" 2>&1 &
+          && $PY_COMMAND "$JOD_DIR/deps/$FW_DIR/run.py" $OPT >> "$LOG_STARTUP" 2>&1 &
     fi
   else
     if [[ "$INLINE_LOGS" = true ]]; then
-      $PY_COMMAND "$JOD_DIR/deps/$FW_DIR/run.py" $OPT --debug &
+      $PY_COMMAND "$JOD_DIR/deps/$FW_DIR/run.py" $OPT &
     else
       {
         echo "#### #### #### ####"; \
         echo "$(date +'%Y-%m-%d %H:%M:%S') Starting $FW_DIR firmware"; \
-        echo "$(date +'%Y-%m-%d %H:%M:%S') Exec: $PY_COMMAND \"$JOD_DIR/deps/$FW_DIR/run.py\" $OPT --debug >> \"$LOG_STARTUP\" 2>&1 &"; \
+        echo "$(date +'%Y-%m-%d %H:%M:%S') Exec: $PY_COMMAND \"$JOD_DIR/deps/$FW_DIR/run.py\" $OPT >> \"$LOG_STARTUP\" 2>&1 &"; \
       } >> "$LOG_STARTUP"
-      $PY_COMMAND "$JOD_DIR/deps/$FW_DIR/run.py" $OPT --debug >> "$LOG_STARTUP" 2>&1 &
+      $PY_COMMAND "$JOD_DIR/deps/$FW_DIR/run.py" $OPT >> "$LOG_STARTUP" 2>&1 &
     fi
   fi
 
@@ -123,8 +123,16 @@ venv="${VENV:-false}"
 inline_logs="${INLINE_LOGS:-false}"
 
 # Launch firmwares
+# if Raspberry OS >= Bookworm
 launch_fw "com.robypomper.smartvan.fw.victron" "" $simulate $venv $inline_logs
-launch_fw "com.robypomper.smartvan.fw.upspack_v3" "" $simulate $venv $inline_logs
-launch_fw "com.robypomper.smartvan.fw.sim7600" "" $simulate $venv $inline_logs
+launch_fw "com.robypomper.smartvan.fw.upspack_v3" "--port /dev/ttyAMA4" $simulate $venv $inline_logs
+launch_fw "com.robypomper.smartvan.fw.sim7600" "--port /dev/ttyS0" $simulate $venv $inline_logs
 launch_fw "com.robypomper.smartvan.fw.sensehat" "" $simulate $venv $inline_logs
 launch_fw "com.robypomper.smartvan.fw.ioexp" "" $simulate $venv $inline_logs
+
+# if Raspberry OS <= Bullseye
+#launch_fw "com.robypomper.smartvan.fw.victron" "" $simulate $venv $inline_logs
+#launch_fw "com.robypomper.smartvan.fw.upspack_v3" "--port /dev/ttyAMA3" $simulate $venv $inline_logs
+#launch_fw "com.robypomper.smartvan.fw.sim7600" "" $simulate $venv $inline_logs
+#launch_fw "com.robypomper.smartvan.fw.sensehat" "" $simulate $venv $inline_logs
+#launch_fw "com.robypomper.smartvan.fw.ioexp" "" $simulate $venv $inline_logs

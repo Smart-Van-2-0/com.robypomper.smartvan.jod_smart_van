@@ -56,7 +56,7 @@ DIST_ARTIFACT="JOD_Smart_Van"
 
 # JOD Distribution version
 # A custom string representing current JOD Distribution version
-DIST_VER="1.0.0"
+DIST_VER="1.0.1"
 
 # ################### #
 # John Cloud Platform #
@@ -104,11 +104,11 @@ DIST_JCP_ENV="prod"
 # the dependency string, e.g.: `https://myurl.com/assets/docs.tar.gz@docs/`.
 # Destination dir must be a path relative to the `$DIST_DIR/`.
 JOD_DIST_DEPS=(
-  "https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.victron/archive/refs/tags/1.0.2.tar.gz@deps/com.robypomper.smartvan.fw.victron"
-  "https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.upspack_v3/archive/refs/tags/1.0.0.tar.gz@deps/com.robypomper.smartvan.fw.upspack_v3"
-  "https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.sim7600/archive/refs/tags/1.0.0.tar.gz@deps/com.robypomper.smartvan.fw.sim7600"
-  "https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.sensehat/archive/refs/tags/1.0.0.tar.gz@deps/com.robypomper.smartvan.fw.sensehat"
-  "https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.ioexp/archive/refs/tags/1.0.0.tar.gz@deps/com.robypomper.smartvan.fw.ioexp"
+  "https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.victron/archive/refs/tags/1.0.3.tar.gz@deps/com.robypomper.smartvan.fw.victron"
+  "https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.upspack_v3/archive/refs/tags/1.0.1.tar.gz@deps/com.robypomper.smartvan.fw.upspack_v3"
+  "https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.sim7600/archive/refs/tags/1.0.1.tar.gz@deps/com.robypomper.smartvan.fw.sim7600"
+  "https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.sensehat/archive/refs/tags/1.0.1.tar.gz@deps/com.robypomper.smartvan.fw.sensehat"
+  "https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.ioexp/archive/refs/tags/1.0.1.tar.gz@deps/com.robypomper.smartvan.fw.ioexp"
 )
 
 # ########## #

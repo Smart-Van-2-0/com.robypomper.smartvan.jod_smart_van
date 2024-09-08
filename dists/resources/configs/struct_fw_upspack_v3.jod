@@ -13,12 +13,12 @@
             "Charging state": {
               "type": "BooleanState",
               "desc": "[FW] SolarCharger's firmware version",
-              "listener": "dbus://dbus_name=com.upspack;dbus_obj_path=/ups_smart;dbus_iface=com.upspack_v3;dbus_prop=state_operation;"
+              "listener": "dbus://dbus_name=com.upspack_v3;dbus_obj_path=/ups_smart_v3_2p;dbus_iface=com.upspack;dbus_prop=state_operation;"
             },
             "Battery Percentage": {
               "type": "RangeState",
               "desc": "[BATCAP] Battery charge percentage",
-              "listener": "dbus://dbus_name=com.upspack;dbus_obj_path=/ups_smart;dbus_iface=com.upspack_v3;dbus_prop=battery_capacity;",
+              "listener": "dbus://dbus_name=com.upspack_v3;dbus_obj_path=/ups_smart_v3_2p;dbus_iface=com.upspack;dbus_prop=battery_capacity;",
               "min": "0",
               "max": "100",
               "step": "1"
@@ -26,7 +26,7 @@
             "Output Voltage": {
               "type": "RangeState",
               "desc": "[Vout] Load voltage in milliVolts",
-              "listener": "dbus://dbus_name=com.upspack;dbus_obj_path=/ups_smart;dbus_iface=com.upspack_v3;dbus_prop=voltage_out;",
+              "listener": "dbus://dbus_name=com.upspack_v3;dbus_obj_path=/ups_smart_v3_2p;dbus_iface=com.upspack;dbus_prop=voltage_out;",
               "min": "4000",
               "max": "6000",
               "step": "1"

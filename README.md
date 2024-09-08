@@ -7,7 +7,7 @@ so this repo follows his conventions.
 
 **Dist Name:** JOD Smart Van<br />
 **Dist Artifact:** JOD_Smart_Van<br />
-**Dist Version:** 1.0.0
+**Dist Version:** 1.0.1
 
 [README](README.md) | [CHANGELOG](CHANGELOG.md) | [TODOs](TODOs.md) | [LICENCE](LICENCE.md)
 
@@ -17,11 +17,11 @@ the [Smart Van Project](https://www.smartvanbox.org) website.
 As a first version, this distribution contains only the support to some of the
 Smart Van Specifications because it's still missing some firmware.<br/>
 Actually, the JOD Smart Van includes following firmwares:
-* [FW Victron](https://www.smartvanbox.org/docs/software/firmware/fw_victron): v 1.0.2 [Sources](https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.victron/)
-* [FW SIM 7600](https://www.smartvanbox.org/docs/software/firmware/fw_sim7600): v 1.0.0 [Sources](https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.sim7600/)
-* [FW UPS Pack_V3](https://www.smartvanbox.org/docs/software/firmware/fw_upspack_v3): v 1.0.0 [Sources](https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.upspack_v3/)
-* [FW Sense Hat](https://www.smartvanbox.org/docs/software/firmware/fw_sensehat): v 1.0.0 [Sources](https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.sensehat/)
-* [FW IO Exp](https://www.smartvanbox.org/docs/software/firmware/fw_ioexp): v 1.0.0 [Sources](https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.ioexp/)
+* [FW Victron](https://www.smartvanbox.org/docs/software/firmware/fw_victron): v 1.0.3 [Sources](https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.victron/)
+* [FW SIM 7600](https://www.smartvanbox.org/docs/software/firmware/fw_sim7600): v 1.0.1 [Sources](https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.sim7600/)
+* [FW UPS Pack_V3](https://www.smartvanbox.org/docs/software/firmware/fw_upspack_v3): v 1.0.1 [Sources](https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.upspack_v3/)
+* [FW Sense Hat](https://www.smartvanbox.org/docs/software/firmware/fw_sensehat): v 1.0.1 [Sources](https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.sensehat/)
+* [FW IO Exp](https://www.smartvanbox.org/docs/software/firmware/fw_ioexp): v 1.0.1 [Sources](https://github.com/Smart-Van-2-0/com.robypomper.smartvan.fw.ioexp/)
 
 More details on JOD Smart Van distribution, the JOD Dist TMPL and the firmwares
 are available at the [How it works](dists/resources/how_it_works.md) page or directly on

@@ -1,6 +1,6 @@
 {
   "model": "JOD Smart Van",
-  "brand": "John OS",
+  "brand": "SmartVanBox Project",
   "descr": "IoT agent for the Smart Van Box that provides the Smart Van Specifications.",
   "descr_long": "This object's structure actually contains the 'Position', 'Sensors', 'Services', 'Energy' and the 'IoT Box > Energy + Internet' specifications groups",
   "contains": {
@@ -13,58 +13,58 @@
           "contains": {
             "Latitude": {
               "type": "BooleanState",
-              "desc": "GPS latitude (true is North, false is South)",
-              "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=pos_gps_lat;"
+              "desc": "Latitude (true is North, false is South)",
+              "listener": "dbus://dbus_name=com.waveshare.sim7600;dbus_obj_path=/sim7600;dbus_iface=com.waveshare.sim7600;dbus_prop=pos_gnss_lat_dir;"
             },
             "Latitude Degrees": {
               "type": "RangeState",
-              "desc": "GPS latitude degrees",
-              "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=pos_gps_lat_degrees;",
+              "desc": "Latitude in decimal Degrees",
+              "listener": "dbus://dbus_name=com.waveshare.sim7600;dbus_obj_path=/sim7600;dbus_iface=com.waveshare.sim7600;dbus_prop=pos_gnss_lat_degrees;",
               "min": "-90",
               "max": "90",
               "step": "1"
             },
             "Longitude": {
               "type": "BooleanState",
-              "desc": "GPS longitude (true is West, false is East)",
-              "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=pos_gps_lon;"
+              "desc": "Longitude (true is West, false is East)",
+              "listener": "dbus://dbus_name=com.waveshare.sim7600;dbus_obj_path=/sim7600;dbus_iface=com.waveshare.sim7600;dbus_prop=pos_gnss_log_dir;"
             },
             "Longitude Degrees": {
               "type": "RangeState",
-              "desc": "GPS longitude degrees",
-              "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=pos_gps_log_degrees;",
+              "desc": "Longitude in decimal Degrees ",
+              "listener": "dbus://dbus_name=com.waveshare.sim7600;dbus_obj_path=/sim7600;dbus_iface=com.waveshare.sim7600;dbus_prop=pos_gnss_log_degrees;",
               "min": "-180",
               "max": "180",
               "step": "1"
             },
             "Altitude": {
               "type": "RangeState",
-              "desc": "GPS position MSL Altitude. Unit is meters.",
-              "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=pos_gps_alt;",
+              "desc": "Position MSL Altitude. Unit is meters.",
+              "listener": "dbus://dbus_name=com.waveshare.sim7600;dbus_obj_path=/sim7600;dbus_iface=com.waveshare.sim7600;dbus_prop=pos_gnss_alt;",
               "min": "-100",
               "max": "8000",
               "step": "1"
             },
             "Speed": {
               "type": "RangeState",
-              "desc": "GPS position Speed Over Ground. Unit is knots.",
-              "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=pos_gps_speed;",
+              "desc": "Position Speed Over Ground. Unit is knots.",
+              "listener": "dbus://dbus_name=com.waveshare.sim7600;dbus_obj_path=/sim7600;dbus_iface=com.waveshare.sim7600;dbus_prop=pos_gnss_speed;",
               "min": "0",
               "max": "150",
               "step": "1"
             },
             "Course": {
               "type": "RangeState",
-              "desc": "GPS position course in degrees.",
-              "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=pos_gps_course;",
+              "desc": "Position course in degrees.",
+              "listener": "dbus://dbus_name=com.waveshare.sim7600;dbus_obj_path=/sim7600;dbus_iface=com.waveshare.sim7600;dbus_prop=pos_gnss_course;",
               "min": "0",
               "max": "360",
               "step": "1"
             },
-            "Available Satellites": {
+            "Satellites": {
               "type": "RangeState",
-              "desc": "GPS satellite number (0-12).",
-              "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=pos_gnss_sat_gps_count;",
+              "desc": "Visible satellite count (0-12).",
+              "listener": "dbus://dbus_name=com.waveshare.sim7600;dbus_obj_path=/sim7600;dbus_iface=com.waveshare.sim7600;dbus_prop=pos_gnss_sat_count;",
               "min": "0",
               "max": "12",
               "step": "1"
@@ -72,8 +72,8 @@
             "Power Module": {
               "type": "BooleanAction",
               "desc": "Power on/off the SIM module (true is on, false if off)",
-              "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=power_module_state;",
-              "executor": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_method=power_module;dbus_method_params=%A_VAL%:Boolean;"
+              "listener": "dbus://dbus_name=com.waveshare.sim7600;dbus_obj_path=/sim7600;dbus_iface=com.waveshare.sim7600;dbus_prop=power_module_state;",
+              "executor": "dbus://dbus_name=com.waveshare.sim7600;dbus_obj_path=/sim7600;dbus_iface=com.waveshare.sim7600;dbus_method=power_module;dbus_method_params=%A_VAL%:Boolean;"
             }
           }
         },
@@ -82,24 +82,25 @@
           "contains": {
             "Roll": {
               "type": "RangeState",
-              "desc": "Gyroscope Roll axis, rotation about its longitudinal axis (drawn through the body of the vehicle from tail to nose) in degrees",
-              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=roll;",
+              "desc": "Gyroscope Roll axis, rotation about its longitudinal axis (drawn through the body of the vehicle from tail to nose) in degrees (Normal 0)",
+
+              "listener": "dbus://dbus_name=com.waveshare.sensehat_c;dbus_obj_path=/sense_hat_c;dbus_iface=com.waveshare.sensehat;dbus_prop=roll;",
               "min": "-180",
               "max": "180",
               "step": "1"
             },
             "Pitch": {
               "type": "RangeState",
-              "desc": "Gyroscope Pitch axis, rotation about its lateral axis in degrees",
-              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=pitch;",
+              "desc": "Gyroscope Pitch axis, rotation about its lateral axis in degrees (Normal 0)",
+              "listener": "dbus://dbus_name=com.waveshare.sensehat_c;dbus_obj_path=/sense_hat_c;dbus_iface=com.waveshare.sensehat;dbus_prop=pitch;",
               "min": "-90",
               "max": "90",
               "step": "1"
             },
             "Yaw": {
               "type": "RangeState",
-              "desc": "Gyroscope Yaw axis, rotation about its vertical axis in degrees",
-              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=yaw;",
+              "desc": "Gyroscope Yaw axis, rotation about its vertical axis in degrees (Normal -180)",
+              "listener": "dbus://dbus_name=com.waveshare.sensehat_c;dbus_obj_path=/sense_hat_c;dbus_iface=com.waveshare.sensehat;dbus_prop=yaw;",
               "min": "-180",
               "max": "180",
               "step": "1"
@@ -107,31 +108,31 @@
             "Acceleration X": {
               "type": "RangeState",
               "desc": "Acceleration Y axis in Gs",
-              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=acceleration_x;",
-              "min": "-16",
-              "max": "16",
+              "listener": "dbus://dbus_name=com.waveshare.sensehat_c;dbus_obj_path=/sense_hat_c;dbus_iface=com.waveshare.sensehat;dbus_prop=acceleration_x;",
+              "min": "0",
+              "max": "20000",
               "step": "1"
             },
             "Acceleration Y": {
               "type": "RangeState",
               "desc": "Acceleration X axis in Gs",
-              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=acceleration_y;",
-              "min": "-16",
-              "max": "16",
+              "listener": "dbus://dbus_name=com.waveshare.sensehat_c;dbus_obj_path=/sense_hat_c;dbus_iface=com.waveshare.sensehat;dbus_prop=acceleration_y;",
+              "min": "0",
+              "max": "20000",
               "step": "1"
             },
             "Acceleration Z": {
               "type": "RangeState",
               "desc": "Acceleration Z axis in Gs",
-              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=acceleration_z;",
-              "min": "-16",
-              "max": "16",
+              "listener": "dbus://dbus_name=com.waveshare.sensehat_c;dbus_obj_path=/sense_hat_c;dbus_iface=com.waveshare.sensehat;dbus_prop=acceleration_z;",
+              "min": "0",
+              "max": "20000",
               "step": "1"
             },
             "Gyroscope X": {
               "type": "RangeState",
               "desc": "Gyroscope X axis in degrees per second",
-              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=gyroscope_x;",
+              "listener": "dbus://dbus_name=com.waveshare.sensehat_c;dbus_obj_path=/sense_hat_c;dbus_iface=com.waveshare.sensehat;dbus_prop=gyroscope_x;",
               "min": "-2048",
               "max": "2048",
               "step": "1"
@@ -139,7 +140,7 @@
             "Gyroscope Y": {
               "type": "RangeState",
               "desc": "Gyroscope Y axis in degrees per second",
-              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=gyroscope_y;",
+              "listener": "dbus://dbus_name=com.waveshare.sensehat_c;dbus_obj_path=/sense_hat_c;dbus_iface=com.waveshare.sensehat;dbus_prop=gyroscope_y;",
               "min": "-2048",
               "max": "2048",
               "step": "1"
@@ -147,7 +148,7 @@
             "Gyroscope Z": {
               "type": "RangeState",
               "desc": "Gyroscope Z axis in degrees per second",
-              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=gyroscope_z;",
+              "listener": "dbus://dbus_name=com.waveshare.sensehat_c;dbus_obj_path=/sense_hat_c;dbus_iface=com.waveshare.sensehat;dbus_prop=gyroscope_z;",
               "min": "-2048",
               "max": "2048",
               "step": "1"
@@ -166,7 +167,7 @@
             "Pressure": {
               "type": "RangeState",
               "desc": "Environmental pressure in Pascal",
-              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=pressure;",
+              "listener": "dbus://dbus_name=com.waveshare.sensehat_c;dbus_obj_path=/sense_hat_c;dbus_iface=com.waveshare.sensehat;dbus_prop=pressure;",
               "min": "200",
               "max": "1260",
               "step": "1"
@@ -174,7 +175,7 @@
             "Temperature": {
               "type": "RangeState",
               "desc": "Environmental temperature in degrees celsius",
-              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=temperature;",
+              "listener": "dbus://dbus_name=com.waveshare.sensehat_c;dbus_obj_path=/sense_hat_c;dbus_iface=com.waveshare.sensehat;dbus_prop=temperature;",
               "min": "-30",
               "max": "100",
               "step": "1"
@@ -182,7 +183,7 @@
             "Humidity": {
               "type": "RangeState",
               "desc": "Environmental humidity percentage",
-              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=humidity;",
+              "listener": "dbus://dbus_name=com.waveshare.sensehat_c;dbus_obj_path=/sense_hat_c;dbus_iface=com.waveshare.sensehat;dbus_prop=humidity;",
               "min": "0",
               "max": "100",
               "step": "1"
@@ -190,12 +191,15 @@
             "Lux": {
               "type": "RangeState",
               "desc": "Environmental lux in lumen",
-              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=lux;"
+              "listener": "dbus://dbus_name=com.waveshare.sensehat_c;dbus_obj_path=/sense_hat_c;dbus_iface=com.waveshare.sensehat;dbus_prop=lux;",
+              "min": "0",
+              "max": "20000",
+              "step": "1"
             },
             "Analog 0": {
               "type": "RangeState",
               "desc": "Customizable analog sensors (0-100%)",
-              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=analog_0;",
+              "listener": "dbus://dbus_name=com.waveshare.sensehat_c;dbus_obj_path=/sense_hat_c;dbus_iface=com.waveshare.sensehat;dbus_prop=analog_0_perc;",
               "min": "0",
               "max": "100",
               "step": "1"
@@ -203,7 +207,7 @@
             "Analog 1": {
               "type": "RangeState",
               "desc": "Customizable analog sensors (0-100%)",
-              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=analog_1;",
+              "listener": "dbus://dbus_name=com.waveshare.sensehat_c;dbus_obj_path=/sense_hat_c;dbus_iface=com.waveshare.sensehat;dbus_prop=analog_1_perc;",
               "min": "0",
               "max": "100",
               "step": "1"
@@ -211,7 +215,7 @@
             "Analog 2": {
               "type": "RangeState",
               "desc": "Customizable analog sensors (0-100%)",
-              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=analog_2;",
+              "listener": "dbus://dbus_name=com.waveshare.sensehat_c;dbus_obj_path=/sense_hat_c;dbus_iface=com.waveshare.sensehat;dbus_prop=analog_2_perc;",
               "min": "0",
               "max": "100",
               "step": "1"
@@ -219,7 +223,7 @@
             "Analog 3": {
               "type": "RangeState",
               "desc": "Customizable analog sensors (0-100%)",
-              "listener": "dbus://dbus_name=com.sensehat;dbus_obj_path=/sense_hat_c;dbus_iface=com.sense;dbus_prop=analog_3;",
+              "listener": "dbus://dbus_name=com.waveshare.sensehat_c;dbus_obj_path=/sense_hat_c;dbus_iface=com.waveshare.sensehat;dbus_prop=analog_3_perc;",
               "min": "0",
               "max": "100",
               "step": "1"
@@ -279,51 +283,6 @@
                   "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=in_7;"
                 }
               }
-            },
-            "Percentage": {
-              "type": "JODContainer",
-              "contains": {
-                "Percentage 1": {
-                  "type": "RangeState",
-                  "desc": "Percentage controller like potentiometer (true is pressed, false is NOT pressed).",
-                  "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=NONE;"
-                },
-                "Percentage 2": {
-                  "type": "RangeState",
-                  "desc": "Percentage controller like potentiometer (true is pressed, false is NOT pressed).",
-                  "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=NONE;"
-                },
-                "Percentage 3": {
-                  "type": "RangeState",
-                  "desc": "Percentage controller like potentiometer (true is pressed, false is NOT pressed).",
-                  "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=NONE;"
-                },
-                "Percentage 4": {
-                  "type": "RangeState",
-                  "desc": "Percentage controller like potentiometer (true is pressed, false is NOT pressed).",
-                  "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=NONE;"
-                },
-                "Percentage 5": {
-                  "type": "RangeState",
-                  "desc": "Percentage controller like potentiometer (true is pressed, false is NOT pressed).",
-                  "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=NONE;"
-                },
-                "Percentage 6": {
-                  "type": "RangeState",
-                  "desc": "Percentage controller like potentiometer (true is pressed, false is NOT pressed).",
-                  "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=NONE;"
-                },
-                "Percentage 7": {
-                  "type": "RangeState",
-                  "desc": "Percentage controller like potentiometer (true is pressed, false is NOT pressed).",
-                  "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=NONE;"
-                },
-                "Percentage 8": {
-                  "type": "RangeState",
-                  "desc": "Percentage controller like potentiometer (true is pressed, false is NOT pressed).",
-                  "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=NONE;"
-                }
-              }
             }
           }
         },
@@ -356,189 +315,6 @@
                   "desc": "Binary actuator for low consumption services like relays (true is on, false is off).",
                   "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=out_3;",
                   "executor": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_method=set_out_3;dbus_method_params=%A_VAL%:Boolean;"
-                },
-                "SwitchLow 5": {
-                  "type": "BooleanAction",
-                  "desc": "Binary actuator for low consumption services like relays (true is on, false is off).",
-                  "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=NONE;",
-                  "executor": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_method=NONE;dbus_method_params=%A_VAL%:Boolean;"
-                },
-                "SwitchLow 6": {
-                  "type": "BooleanAction",
-                  "desc": "Binary actuator for low consumption services like relays (true is on, false is off).",
-                  "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=NONE;",
-                  "executor": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_method=NONE;dbus_method_params=%A_VAL%:Boolean;"
-                },
-                "SwitchLow 7": {
-                  "type": "BooleanAction",
-                  "desc": "Binary actuator for low consumption services like relays (true is on, false is off).",
-                  "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=NONE;",
-                  "executor": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_method=NONE;dbus_method_params=%A_VAL%:Boolean;"
-                },
-                "SwitchLow 8": {
-                  "type": "BooleanAction",
-                  "desc": "Binary actuator for low consumption services like relays (true is on, false is off).",
-                  "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=NONE;",
-                  "executor": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_method=NONE;dbus_method_params=%A_VAL%:Boolean;"
-                }
-              }
-            },
-            "SwitchHigh": {
-              "type": "JODContainer",
-              "contains": {
-                "SwitchHigh 1": {
-                  "type": "BooleanAction",
-                  "desc": "Binary actuator for high consumption services like relays (true is on, false is off).",
-                  "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=out_4;",
-                  "executor": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_method=set_out_4;dbus_method_params=%A_VAL%:Boolean;"
-                },
-                "SwitchHigh 2": {
-                  "type": "BooleanAction",
-                  "desc": "Binary actuator for high consumption services like relays (true is on, false is off).",
-                  "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=out_5;",
-                  "executor": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_method=set_out_5;dbus_method_params=%A_VAL%:Boolean;"
-                },
-                "SwitchHigh 3": {
-                  "type": "BooleanAction",
-                  "desc": "Binary actuator for high consumption services like relays (true is on, false is off).",
-                  "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=out_6;",
-                  "executor": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_method=set_out_6;dbus_method_params=%A_VAL%:Boolean;"
-                },
-                "SwitchHigh 4": {
-                  "type": "BooleanAction",
-                  "desc": "Binary actuator for high consumption services like relays (true is on, false is off).",
-                  "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=out_7;",
-                  "executor": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_method=set_out_7;dbus_method_params=%A_VAL%:Boolean;"
-                },
-                "SwitchHigh 5": {
-                  "type": "BooleanAction",
-                  "desc": "Binary actuator for high consumption services like relays (true is on, false is off).",
-                  "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=NONE;",
-                  "executor": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_method=NONE;dbus_method_params=%A_VAL%:Boolean;"
-                },
-                "SwitchHigh 6": {
-                  "type": "BooleanAction",
-                  "desc": "Binary actuator for high consumption services like relays (true is on, false is off).",
-                  "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=NONE;",
-                  "executor": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_method=NONE;dbus_method_params=%A_VAL%:Boolean;"
-                },
-                "SwitchHigh 7": {
-                  "type": "BooleanAction",
-                  "desc": "Binary actuator for high consumption services like relays (true is on, false is off).",
-                  "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=NONE;",
-                  "executor": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_method=NONE;dbus_method_params=%A_VAL%:Boolean;"
-                },
-                "SwitchHigh 8": {
-                  "type": "BooleanAction",
-                  "desc": "Binary actuator for high consumption services like relays (true is on, false is off).",
-                  "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=NONE;",
-                  "executor": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_method=NONE;dbus_method_params=%A_VAL%:Boolean;"
-                }
-              }
-            },
-            "DimmerLow": {
-              "type": "JODContainer",
-              "contains": {
-                "DimmerLow 1": {
-                  "type": "RangeAction",
-                  "desc": "Percentage actuator for low consumption services like dimmers (0 is off, 100 is completely on).",
-                  "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=NONE;",
-                  "executor": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_method=NONE;dbus_method_params=%VAL%:Boolean;"
-                },
-                "DimmerLow 2": {
-                  "type": "RangeAction",
-                  "desc": "Percentage actuator for low consumption services like dimmers (0 is off, 100 is completely on).",
-                  "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=NONE;",
-                  "executor": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_method=NONE;dbus_method_params=%VAL%:Boolean;"
-                },
-                "DimmerLow 3": {
-                  "type": "RangeAction",
-                  "desc": "Percentage actuator for low consumption services like dimmers (0 is off, 100 is completely on).",
-                  "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=NONE;",
-                  "executor": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_method=NONE;dbus_method_params=%VAL%:Boolean;"
-                },
-                "DimmerLow 4": {
-                  "type": "RangeAction",
-                  "desc": "Percentage actuator for low consumption services like dimmers (0 is off, 100 is completely on).",
-                  "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=NONE;",
-                  "executor": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_method=NONE;dbus_method_params=%VAL%:Boolean;"
-                },
-                "DimmerLow 5": {
-                  "type": "RangeAction",
-                  "desc": "Percentage actuator for low consumption services like dimmers (0 is off, 100 is completely on).",
-                  "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=NONE;",
-                  "executor": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_method=NONE;dbus_method_params=%VAL%:Boolean;"
-                },
-                "DimmerLow 6": {
-                  "type": "RangeAction",
-                  "desc": "Percentage actuator for low consumption services like dimmers (0 is off, 100 is completely on).",
-                  "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=NONE;",
-                  "executor": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_method=NONE;dbus_method_params=%VAL%:Boolean;"
-                },
-                "DimmerLow 7": {
-                  "type": "RangeAction",
-                  "desc": "Percentage actuator for low consumption services like dimmers (0 is off, 100 is completely on).",
-                  "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=NONE;",
-                  "executor": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_method=NONE;dbus_method_params=%VAL%:Boolean;"
-                },
-                "DimmerLow 8": {
-                  "type": "RangeAction",
-                  "desc": "Percentage actuator for low consumption services like dimmers (0 is off, 100 is completely on).",
-                  "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=NONE;",
-                  "executor": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_method=NONE;dbus_method_params=%VAL%:Boolean;"
-                }
-              }
-            },
-            "DimmerHigh": {
-              "type": "JODContainer",
-              "contains": {
-                "DimmerHigh 1": {
-                  "type": "RangeAction",
-                  "desc": "Percentage actuator high low consumption services like dimmers (0 is off, 100 is completely on).",
-                  "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=NONE;",
-                  "executor": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_method=NONE;dbus_method_params=%VAL%:Boolean;"
-                },
-                "DimmerHigh 2": {
-                  "type": "RangeAction",
-                  "desc": "Percentage actuator high low consumption services like dimmers (0 is off, 100 is completely on).",
-                  "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=NONE;",
-                  "executor": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_method=NONE;dbus_method_params=%VAL%:Boolean;"
-                },
-                "DimmerHigh 3": {
-                  "type": "RangeAction",
-                  "desc": "Percentage actuator high low consumption services like dimmers (0 is off, 100 is completely on).",
-                  "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=NONE;",
-                  "executor": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_method=NONE;dbus_method_params=%VAL%:Boolean;"
-                },
-                "DimmerHigh 4": {
-                  "type": "RangeAction",
-                  "desc": "Percentage actuator high low consumption services like dimmers (0 is off, 100 is completely on).",
-                  "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=NONE;",
-                  "executor": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_method=NONE;dbus_method_params=%VAL%:Boolean;"
-                },
-                "DimmerHigh 5": {
-                  "type": "RangeAction",
-                  "desc": "Percentage actuator high low consumption services like dimmers (0 is off, 100 is completely on).",
-                  "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=NONE;",
-                  "executor": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_method=NONE;dbus_method_params=%VAL%:Boolean;"
-                },
-                "DimmerHigh 6": {
-                  "type": "RangeAction",
-                  "desc": "Percentage actuator high low consumption services like dimmers (0 is off, 100 is completely on).",
-                  "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=NONE;",
-                  "executor": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_method=NONE;dbus_method_params=%VAL%:Boolean;"
-                },
-                "DimmerHigh 7": {
-                  "type": "RangeAction",
-                  "desc": "Percentage actuator high low consumption services like dimmers (0 is off, 100 is completely on).",
-                  "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=NONE;",
-                  "executor": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_method=NONE;dbus_method_params=%VAL%:Boolean;"
-                },
-                "DimmerHigh 8": {
-                  "type": "RangeAction",
-                  "desc": "Percentage actuator high low consumption services like dimmers (0 is off, 100 is completely on).",
-                  "listener": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_prop=NONE;",
-                  "executor": "dbus://dbus_name=com.ioexp;dbus_obj_path=/io_expansion_board;dbus_iface=com.ioexp;dbus_method=NONE;dbus_method_params=%VAL%:Boolean;"
                 }
               }
             }
@@ -556,7 +332,7 @@
             "Voltage": {
               "type": "RangeState",
               "desc": "Battery actual voltage in Volts",
-              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=battery_voltage;init_data=0;",
+              "listener": "dbus://dbus_name=com.victron.SmartSolarMPPT;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=battery_voltage;init_data=0;",
               "min": "0",
               "max": "55",
               "step": "0.1"
@@ -564,7 +340,7 @@
             "Percentage": {
               "type": "RangeState",
               "desc": "Battery actual charge in Percent",
-              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=battery_voltage_percent;init_data=0;",
+              "listener": "dbus://dbus_name=com.victron.SmartSolarMPPT;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=battery_voltage_percent;init_data=0;",
               "min": "0",
               "max": "100",
               "step": "0.1"
@@ -572,7 +348,7 @@
             "Min Voltage": {
               "type": "RangeState",
               "desc": "Battery minimal voltage allowed in Volts",
-              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=battery_voltage_min;init_data=0;",
+              "listener": "dbus://dbus_name=com.victron.SmartSolarMPPT;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=battery_voltage_min;init_data=0;",
               "min": "0",
               "max": "55",
               "step": "1"
@@ -580,7 +356,7 @@
             "Max Voltage": {
               "type": "RangeState",
               "desc": "Battery minimal voltage allowed in Volts",
-              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=battery_voltage_max;init_data=0;",
+              "listener": "dbus://dbus_name=com.victron.SmartSolarMPPT;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=battery_voltage_max;init_data=0;",
               "min": "0",
               "max": "55",
               "step": "0.1"
@@ -593,7 +369,7 @@
             "Current": {
               "type": "RangeState",
               "desc": "Current generated by all solar panels in Ampere",
-              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=battery_current;init_data=0;",
+              "listener": "dbus://dbus_name=com.victron.SmartSolarMPPT;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=battery_current;init_data=0;",
               "min": "0",
               "max": "110",
               "step": "0.1"
@@ -601,7 +377,7 @@
             "Voltage": {
               "type": "RangeState",
               "desc": "Voltage provided from solar panels in Volts",
-              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=panel_voltage;init_data=0;",
+              "listener": "dbus://dbus_name=com.victron.SmartSolarMPPT;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=panel_voltage;init_data=0;",
               "min": "0",
               "max": "55",
               "step": "0.1"
@@ -609,7 +385,7 @@
             "Power": {
               "type": "RangeState",
               "desc": "Power generated from solar panels in Watt",
-              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=panel_power;init_data=0;",
+              "listener": "dbus://dbus_name=com.victron.SmartSolarMPPT;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=panel_power;init_data=0;",
               "min": "0",
               "max": "6050",
               "step": "0.1"
@@ -617,7 +393,7 @@
             "Power Percentage": {
               "type": "RangeState",
               "desc": "Power generated from solar panels in Percent",
-              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=panel_power_percent;init_data=0;",
+              "listener": "dbus://dbus_name=com.victron.SmartSolarMPPT;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=panel_power_percent;init_data=0;",
               "min": "0",
               "max": "100",
               "step": "1"
@@ -625,7 +401,7 @@
             "Max Power": {
               "type": "RangeState",
               "desc": "Maximum power generated from solar panels in Watt",
-              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=panel_power_max;init_data=0;",
+              "listener": "dbus://dbus_name=com.victron.SmartSolarMPPT;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=panel_power_max;init_data=0;",
               "min": "0",
               "max": "6050",
               "step": "0.1"
@@ -638,7 +414,7 @@
             "Current": {
               "type": "RangeState",
               "desc": "Current absorbed by all services in Ampere",
-              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=load_current;init_data=0;",
+              "listener": "dbus://dbus_name=com.victron.SmartSolarMPPT;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=load_current;init_data=0;",
               "min": "0",
               "max": "110",
               "step": "0.1"
@@ -646,7 +422,7 @@
             "Voltage": {
               "type": "RangeState",
               "desc": "Voltage provided to all services in Volts",
-              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=load_voltage;init_data=0;",
+              "listener": "dbus://dbus_name=com.victron.SmartSolarMPPT;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=load_voltage;init_data=0;",
               "min": "0",
               "max": "55",
               "step": "0.1"
@@ -654,7 +430,7 @@
             "Power": {
               "type": "RangeState",
               "desc": "Power absorbed by all services in Watt",
-              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=load_power;init_data=0;",
+              "listener": "dbus://dbus_name=com.victron.SmartSolarMPPT;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=load_power;init_data=0;",
               "min": "0",
               "max": "6050",
               "step": "0.1"
@@ -662,7 +438,7 @@
             "Power Percentage": {
               "type": "RangeState",
               "desc": "Power absorbed by all services in Percent",
-              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=load_power_percent;init_data=0;",
+              "listener": "dbus://dbus_name=com.victron.SmartSolarMPPT;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=load_power_percent;init_data=0;",
               "min": "0",
               "max": "100",
               "step": "1"
@@ -670,7 +446,7 @@
             "Max Power": {
               "type": "RangeState",
               "desc": "Maximum power absorbed by all services in Watt",
-              "listener": "dbus://dbus_name=com.victron;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=load_power_max;init_data=0;",
+              "listener": "dbus://dbus_name=com.victron.SmartSolarMPPT;dbus_obj_path=/smartsolar_mppt;dbus_iface=com.victron.SmartSolarMPPT;dbus_prop=load_power_max;init_data=0;",
               "min": "0",
               "max": "6050",
               "step": "0.1"
@@ -688,21 +464,21 @@
           "contains": {
             "Charging state": {
               "type": "BooleanState",
-              "desc": "[FW] SolarCharger's firmware version",
-              "listener": "dbus://dbus_name=com.upspack;dbus_obj_path=/ups_smart;dbus_iface=com.upspack_v3;dbus_prop=state_operation;"
+              "desc": "UPS Charging State (true is Charging, false is NotCharging)",
+              "listener": "dbus://dbus_name=com.upspack_v3;dbus_obj_path=/ups_smart_v3_2p;dbus_iface=com.upspack;dbus_prop=state_operation;"
             },
             "Battery Percentage": {
               "type": "RangeState",
-              "desc": "[BATCAP] Battery charge percentage",
-              "listener": "dbus://dbus_name=com.upspack;dbus_obj_path=/ups_smart;dbus_iface=com.upspack_v3;dbus_prop=battery_capacity;",
+              "desc": "UPS Battery charge percentage",
+              "listener": "dbus://dbus_name=com.upspack_v3;dbus_obj_path=/ups_smart_v3_2p;dbus_iface=com.upspack;dbus_prop=battery_capacity;",
               "min": "0",
               "max": "100",
               "step": "1"
             },
             "Output Voltage": {
               "type": "RangeState",
-              "desc": "[Vout] Load voltage in milliVolts",
-              "listener": "dbus://dbus_name=com.upspack;dbus_obj_path=/ups_smart;dbus_iface=com.upspack_v3;dbus_prop=voltage_out;",
+              "desc": "UPS output voltage in Volts",
+              "listener": "dbus://dbus_name=com.upspack_v3;dbus_obj_path=/ups_smart_v3_2p;dbus_iface=com.upspack;dbus_prop=voltage_out;",
               "min": "4000",
               "max": "6000",
               "step": "1"
@@ -712,20 +488,30 @@
         "Internet": {
           "type": "JODContainer",
           "contains": {
-            "Status": {
+            "Network Registration": {
               "type": "BooleanState",
-              "desc": "Sim's status (true is Working, false is NOT Working).",
-              "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=network_status;"
+              "desc": "Network registration (true is Registered, false is NOT Registered).",
+              "listener": "dbus://dbus_name=com.waveshare.sim7600;dbus_obj_path=/sim7600;dbus_iface=com.waveshare.sim7600;dbus_prop=network_registration;"
+            },
+            "Network Searching": {
+              "type": "BooleanState",
+              "desc": "Network searching (true is Searching, false is NOT Searching).",
+              "listener": "dbus://dbus_name=com.waveshare.sim7600;dbus_obj_path=/sim7600;dbus_iface=com.waveshare.sim7600;dbus_prop=network_searching;"
+            },
+            "Network Roaming": {
+              "type": "BooleanState",
+              "desc": "Network roaming status (true is IN Roaming, false is NOT IN Roaming).",
+              "listener": "dbus://dbus_name=com.waveshare.sim7600;dbus_obj_path=/sim7600;dbus_iface=com.waveshare.sim7600;dbus_prop=network_roaming;"
             },
             "SIM Status": {
               "type": "BooleanState",
-              "desc": "Sim's status (true is Working, false is NOT Working).",
-              "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=network_sim_status;"
+              "desc": "Sim's status (true is Ready, false is NOT Ready (missing, requires PIN/PUK/..., errors).",
+              "listener": "dbus://dbus_name=com.waveshare.sim7600;dbus_obj_path=/sim7600;dbus_iface=com.waveshare.sim7600;dbus_prop=network_sim_status;"
             },
-            "Percentage": {
+            "Quality": {
               "type": "RangeState",
-              "desc": "Internet signal quality in Percent.",
-              "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=network_signal_percentage;",
+              "desc": "Network signal quality in Percent.",
+              "listener": "dbus://dbus_name=com.waveshare.sim7600;dbus_obj_path=/sim7600;dbus_iface=com.waveshare.sim7600;dbus_prop=network_signal_quality;",
               "min": "0",
               "max": "100",
               "step": "1"
@@ -733,8 +519,8 @@
             "Power Module": {
               "type": "BooleanAction",
               "desc": "Power on/off the SIM module to save energy",
-              "listener": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_prop=power_module_state;",
-              "executor": "dbus://dbus_name=com.simcom;dbus_obj_path=/sim7600;dbus_iface=com.simcom.sim7600;dbus_method=power_module;dbus_method_params=%A_VAL%:Boolean;"
+              "listener": "dbus://dbus_name=com.waveshare.sim7600;dbus_obj_path=/sim7600;dbus_iface=com.waveshare.sim7600;dbus_prop=power_module_state;",
+              "executor": "dbus://dbus_name=com.waveshare.sim7600;dbus_obj_path=/sim7600;dbus_iface=com.waveshare.sim7600;dbus_method=power_module;dbus_method_params=%A_VAL%:Boolean;"
             }
           }
         }

@@ -35,7 +35,7 @@
 # Enable the firmware simulation option for all firmwares that supports it
 #export SIMULATE=true       # default false
 # If true, execute all python firmware in their own virtual environment
-#export VENV=true           # default false
+export VENV=true           # default false
 # If true, then it print all logging messages from firmwares
 #export INLINE_LOGS=true    # default false
 #######################
