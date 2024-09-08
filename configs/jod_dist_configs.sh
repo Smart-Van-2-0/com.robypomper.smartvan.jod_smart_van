@@ -56,7 +56,7 @@ DIST_ARTIFACT="JOD_Smart_Van"
 
 # JOD Distribution version
 # A custom string representing current JOD Distribution version
-DIST_VER="1.0.1"
+DIST_VER="1.0.2"
 
 # ################### #
 # John Cloud Platform #

@@ -58,7 +58,7 @@ $global:DIST_ARTIFACT="JOD_Smart_Van"
 
 # JOD Distribution version
 # A custom string representing current JOD Distribution version
-$global:DIST_VER="1.0.1-DEV"
+$global:DIST_VER="1.0.2-DEV"
 
 
 # ################### #
