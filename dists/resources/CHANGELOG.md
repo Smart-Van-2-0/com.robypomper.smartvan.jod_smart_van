@@ -2,6 +2,27 @@
 
 [README](README.md) | [CHANGELOG](CHANGELOG.md) | [TODOs](TODOs.md) | [LICENCE](LICENCE.md)
 
+## 1.0.1
+
+* Updated FW versions to:
+  * FW Victron: v 1.0.3
+  * FW SIM 7600: v 1.0.1
+  * FW UPS Pack_V3: v 1.0.1
+  * FW Sense Hat: v 1.0.1
+  * FW IO Exp: v 1.0.1
+* Enabled venv for firmwares by default
+* Added scripts to manage firmwares' venvs
+* Updated pre-startup.sh script to support new serial names for RPi OS (Bookworm)
+* Updated struct.jod according to updated firmwares
+* Updated struct.jod according to the SmartVanBox hardware specs and created an example struct_GENERIC.jod file
+* Replaced SV Project url from 'smartvan.johnosproject.org' to 'www.smartvanbox.org'
+* Removed the `--debug` option in the FWs execution
+* Added support to GralVM (used in JOD 2.2.5)
+* Fixed log file name in log4j2_TMPL_224.xml
+* Fixed DBus session startup, added a start.sh customized script that starts a DBus session before startup all firmwares
+* Fixed wrong command for UPS firmware startup from pre-startup.sh script
+* Fixed compressed files generation in publish.sh
+
 ## 1.0.0
 
 * Updated [JOD](https://docs.johnosproject.org/references/josp/jod/) agent to v 2.2.4
